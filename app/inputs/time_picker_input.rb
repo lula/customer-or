@@ -7,9 +7,9 @@ class TimePickerInput < SimpleForm::Inputs::Base
 
   # The "Selecione..." string could also be translated with something like: I18n.t("helpers.select.prompt')
   def hour_options
-    hour = [['', '']]
+    hour = [['', ' ']]
     (8..21).each do |h|
-      %w(00 15 30 45).each do |m|
+      %w(00 30).each do |m|
         hour.push ["#{h}:#{m}", "#{"%02d" % h}:#{m}"]
       end
     end
