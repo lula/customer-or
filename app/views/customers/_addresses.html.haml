@@ -1,0 +1,31 @@
+- show ||= false
+- addresses_size = 0
+#addresses-table
+  %table.table.table-striped.table-condensed.table-hover.table-bordered
+    %thead
+      %tr
+        %th{ width: "200px" }= t(:address)
+        - unless show
+          %th{ width: "40px" }=t '.actions', :default => t("helpers.actions")
+    %tbody
+      - @addresses.each do |address|
+        - addresses_size += 1
+        %tr
+          %td= address.full_description
+          - unless show
+            %td
+              = link_to edit_customer_address_path(@customer, address), :class => 'btn btn-mini' do
+                %i.icon-edit
+                = t('.edit', :default => t("helpers.links.edit"))
+              
+              - unless @addresses.length == 1
+                = link_to customer_address_path(@customer, address), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger' do
+                  %i.icon-trash
+                  = t('.destroy', :default => t("helpers.links.destroy"))
+      - (5 - addresses_size).times do |i|
+        %tr
+          %td &nbsp;
+          - unless show
+            %td &nbsp;
+
+= paginate @addresses, pagination_class: "pagination-small pagination-centered"

@@ -1,0 +1,32 @@
+= simple_form_for @customer, :html => { :class => 'form-horizontal' } do |f|
+  / %legend.no-title &nbsp;
+  .row
+    .span6
+      = f.input :name
+    .span6
+      = f.input :valid_from, input_html: { class: "datepicker" }
+      = f.input :valid_to, input_html: { class: "datepicker" }
+  .row
+    .span12
+      %legend
+        = t(:addresses)
+        - unless @customer.new_record?  
+          = link_to "New", new_customer_address_path(@customer), class: "btn btn-small btn-primary"
+          
+      #address_form
+        - if @customer.new_record?
+          = f.simple_fields_for :addresses do |a|
+            = a.input :street
+            = a.input :house_nr
+            = a.input :city
+            = a.input :country, as: :country, input_html: { style: "width: 220px;"}
+        - else
+          = render "addresses"
+  .form-actions
+    = f.button :submit, :class => 'btn btn-primary btn-small'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), customers_path, :class => 'btn btn-small'
+    
+:javascript
+  $('.datepicker').datepicker({
+    format: 'yyyy-mm-dd'
+  });

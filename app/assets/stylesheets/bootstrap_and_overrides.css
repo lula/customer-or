@@ -1,0 +1,51 @@
+/*
+  =#require twitter-bootstrap-static/bootstrap
+	=require bootstrap-themes/bootstrap-cerulean
+
+  Use Font Awesome icons (default)
+  To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
+
+  =require twitter-bootstrap-static/fontawesome	
+*/
+
+body {
+	padding-top: 30px;
+}
+
+.container {
+	padding-top: 20px;
+}
+
+.page-header {
+	height: 40px;
+}
+
+.navbar, 
+.navbar-inner, 
+ul.nav > * {
+	height: 40px !important;
+	min-height: 40px !important;
+	line-height: 10px !important;
+}
+
+.navbar a.brand {
+	margin: 0px;
+}
+
+a.dropdown-toggle b.caret {
+	margin-top: 4px !important;
+}
+
+.form-actions {
+	padding: 8px 10px 10px;
+	background-color: #fff;
+}
+
+legend.no-title {
+	border: 1px solid transparent;
+}
+
+td.selected {
+	background-color: #3daae9 !important;
+	color: #fff;
+}

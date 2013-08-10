@@ -1,0 +1,23 @@
+- model_class = Customer
+.page-header
+  %h2=t '.title', :default => model_class.model_name.human.titleize
+
+%p
+  %strong= model_class.human_attribute_name(:name) + ':'
+  = @customer.name
+%p
+  %strong= model_class.human_attribute_name(:valid_from) + ':'
+  = @customer.valid_from
+%p
+  %strong= model_class.human_attribute_name(:valid_to) + ':'
+  = @customer.valid_to
+
+%p
+  %strong= t(:addresses) + ':'
+  %br
+  = render "addresses", show: true
+
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), customers_path, :class => 'btn btn-small'
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_customer_path(@customer), :class => 'btn btn-small'
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), customer_path(@customer), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger btn-small'
