@@ -1,11 +1,16 @@
 CustomerOr::Application.routes.draw do
   
+  get "business_hours/edit"
+  get "business_hours/new"
+  get "business_hours/show"
   get "addresses/new"
   concern :addressable do 
     resources :addresses
   end
   
-  resources :customers, concerns: :addressable 
+  resources :customers, concerns: :addressable do
+    resources :business_hours
+  end
   
   root to: "home#index"
   

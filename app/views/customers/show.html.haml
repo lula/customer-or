@@ -17,6 +17,11 @@
   %br
   = render "addresses", show: true
 
+%p
+  %strong= t(:business_hours) + ":"
+  %br
+    = render "business_hours", show: true
+  
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), customers_path, :class => 'btn btn-small'
   = link_to t('.edit', :default => t("helpers.links.edit")), edit_customer_path(@customer), :class => 'btn btn-small'

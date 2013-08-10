@@ -1,0 +1,10 @@
+= f.input day, as: :boolean, label: false do
+  = f.input_field day, as: :boolean
+  = f.label day, style: "width: 100px;"
+  = f.label "Start at / End at", style: "margin-left: 40px"
+  = f.input_field :"#{day.to_s}_start_at", as: :time_picker
+  = f.input_field :"#{day.to_s}_end_at", as: :time_picker
+  .error.control-group
+    = f.full_error day
+    = f.full_error :"#{day.to_s}_start_at", style: "display: block"
+    = f.full_error :"#{day.to_s}_end_at"

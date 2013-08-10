@@ -1,0 +1,11 @@
+en:
+  mongoid:
+    attributes:
+      business_hour:
+        mon: "Monday"
+        tue: "Tuesday"
+        wed: "Wednesday"
+        thu: "Thursday"
+        fri: "Friday"
+        sat: "Saturday"
+        sun: "Sunday"

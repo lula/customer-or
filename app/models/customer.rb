@@ -10,6 +10,8 @@ class Customer
   embeds_many :addresses, cascade_callbacks: true
   accepts_nested_attributes_for :addresses
   
+  embeds_many :business_hours, cascade_callbacks: true
+  
   scope :name_match, ->(name) { where(name: /#{name}/i) }
   scope :addresses_city_match, ->(city) { where(:"addresses.city" => /#{city}/i) }
   scope :addresses_country_match, ->(country) { where(:"addresses.country" => /#{country}/i) }

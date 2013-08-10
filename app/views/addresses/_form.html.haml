@@ -1,8 +1,11 @@
 = simple_form_for [@addressable, @address] do |f|
-  = f.input :street
-  = f.input :house_nr
-  = f.input :city
-  = f.input :country, input_html: { style: "width: 220px;"}
+  .row
+    .span6
+      = f.input :street
+      = f.input :house_nr
+    .span6
+      = f.input :city
+      = f.input :country, input_html: { style: "width: 220px;"}
   
   .form-actions
     = f.button :submit, :class => 'btn btn-primary btn-small'

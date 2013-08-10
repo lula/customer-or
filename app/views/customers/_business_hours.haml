@@ -1,0 +1,25 @@
+- show ||= false
+
+#business-hours-table
+  %table.table.table-striped.table-condensed.table-hover.table-bordered
+    %thead
+      %tr
+        %th{ width: "200px" }= t(:schedule)
+        - unless show
+          %th{ width: "40px" }=t '.actions', :default => t("helpers.actions")
+    %tbody
+      - @business_hours.each do |business_hour|
+        %tr
+          %td= business_hour.schedule
+          - unless show
+            %td
+              = link_to edit_customer_business_hour_path(@customer, business_hour), :class => 'btn btn-mini' do
+                %i.icon-edit
+                = t('.edit', :default => t("helpers.links.edit"))
+              
+              - unless @business_hours.length == 1
+                = link_to customer_business_hour_path(@customer, business_hour), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger' do
+                  %i.icon-trash
+                  = t('.destroy', :default => t("helpers.links.destroy"))
+
+= paginate @business_hours, pagination_class: "pagination-small pagination-centered", param_name: "bh_page"

@@ -5,13 +5,14 @@ class CustomersController < ApplicationController
   # GET /customers.json
   def index
     @search = Customer.search(params[:search])
-    @customers = @search.all.page(params[:page])
+    @customers = @search.all.page(params[:page]).order_by(:name.asc)
   end
 
   # GET /customers/1
   # GET /customers/1.json
   def show
     @addresses = @customer.addresses.page(params[:page])
+    @business_hours = @customer.business_hours.page(params[:bh_page])
   end
 
   # GET /customers/new
@@ -23,6 +24,7 @@ class CustomersController < ApplicationController
   # GET /customers/1/edit
   def edit
     @addresses = @customer.addresses.page(params[:page])
+    @business_hours = @customer.business_hours.page(params[:bh_page])
   end
 
   # POST /customers

@@ -58,3 +58,6 @@ gem 'select2-rails'
 
 # Kaminari
 gem 'kaminari'
+
+# Ice Cube
+gem 'ice_cube'
