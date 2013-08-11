@@ -1,17 +1,19 @@
 CustomerOr::Application.routes.draw do
-  
   get "business_hours/edit"
   get "business_hours/new"
   get "business_hours/show"
   get "addresses/new"
+  
   concern :addressable do 
     resources :addresses
   end
+
+  resources :representatives, concerns: :addressable
   
   resources :customers, concerns: :addressable do
     resources :business_hours
   end
-  
+    
   root to: "home#index"
   
   # The priority is based upon order of creation: first created -> highest priority.

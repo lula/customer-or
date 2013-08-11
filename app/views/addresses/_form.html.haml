@@ -1,8 +1,9 @@
-= simple_form_for [@addressable, @address] do |f|
+= simple_form_for [@addressable, @address], html: { class: "form-horizontal" } do |f|
   .row
     .span6
-      = f.input :street
-      = f.input :house_nr
+      = f.input :street do
+        = f.input_field :street, label: false
+        = f.input_field :house_nr, style: "width: 40px"
     .span6
       = f.input :city
       = f.input :country, input_html: { style: "width: 220px;"}

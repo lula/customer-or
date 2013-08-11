@@ -9,7 +9,7 @@
   .row
     .span12
       %legend
-        = t(:addresses)
+        = @customer.new_record? ? t(:address) : t(:addresses)
         - unless @customer.new_record?  
           = link_to "New", new_customer_address_path(@customer), class: "btn btn-small btn-primary"
           
@@ -18,8 +18,9 @@
           = f.simple_fields_for :addresses do |a|
             .row
               .span6
-                = a.input :street
-                = a.input :house_nr
+                = a.input :street do
+                  = a.input_field :street, label: false
+                  = a.input_field :house_nr, style: "width: 40px"
               .span6
                 = a.input :city
                 = a.input :country, as: :country, input_html: { style: "width: 220px;"}
@@ -34,7 +35,7 @@
         = render "business_hours"
   .form-actions
     = f.button :submit, :class => 'btn btn-primary btn-small'
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), customers_path, :class => 'btn btn-small'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), customer_path(@customer), :class => 'btn btn-small'
     
 :javascript
   $('.datepicker').datepicker({

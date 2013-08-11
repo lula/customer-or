@@ -1,0 +1,23 @@
+= simple_form_for @representative, html: { class: "form-horizontal" } do |f|
+  = f.error_notification
+  
+  = f.input :name
+  
+  #address_form
+    = f.simple_fields_for @representative.address do |a|
+      %legend= t(:address)
+      .row
+        .span6
+          = f.input :street do
+            = a.input_field :street, label: false
+            = a.input_field :house_nr, style: "width: 40px"
+        .span6
+          = a.input :city
+          = a.input :country, as: :country, input_html: { style: "width: 220px;"}
+  
+  .form-actions
+    = f.button :submit, :class => 'btn btn-primary btn-small'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), representative_path(@representative), :class => 'btn btn-small'
+
+:javascript
+  $("select").select2()

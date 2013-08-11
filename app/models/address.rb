@@ -7,6 +7,7 @@ class Address
   field :description, type: String
   
   embedded_in :customer, inverse_of: "addresses"
+  embedded_in :representative, inverse_of: "address"
   
   validates_presence_of :city
   
