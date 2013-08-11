@@ -36,22 +36,61 @@ class BusinessHour
   validates_presence_of :sat_start_at, :sat_end_at, if: Proc.new { |b| b.sat == "1" }
   validates_presence_of :sun_start_at, :sun_end_at, if: Proc.new { |b| b.sun == "1" }
   
-  
   before_save :set_schedule
     
   embedded_in :customer, inverse_of: "business_hours"
+    
+  def occurs_on?(date) # date
+    schedule.occurs_on?(date)
+  end
   
-  private
+  def occurs_at?(date) # time
+    schedule.occurs_at?(date)
+    # if schedule.occurs_on?(date)
+    #   days.each do |day|
+    #     if day[:wday] == date.wday
+    #       start_date = Time.local(Time.now.year, Time.now.month, Time.now.day, day[:start_at].hour, day[:start_at].min)
+    #       end_date = Time.local(Time.now.year, Time.now.month, Time.now.day, day[:end_at].hour, day[:end_at].min)
+    #       range = start_date..end_date
+    #       debugger
+    #       d = Time.local(start_date.year,start_date.month, start_date.day, date.hour, date.min)
+    #       return true if range.cover?(d)
+    #     end  
+    #   end
+    # end
+    # 
+    # return false
+  end
+  
+  def schedule
+    Schedule.from_hash(set_schedule)
+  end
   
   def set_schedule(date=Time.now)
-    self.schedule = Schedule.new(date) do |sc|
+    s = Schedule.new(date) do |sc|
       rule = Rule.weekly
       days.each do |day|
         rule.day(day[:wday])
       end
       sc.add_recurrence_rule rule
     end
+    
+    self.schedule = s.to_hash
   end
+  
+  private
+  
+  # def set_schedule(date=Time.now)
+#     s = Schedule.new(date) do |sc|
+#       rule = Rule.weekly
+#       days.each do |day|
+#         rule.day(day[:wday])
+#       end
+#       sc.add_recurrence_rule rule
+#     end
+#     
+#     self.schedule = s.to_hash
+#   end
   
   def days
     days = []

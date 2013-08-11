@@ -12,7 +12,10 @@ CustomerOr::Application.routes.draw do
   
   resources :customers, concerns: :addressable do
     resources :business_hours
+    resource :visit, only: [:new]
   end
+  
+  resources :visits
     
   root to: "home#index"
   

@@ -7,6 +7,8 @@ class Representative
   validates_presence_of :name
   
   embeds_one :address, cascade_callbacks: true
+  has_many :visits
+  
   accepts_nested_attributes_for :address
   
   scope :name_match, ->(name) { where(name: /#{name}/i) }

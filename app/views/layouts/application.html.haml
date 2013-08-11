@@ -19,28 +19,7 @@
     = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
 
   %body 
-    .navbar.navbar-fixed-top
-      .navbar-inner
-        %a.brand{ href: "/" } CoR
-        %ul.nav
-          %li.divider-vertical
-          %li.dropdown
-            %a.dropdown-toggle{ href: "#", data: {toggle: "dropdown" } }
-              Customers 
-              %b.caret
-            %ul.dropdown-menu
-              %li= link_to t("helpers.links.new"), new_customer_path
-              %li= link_to "Search", customers_path
-          %li.dropdown
-            %a.dropdown-toggle{ href: "#", data: {toggle: "dropdown" } }
-              Representatives 
-              %b.caret
-            %ul.dropdown-menu
-              %li= link_to t("helpers.links.new"), new_representative_path
-              %li= link_to "Search", representatives_path
-        %ul.nav.pull-right
-          %li
-            %a{ href: "/"} Sign In
+    = render "layouts/navbar"
     
     .container
 

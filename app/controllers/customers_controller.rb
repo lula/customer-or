@@ -13,6 +13,7 @@ class CustomersController < ApplicationController
   def show
     @addresses = @customer.addresses.page(params[:page])
     @business_hours = @customer.business_hours.page(params[:bh_page])
+    @visits = @customer.visits.page(params[:visits_page])
   end
 
   # GET /customers/new
