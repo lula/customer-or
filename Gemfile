@@ -61,3 +61,6 @@ gem 'kaminari'
 
 # Ice Cube
 gem 'ice_cube'
+
+# Simple Navigation
+gem 'simple-navigation'

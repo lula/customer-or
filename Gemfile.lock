@@ -135,6 +135,8 @@ GEM
     select2-rails (3.4.7)
       sass-rails
       thor (~> 0.14)
+    simple-navigation (3.11.0)
+      activesupport (>= 2.3.2)
     sprockets (2.10.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -176,6 +178,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.0)
   sdoc
   select2-rails
+  simple-navigation
   simple_form!
   turbolinks
   twitter-bootstrap-rails!

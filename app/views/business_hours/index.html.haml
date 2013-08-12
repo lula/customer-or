@@ -28,7 +28,7 @@
       %th= model_class.human_attribute_name(:sun_end_at)
       %th= model_class.human_attribute_name(:schedule)
       %th= model_class.human_attribute_name(:created_at)
-      %th=t '.actions', :default => t("helpers.actions")
+      %th{ width: "90px"}=t '.actions', :default => t("helpers.actions")
   %tbody
     - @business_hours.each do |business_hour|
       %tr

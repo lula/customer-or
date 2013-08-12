@@ -8,10 +8,11 @@ class Customer
   field :created_at, type: Date, default: Time.now
   
   embeds_many :addresses, cascade_callbacks: true
-  accepts_nested_attributes_for :addresses
-  
   embeds_many :business_hours, cascade_callbacks: true
   has_many :visits
+  has_and_belongs_to_many :organizations
+
+  accepts_nested_attributes_for :addresses
   
   scope :name_match, ->(name) { where(name: /#{name}/i) }
   scope :addresses_city_match, ->(city) { where(:"addresses.city" => /#{city}/i) }

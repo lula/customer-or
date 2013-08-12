@@ -1,0 +1,19 @@
+- model_class = Address
+.page-header
+  %h2=t '.title', :default => model_class.model_name.human.titleize
+
+.row 
+  .span6
+    %p
+      %strong= model_class.human_attribute_name(:street) + ':'
+      = @address.street
+    %p
+      %strong= model_class.human_attribute_name(:house_nr) + ':'
+      = @address.house_nr
+  .span6
+    %p
+      %strong= model_class.human_attribute_name(:city) + ':'
+      = @address.city
+    %p
+      %strong= model_class.human_attribute_name(:country) + ':'
+      = @address.country

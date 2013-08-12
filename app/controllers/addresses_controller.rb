@@ -7,7 +7,11 @@ class AddressesController < ApplicationController
   end
   
   def edit
-    @address = @addressable.addresses.find(params[:id])#.page(params[:page])
+    @address = @addressable.addresses.find(params[:id])
+  end
+  
+  def show
+    @address = @addressable.addresses.find(params[:id])
   end
   
   def create

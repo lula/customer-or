@@ -1,29 +1,30 @@
 .navbar.navbar-fixed-top
   .navbar-inner
     %a.brand{ href: "/" } CoR
-    %ul.nav
-      %li.divider-vertical
-      %li.dropdown
-        %a.dropdown-toggle{ href: "#", data: {toggle: "dropdown" } }
-          Customers 
-          %b.caret
-        %ul.dropdown-menu
-          %li= link_to t("helpers.links.new"), new_customer_path
-          %li= link_to "Search", customers_path
-      %li.dropdown
-        %a.dropdown-toggle{ href: "#", data: {toggle: "dropdown" } }
-          Representatives 
-          %b.caret
-        %ul.dropdown-menu
-          %li= link_to t("helpers.links.new"), new_representative_path
-          %li= link_to "Search", representatives_path
-      %li.dropdown
-        %a.dropdown-toggle{ href: "#", data: {toggle: "dropdown" } }
-          Visits
-          %b.caret
-        %ul.dropdown-menu
-          %li= link_to t("helpers.links.new"), new_visit_path
-          %li= link_to "Search", visits_path
+    = render_navigation(level: 1)
+    / %ul.nav
+    /   %li.divider-vertical
+    /   %li.dropdown
+    /     %a.dropdown-toggle{ href: "#", data: {toggle: "dropdown" } }
+    /       Customers 
+    /       %b.caret
+    /     %ul.dropdown-menu
+    /       %li= link_to t("helpers.links.new"), new_customer_path
+    /       %li= link_to "Search", customers_path
+    /   %li.dropdown
+    /     %a.dropdown-toggle{ href: "#", data: {toggle: "dropdown" } }
+    /       Representatives 
+    /       %b.caret
+    /     %ul.dropdown-menu
+    /       %li= link_to t("helpers.links.new"), new_representative_path
+    /       %li= link_to "Search", representatives_path
+    /   %li.dropdown
+    /     %a.dropdown-toggle{ href: "#", data: {toggle: "dropdown" } }
+    /       Visits
+    /       %b.caret
+    /     %ul.dropdown-menu
+    /       %li= link_to t("helpers.links.new"), new_visit_path
+    /       %li= link_to "Search", visits_path
     %ul.nav.pull-right
       %li
         %a{ href: "/"} Sign In

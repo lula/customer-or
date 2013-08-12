@@ -20,9 +20,14 @@
 
   %body 
     = render "layouts/navbar"
+
+    .navigation
+      .pull-left{style: "padding-top: 50px"}
+        .tabbable.tabs-left
+          
+          = render_navigation(level: 2)
     
     .container
-
       .row
         .span12
           = bootstrap_flash

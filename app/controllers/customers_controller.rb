@@ -14,6 +14,7 @@ class CustomersController < ApplicationController
     @addresses = @customer.addresses.page(params[:page])
     @business_hours = @customer.business_hours.page(params[:bh_page])
     @visits = @customer.visits.page(params[:visits_page])
+    @organizations = @customer.organizations.page(params[:organizations_page])
   end
 
   # GET /customers/new
@@ -76,6 +77,6 @@ class CustomersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.require(:customer).permit(:name, :valid_from, :valid_to, :created_at, addresses_attributes: [ :_id, :street, :house_nr, :city, :country, :description ])
+      params.require(:customer).permit(:name, :valid_from, :valid_to, :created_at, addresses_attributes: [ :_id, :street, :house_nr, :city, :country, :description], organization_ids: [])
     end
 end

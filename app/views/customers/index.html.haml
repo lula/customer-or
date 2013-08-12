@@ -13,7 +13,7 @@
         %th= model_class.human_attribute_name(:valid_from)
         %th= model_class.human_attribute_name(:valid_to)
         %th= model_class.human_attribute_name(:created_at)
-        %th=t '.actions', :default => t("helpers.actions")
+        %th{ width: "90px"}=t '.actions', :default => t("helpers.actions")
     %tbody
       - @customers.each do |customer|
         %tr

@@ -8,6 +8,7 @@ class Representative
   
   embeds_one :address, cascade_callbacks: true
   has_many :visits
+  has_and_belongs_to_many :organizations
   
   accepts_nested_attributes_for :address
   

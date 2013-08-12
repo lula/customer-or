@@ -9,11 +9,11 @@
   %thead
     %tr
       %th= model_class.human_attribute_name(:name)
-      %th=t '.actions', :default => t("helpers.actions")
+      %th{ width: "90px"}=t '.actions', :default => t("helpers.actions")
   %tbody
     - @representatives.each do |representative|
       %tr
         %td= link_to representative.name, representative_path(representative)
-        %td{ width: "90px"}
+        %td
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_representative_path(representative), :class => 'btn btn-mini'
           = link_to t('.destroy', :default => t("helpers.links.destroy")), representative_path(representative), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
