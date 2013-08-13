@@ -4,7 +4,8 @@ class OrganizationsController < ApplicationController
   # GET /organizations
   # GET /organizations.json
   def index
-    @organizations = Organization.all
+    @grid = OrganizationsGrid.new(params[:organizations_grid])
+    @assets = @grid.assets.page(params[:page])
   end
 
   # GET /organizations/1

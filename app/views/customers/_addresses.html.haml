@@ -1,30 +1,5 @@
 - editable ||= false
 #addresses-table
   = datagrid_table AddressesShortGrid.new, @customer.addresses, path: @customer, editable: editable, starred: :is_main?, html: { class: "table table-condensed table-hover table-bordered" }
-  / %table.table.table-striped.table-condensed.table-hover.table-bordered
-  /   %thead
-  /     %tr
-  /       %th{ width: "20px" }
-  /       %th{ width: "200px" }= t(:address)
-  /       - unless show
-  /         %th{ width: "40px" }=t '.actions', :default => t("helpers.actions")
-  /   %tbody
-  /     - @addresses.each do |address|
-  /       %tr
-  /         %td
-  /           -if address.is_main?
-  /             %i.icon-star
-  /           -else 
-  /             %i.icon-star-empty
-  /         %td= link_to address.full_description, customer_address_path(@customer, address)
-  /         - unless show
-  /           %td
-  /             = link_to edit_customer_address_path(@customer, address), :class => 'btn btn-mini' do
-  /               %i.icon-edit
-  /               = t('.edit', :default => t("helpers.links.edit"))
-  /             - unless @addresses.length == 1
-  /               = link_to customer_address_path(@customer, address), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger' do
-  /                 %i.icon-trash
-  /                 = t('.destroy', :default => t("helpers.links.destroy"))
 
 = paginate @addresses, pagination_class: "pagination-small pagination-centered"

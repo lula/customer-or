@@ -2,25 +2,4 @@
 #organizations-table
   = datagrid_table OrganizationsGrid.new, @organizations, html: { class: "table table-condensed table-hover table-bordered" }
 
-/   %table.table.table-striped.table-condensed.table-hover.table-bordered
-/     %thead
-/       %tr
-/         %th{ width: "200px" }= t(:name)
-/         - unless show
-/           %th{ width: "40px" }=t '.actions', :default => t("helpers.actions")
-/     %tbody
-/       - @organizations.each do |organization|
-/         %tr
-/           %td= organization.name
-/           %td= organization.country
-/           - unless show
-/             %td
-/               = link_to edit_customer_address_path(@customer, address), :class => 'btn btn-mini' do
-/                 %i.icon-edit
-/                 = t('.edit', :default => t("helpers.links.edit"))
-/               - unless @organizations.length == 1
-/                 = link_to customer_address_path(@customer, address), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger' do
-/                   %i.icon-trash
-/                   = t('.destroy', :default => t("helpers.links.destroy"))
-
 = paginate @organizations, pagination_class: "pagination-small pagination-centered"

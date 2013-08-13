@@ -2,19 +2,9 @@
 .page-header
   %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
   
-%table.table.table-striped.table-condensed.table-hover.table-bordered
-  %thead
-    %tr
-      %th= model_class.human_attribute_name(:name)
-      %th= model_class.human_attribute_name(:country)
-      %th= model_class.human_attribute_name(:created_at)
-      %th{ style: "width: 90px"}=t '.actions', :default => t("helpers.actions")
-  %tbody
-    - @organizations.each do |organization|
-      %tr
-        %td= link_to organization.name, organization_path(organization)
-        %td= organization.country
-        %td= organization.created_at
-        %td
-          = link_to t('.edit', :default => t("helpers.links.edit")), edit_organization_path(organization), :class => 'btn btn-mini'
-          = link_to t('.destroy', :default => t("helpers.links.destroy")), organization_path(organization), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+#account_search_form 
+  = datagrid_form_for @grid, :method => :get, :url => organizations_path, html: { class: "form-horizontal" }
+
+#accounts-table
+  = datagrid_table @grid, @assets, html: { class: "table table-condensed table-hover table-bordered" }, editable: true
+  = paginate @assets, pagination_class: "pagination-small pagination-centered"
