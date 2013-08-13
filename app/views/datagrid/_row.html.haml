@@ -1,0 +1,15 @@
+%tr{class: options[:cycle] && cycle(*options[:cycle])}
+  - if options[:starred]
+    %td
+      - if options[:starred] && asset.send(options[:starred])
+        %i.icon-star
+      - else
+        %i.icon-star-empty
+  - grid.columns(*options[:columns]).each do |column|
+    %td{ class: datagrid_column_classes(grid, column) }
+      = datagrid_format_value(grid, column, asset)
+  - if options[:editable]
+    %td
+      - path = options[:path] ? [options[:path], asset] : asset
+      = link_to "Edit", path , :class => 'btn btn-mini'
+      = link_to t('.destroy', :default => t("helpers.links.destroy")), path, :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'

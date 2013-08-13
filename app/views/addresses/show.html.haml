@@ -16,4 +16,6 @@
       = @address.city
     %p
       %strong= model_class.human_attribute_name(:country) + ':'
-      = @address.country
+      = ::CountrySelect::COUNTRIES[@address.country]
+    %p
+      %strong= "Main Address" if @address.main

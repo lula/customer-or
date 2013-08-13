@@ -64,3 +64,6 @@ gem 'ice_cube'
 
 # Simple Navigation
 gem 'simple-navigation'
+
+# Datagrid
+gem 'datagrid'

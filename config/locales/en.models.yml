@@ -1,5 +1,7 @@
 en:
   mongoid:
+    models:
+      address: "Address"
     attributes:
       business_hour:
         mon: "Monday"
@@ -9,3 +11,7 @@ en:
         fri: "Friday"
         sat: "Saturday"
         sun: "Sunday"
+      customer:
+        name: "Name"
+      address:
+        city: "City"

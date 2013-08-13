@@ -1,6 +1,6 @@
 class Customer
   include Mongoid::Document
-  include Searchable
+  # include Searchable
   
   field :name, type: String
   field :valid_from, type: Date
@@ -11,12 +11,18 @@ class Customer
   embeds_many :business_hours, cascade_callbacks: true
   has_many :visits
   has_and_belongs_to_many :organizations
-
+  
   accepts_nested_attributes_for :addresses
   
-  scope :name_match, ->(name) { where(name: /#{name}/i) }
-  scope :addresses_city_match, ->(city) { where(:"addresses.city" => /#{city}/i) }
-  scope :addresses_country_match, ->(country) { where(:"addresses.country" => /#{country}/i) }
+  # scope :name_match, ->(name) { where(name: /#{name}/i) }
+  # scope :addresses_city_match, ->(city) { where(:"addresses.city" => /#{city}/i) }
+  # scope :addresses_country_match, ->(country) { where(:"addresses.country" => /#{country}/i) }
+
+  def main_address
+    addresses.each do |addr|
+      return addr if addr.main
+    end
+  end
   
   validates_presence_of :name
 end

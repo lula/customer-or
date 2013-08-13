@@ -19,31 +19,31 @@
               = a.input_field :house_nr, style: "width: 40px"
           .span6
             = a.input :city
-            = a.input :country, as: :country, input_html: { style: "width: 220px;"}
+            = a.input :country, iso_codes: true, input_html: { style: "width: 220px;"}
   - else
     .row
       .span6
         %legend
           = t(:addresses)
           = link_to "New", new_customer_address_path(@customer), class: "btn btn-small btn-primary"
-        = render "addresses"
+        = render "addresses", editable: true
       .span6
         %legend
           = t(:business_hours)
           = link_to "New", new_customer_business_hour_path(@customer), class: "btn btn-small btn-primary"
-        = render "business_hours"
+        = render "business_hours", editable: true
   .row
     .span12
       %legend= t(:organizations)
-      = f.input :organization_ids, as: :check_boxes, collection: Organization.all
+      = f.input :organization_ids, collection: Organization.all, input_html: { multiple: true }
     
     
   .form-actions
     = f.button :submit, :class => 'btn btn-primary btn-small'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), customer_path(@customer), :class => 'btn btn-small'
-    
+
 :javascript
   $('.datepicker').datepicker({
     format: 'yyyy-mm-dd'
   });
-  $("select").select2()
+  $("select").select2({allowClear: true})

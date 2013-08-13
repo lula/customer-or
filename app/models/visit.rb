@@ -1,9 +1,10 @@
 class Visit
   include Mongoid::Document
+  
   field :description, type: String
   field :vdate, type: Date
   field :comment, type: String
-  field :created_at, type: Date, default: Time.now
+  field :created_at, type: Date
   
   belongs_to :customer
   belongs_to :representative

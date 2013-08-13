@@ -6,4 +6,4 @@
     = link_to t('.cancel', :default => t("helpers.links.cancel")), organizations_path, :class => 'btn'
 
 :javascript
-  $("select").select2()
+  $("select").select2({allowClear: true})

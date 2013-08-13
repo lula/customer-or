@@ -4,8 +4,10 @@ class VisitsController < ApplicationController
   # GET /visits
   # GET /visits.json
   def index
-    @visits = Visit.all
+    @grid = VisitsGrid.new(params[:visits_grid])
+    @assets = @grid.assets.page(params[:page])
   end
+  
 
   # GET /visits/1
   # GET /visits/1.json

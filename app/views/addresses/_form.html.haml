@@ -1,16 +1,19 @@
 = simple_form_for [@addressable, @address], html: { class: "form-horizontal" } do |f|
   .row
     .span6
+      = f.input :description
       = f.input :street do
         = f.input_field :street, label: false
         = f.input_field :house_nr, style: "width: 40px"
     .span6
       = f.input :city
-      = f.input :country, input_html: { style: "width: 220px;"}
+      = f.input :country, iso_codes: true, input_html: { style: "width: 220px;"}
+      = f.input :main, as: :boolean
+  
   
   .form-actions
     = f.button :submit, :class => 'btn btn-primary btn-small'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), edit_polymorphic_path(@addressable), :class => 'btn btn-small'
     
 :javascript
-  $('select').select2()
+  $('select').select2({allowClear: true})

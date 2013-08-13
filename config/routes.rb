@@ -1,10 +1,10 @@
 CustomerOr::Application.routes.draw do
   resources :organizations
 
-  get "business_hours/edit"
-  get "business_hours/new"
-  get "business_hours/show"
-  get "addresses/new"
+  # get "business_hours/edit"
+  # get "business_hours/new"
+  # get "business_hours/show"
+  # get "addresses/new"
   
   concern :addressable do 
     resources :addresses

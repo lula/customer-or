@@ -1,6 +1,5 @@
 class Representative
   include Mongoid::Document
-  include Searchable
   
   field :name, type: String
   
@@ -12,8 +11,8 @@ class Representative
   
   accepts_nested_attributes_for :address
   
-  scope :name_match, ->(name) { where(name: /#{name}/i) }
-  scope :addresses_city_match, ->(city) { where(:"address.city" => /#{city}/i) }
-  scope :addresses_country_match, ->(country) { where(:"address.country" => /#{country}/i) }
+  # scope :name_match, ->(name) { where(name: /#{name}/i) }
+  # scope :addresses_city_match, ->(city) { where(:"address.city" => /#{city}/i) }
+  # scope :addresses_country_match, ->(country) { where(:"address.country" => /#{country}/i) }
   
 end

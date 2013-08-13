@@ -10,6 +10,8 @@ class OrganizationsController < ApplicationController
   # GET /organizations/1
   # GET /organizations/1.json
   def show
+    @customers = @organization.customers.page(params[:customers_page])
+    @representatives = @organization.representatives.page(params[:representatives_page])
   end
 
   # GET /organizations/new

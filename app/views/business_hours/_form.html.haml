@@ -18,4 +18,4 @@
     = link_to t('.cancel', :default => t("helpers.links.cancel")), edit_customer_path(@customer), :class => 'btn'
 
 :javascript
-  $('select').select2()
+  $('select').select2({allowClear: true})

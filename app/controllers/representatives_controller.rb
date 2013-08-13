@@ -4,8 +4,11 @@ class RepresentativesController < ApplicationController
   # GET /representatives
   # GET /representatives.json
   def index
-    @search = Representative.search(params[:search])
-    @representatives = @search.all.page(params[:page])
+    # @search = Representative.search(params[:search])
+    # @representatives = @search.all.page(params[:page])
+    
+    @grid = RepresentativesGrid.new(params[:representatives_grid])
+    @assets = @grid.assets.page(params[:page])
   end
 
   # GET /representatives/1

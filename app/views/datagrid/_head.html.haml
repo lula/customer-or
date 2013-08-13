@@ -1,0 +1,11 @@
+%tr
+  - if options[:starred]
+    %th
+  - grid.columns(*options[:columns]).each do |column|
+    %th{class: datagrid_column_classes(grid, column)}
+      = column.header
+      = datagrid_order_for(grid, column) if column.order && options[:order]
+  
+  -# Actions
+  - if options[:editable]
+    %th{ style: "width: 90px" }

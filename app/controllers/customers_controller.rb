@@ -4,8 +4,11 @@ class CustomersController < ApplicationController
   # GET /customers
   # GET /customers.json
   def index
-    @search = Customer.search(params[:search])
-    @customers = @search.all.page(params[:page]).order_by(:name.asc)
+    # @search = Customer.search(params[:search])
+    # @customers = @search.all.page(params[:page]).order_by(:name.asc)
+    
+    @grid = CustomersGrid.new(params[:customers_grid])
+    @assets = @grid.assets.page(params[:page])
   end
 
   # GET /customers/1
@@ -33,7 +36,8 @@ class CustomersController < ApplicationController
   # POST /customers.json
   def create
     @customer = Customer.new(customer_params)
-
+    @customer.addresses.first.main = true
+    debugger
     respond_to do |format|
       if @customer.save
         format.html { redirect_to @customer, notice: 'Customer was successfully created.' }

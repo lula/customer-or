@@ -49,3 +49,7 @@ td.selected {
 	background-color: #3daae9 !important;
 	color: #fff;
 }
+
+th .order {
+	display: inline;
+}
