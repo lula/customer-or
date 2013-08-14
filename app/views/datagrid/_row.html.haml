@@ -10,6 +10,6 @@
       = datagrid_format_value(grid, column, asset)
   - if options[:editable]
     %td
-      - path = options[:path] ? [options[:path], asset] : asset
-      = link_to "Edit", path , :class => 'btn btn-mini'
+      - path = options[:path] ? [:edit, options[:path], asset] : asset
+      = link_to "Edit", path, :class => 'btn btn-mini'
       = link_to t('.destroy', :default => t("helpers.links.destroy")), path, :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'

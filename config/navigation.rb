@@ -51,30 +51,46 @@ SimpleNavigation::Configuration.run do |navigation|
     #
     # primary.item :key_1, 'name', url, options
 
-    primary.dom_class = "nav"    
+    primary.dom_class = "nav" 
     
-    primary.item :organizations, 'Organizations', organizations_url, highlights_on: /\/organizations/ do |sub_nav|
-      sub_nav.dom_class = "nav nav-tabs"
-      sub_nav.item :organizations, "Search", organizations_url
-      sub_nav.item :new_organization, "New", new_organization_url
+    primary.item :sep, "", class: "divider-vertical"
+    
+    if admin_signed_in?
+      primary.item :users, 'Users', admin_users_url, highlights_on: /\/users/ do |sub_nav|
+        sub_nav.dom_class = "nav nav-tabs"
+        sub_nav.item :users, "Search", admin_users_url
+        sub_nav.item :new_user, "New", new_admin_user_url
+      end
+      
+     primary.item :sep, "", class: "divider-vertical"
+      
+      primary.item :organizations, 'Organizations', admin_organizations_url, highlights_on: /\/organizations/ do |sub_nav|
+        sub_nav.dom_class = "nav nav-tabs"
+        sub_nav.item :organizations, "Search", admin_organizations_url
+        sub_nav.item :new_organization, "New", new_admin_organization_url
+      end
+      
+      primary.item :sep, "", class: "divider-vertical"
     end
     
-    primary.item :customers, 'Customers', customers_url, highlights_on: /\/customers/ do |sub_nav|
-      sub_nav.dom_class = "nav nav-tabs"
-      sub_nav.item :customers, "Search", customers_url
-      sub_nav.item :new_customer, "New", new_customer_url    
-    end
+    if user_signed_in? || admin_signed_in?
+      primary.item :customers, 'Customers', customers_url, highlights_on: /\/customers/ do |sub_nav|
+        sub_nav.dom_class = "nav nav-tabs"
+        sub_nav.item :customers, "Search", customers_url
+        sub_nav.item :new_customer, "New", new_customer_url    
+      end
     
-    primary.item :representatives, 'Representatives', representatives_url, highlights_on: /\/representatives/ do |sub_nav|
-      sub_nav.dom_class = "nav nav-tabs"
-      sub_nav.item :representative, "Search", representatives_url
-      sub_nav.item :new_representative, "New", new_representative_url
-    end
+      primary.item :representatives, 'Representatives', representatives_url, highlights_on: /\/representatives/ do |sub_nav|
+        sub_nav.dom_class = "nav nav-tabs"
+        sub_nav.item :representative, "Search", representatives_url
+        sub_nav.item :new_representative, "New", new_representative_url
+      end
     
-    primary.item :visits, 'Visits', visits_url, highlights_on: /\/visits/ do |sub_nav|
-      sub_nav.dom_class = "nav nav-tabs"
-      sub_nav.item :visits, "Search", visits_url
-      sub_nav.item :new_visit, "New", new_visit_url
+      primary.item :visits, 'Visits', visits_url, highlights_on: /\/visits/ do |sub_nav|
+        sub_nav.dom_class = "nav nav-tabs"
+        sub_nav.item :visits, "Search", visits_url
+        sub_nav.item :new_visit, "New", new_visit_url
+      end
     end
     
     # Add an item which has a sub navigation (same params, but with block)

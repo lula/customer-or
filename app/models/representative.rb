@@ -9,10 +9,8 @@ class Representative
   has_many :visits
   has_and_belongs_to_many :organizations
   
-  accepts_nested_attributes_for :address
+  has_one :user
   
-  # scope :name_match, ->(name) { where(name: /#{name}/i) }
-  # scope :addresses_city_match, ->(city) { where(:"address.city" => /#{city}/i) }
-  # scope :addresses_country_match, ->(country) { where(:"address.country" => /#{country}/i) }
+  accepts_nested_attributes_for :address
   
 end

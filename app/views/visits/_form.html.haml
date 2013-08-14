@@ -6,9 +6,9 @@
       = f.input :comment, as: :text
     .span6
       = f.input :customer, input_html: { style: "width: 220px;" } do
-        = f.collection_select :customer_id, Customer.all, :id, :name, {}, {style: "width: 220px;"}
+        = f.collection_select :customer_id, Customer.all, :id, :name, {include_blank: true}, {style: "width: 220px;"}
       = f.input :representative do 
-        = f.collection_select :representative_id, Representative.all, :id, :name, {}, {style: "width: 220px;"}
+        = f.collection_select :representative_id, Representative.all, :id, :name, {include_blank: true}, {style: "width: 220px;"}
   
   .form-actions
     = f.button :submit, :class => 'btn btn-primary btn-small'

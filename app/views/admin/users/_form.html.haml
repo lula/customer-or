@@ -1,0 +1,36 @@
+= simple_form_for [:admin, @user], :html => { :class => 'form-horizontal' } do |f|
+  .row
+    .span6
+      = f.input :email, disabled: true
+      = f.input :locked_at, disabled: true
+      = f.input :failed_attempts, disabled: true
+    .span6
+      = f.input :sign_in_count, disabled: true
+      = f.input :last_sign_in_at, disabled: true
+      = f.input :last_sign_in_ip, disabled: true
+  
+  %legend= t("cor.user.organizational_data")
+  
+  .row
+    .span6
+      = f.input :representative do 
+        = f.collection_select :representative_id, Representative.all, :id, :name, {include_blank: true}, {style: "width: 220px;"}
+        = link_to representative_path(@user.representative) do 
+          %i.icon-circle-arrow-right
+      
+  .row
+    .span12
+      .form-actions
+        = button_tag type: :submit, class: "btn btn-small btn-primary" do 
+          %i.icon-save
+          = t(:save)
+        = button_tag name: :lock, type: :submit, class: "btn btn-small btn-warning", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm_lock", :default => 'Lock User?')) } do
+          %i.icon-lock
+          = t(:lock)
+        
+        = button_tag name: :unlock, type: :submit, class: "btn btn-small btn-warning", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm_unlock", :default => 'Unlock User?')) } do
+          %i.icon-unlock
+          = t(:unlock)
+
+:javascript
+  $('select').select2({allowClear: true})

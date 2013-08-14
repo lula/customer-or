@@ -1,0 +1,16 @@
+- model_class = User
+.page-header
+  %h2=t '.title', :default => [:'helpers.titles.new', 'Create %{model}'], :model => model_class.model_name.human.titleize
+  
+= simple_form_for [:admin, @user], :html => { :class => 'form-horizontal' } do |f|
+  = f.input :email
+  = f.input :password
+  = f.input :password_confirmation
+  = f.input :representative_id do 
+    = f.collection_select :representative_id, Representative.all, :id, :name, {include_blank: true}, {style: "width: 220px;"}
+      
+  .form-actions
+    = f.submit class: "btn btn-small"
+
+:javascript
+  $('select').select2({allowClear: true})

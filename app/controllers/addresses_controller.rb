@@ -1,5 +1,4 @@
 class AddressesController < ApplicationController
-  
   before_action :get_addressable
   
   def new

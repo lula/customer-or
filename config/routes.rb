@@ -1,10 +1,6 @@
 CustomerOr::Application.routes.draw do
-  resources :organizations
-
-  # get "business_hours/edit"
-  # get "business_hours/new"
-  # get "business_hours/show"
-  # get "addresses/new"
+  devise_for :users
+  devise_for :admins 
   
   concern :addressable do 
     resources :addresses
@@ -18,6 +14,15 @@ CustomerOr::Application.routes.draw do
   end
   
   resources :visits
+
+  namespace :admin do
+    resources :organizations
+    resources :users
+  end
+  
+  authenticated :admin do
+    root to: "admin/admin#dashboard", as: "admin_root"
+  end
     
   root to: "home#index"
   

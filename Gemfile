@@ -67,3 +67,6 @@ gem 'simple-navigation'
 
 # Datagrid
 gem 'datagrid'
+
+# Devise
+gem 'devise'

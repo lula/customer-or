@@ -1,0 +1,10 @@
+- model_class = Organization
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+  
+#account_search_form 
+  = datagrid_form_for @grid, :method => :get, path: :admin, :url => admin_organizations_path, html: { class: "form-horizontal" }
+
+#accounts-table
+  = datagrid_table @grid, @assets, path: :admin, html: { class: "table table-condensed table-hover table-bordered" }, editable: true
+  = paginate @assets, pagination_class: "pagination-small pagination-centered"

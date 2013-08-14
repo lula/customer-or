@@ -1,5 +1,4 @@
 class BusinessHoursController < ApplicationController
-  
   before_action :set_customer
   
   def edit
