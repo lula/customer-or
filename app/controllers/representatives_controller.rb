@@ -1,6 +1,8 @@
 class RepresentativesController < ApplicationController
   before_action :set_representative, only: [:show, :edit, :update, :destroy]
-
+  before_action :new_representative, only: [:create]
+  load_and_authorize_resource
+  
   # GET /representatives
   # GET /representatives.json
   def index
@@ -76,5 +78,9 @@ class RepresentativesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def representative_params
       params.require(:representative).permit(:name, address: [ :_id, :street, :house_nr, :city, :country, :description], organization_ids: [])
+    end
+    
+    def new_representative
+      @representative = Representative.new(params[representative_params])
     end
 end

@@ -53,3 +53,43 @@ td.selected {
 th .order {
 	display: inline;
 }
+
+.navbar, 
+.navbar-inner, 
+ul.nav > * {
+	height: 40px !important;
+	min-height: 40px !important;
+	line-height: 10px !important;
+}
+
+.navbar li a [class^="icon-"],
+.navbar li a [class*=" icon-"] {
+	line-height: 10px;
+}
+
+input[disabled] {
+	background-color: #fff;
+	color: #000 !important;
+}
+
+.nav-list li {
+	min-height: 20px !important;
+	height: 20px !important;
+	border: none;
+}
+
+.nav-list li a.active,
+.nav-list li a.active:hover {
+	color: rgb(49, 126, 172);
+	font-weight: bold;
+}
+
+.nav-list li a.active,
+.nav-list li a.active:hover,
+.nav-list li a,
+.nav-list li a:hover {
+	display: block;
+	height: inherit;
+	background-color: transparent;
+	text-shadow: none;
+}

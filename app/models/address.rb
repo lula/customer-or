@@ -1,6 +1,6 @@
 class Address
   include Mongoid::Document
-  
+
   field :street, type: String
   field :house_nr, type: String
   field :city, type: String
@@ -24,4 +24,5 @@ class Address
     addr += ", #{::CountrySelect::COUNTRIES[self.country]}" if self.country && !self.country.empty?
     addr
   end
+  
 end

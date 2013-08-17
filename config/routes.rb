@@ -1,6 +1,6 @@
 CustomerOr::Application.routes.draw do
   devise_for :users
-  devise_for :admins 
+  devise_for :admins
   
   concern :addressable do 
     resources :addresses

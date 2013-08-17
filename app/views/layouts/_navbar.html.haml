@@ -26,10 +26,15 @@
     /       %li= link_to t("helpers.links.new"), new_visit_path
     /       %li= link_to "Search", visits_path
     %ul.nav.pull-right
+      %li.divider-vertical
       - if admin_signed_in?
         %li= link_to "Sign Out", destroy_admin_session_path, method: :delete
       - elsif user_signed_in?
+        %li= link_to current_user.email
         %li= link_to "Sign Out", destroy_user_session_path, method: :delete
       - else
         %li= link_to "Sign In", new_user_session_path
-        %li= link_to "Admin", new_admin_session_path
+        %li.divider-vertical
+        %li
+          = link_to new_admin_session_path do
+            %i.icon-lock

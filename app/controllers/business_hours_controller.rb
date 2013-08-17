@@ -1,5 +1,6 @@
 class BusinessHoursController < ApplicationController
   before_action :set_customer
+  load_and_authorize_resource
   
   def edit
     @business_hour = @customer.business_hours.find(params[:id])

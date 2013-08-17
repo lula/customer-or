@@ -42,10 +42,10 @@ class User
   
   field :created_at, type: Date, default: Time.now
   
+  
   belongs_to :representative
   
   index({ representative: 1 }, { unique: true, name: "representative_index" })
-  
   validates_uniqueness_of :representative
   
   def lock
@@ -56,6 +56,10 @@ class User
   def unlock
     self.locked_at = nil
     self.failed_attempts = 0
+  end
+  
+  def admin?
+    false
   end
   
 end

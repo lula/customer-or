@@ -1,13 +1,19 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
-
+  before_action :new_customer, only: [:create]
+  load_and_authorize_resource
+  
   # GET /customers
   # GET /customers.json
   def index
-    # @search = Customer.search(params[:search])
-    # @customers = @search.all.page(params[:page]).order_by(:name.asc)
-    
     @grid = CustomersGrid.new(params[:customers_grid])
+    if user_signed_in?
+      # A User can only see customers belonging to his organizations
+      @grid.scope do
+        Customer.in(organization_ids: current_user.representative.organizations.inject([]){|arr,org| arr << org.id})
+      end
+    end
+    
     @assets = @grid.assets.page(params[:page])
   end
 
@@ -81,5 +87,9 @@ class CustomersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
       params.require(:customer).permit(:name, :valid_from, :valid_to, :created_at, addresses_attributes: [ :_id, :street, :house_nr, :city, :country, :description], organization_ids: [])
+    end
+    
+    def new_customer
+      @customer = Customer.new(params[customer_params])
     end
 end

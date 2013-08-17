@@ -35,7 +35,7 @@
   .row
     .span12
       %legend= t(:organizations)
-      = f.input :organization_ids, collection: Organization.all, input_html: { multiple: true }
+      = f.input :organization_ids, collection: Organization.all, input_html: { multiple: true, style: "width: 220px" }
     
     
   .form-actions

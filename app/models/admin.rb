@@ -1,9 +1,9 @@
 class Admin
   include Mongoid::Document
   # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
+  # :token_authenticatable, :confirmable, :registerable,
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable,
          :recoverable, :trackable, :validatable
 
   ## Database authenticatable
@@ -37,4 +37,8 @@ class Admin
 
   ## Token authenticatable
   # field :authentication_token, :type => String
+  
+  def admin?
+    true
+  end
 end

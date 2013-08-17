@@ -1,6 +1,8 @@
 class VisitsController < ApplicationController
   before_action :set_visit, only: [:show, :edit, :update, :destroy]
-
+  before_action :new_visit, only: [:create]
+  load_and_authorize_resource
+  
   # GET /visits
   # GET /visits.json
   def index
@@ -76,5 +78,9 @@ class VisitsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def visit_params
       params.require(:visit).permit(:description, :vdate, :comment, :customer_id, :representative_id)
+    end
+    
+    def new_visit
+      @visit = Visit.new(visit_params)
     end
 end

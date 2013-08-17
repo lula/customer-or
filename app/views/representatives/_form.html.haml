@@ -14,8 +14,9 @@
         .span6
           = a.input :city
           = a.input :country, as: :country, iso_codes: true, input_html: { style: "width: 220px;"}
-  
-  = f.input :organization_ids, collection: Organization.all, input_html: { multiple: true }
+
+  %legend=t(:organizations)
+  = f.input :organization_ids, collection: Organization.all, input_html: { multiple: true, style: "width: 220px"  }
   
   .form-actions
     = f.button :submit, :class => 'btn btn-primary btn-small'

@@ -1,5 +1,7 @@
 class AddressesController < ApplicationController
   before_action :get_addressable
+  before_action :new_address, only: [:create]
+  load_and_authorize_resource
   
   def new
     @address = @addressable.addresses.build
@@ -58,4 +60,8 @@ class AddressesController < ApplicationController
       params.require(:address).permit(:id, :street, :house_nr, :city, :country, :description, :main)
     end
   
+    def new_address
+      @address = Address.new(params[address_params])
+    end
+    
 end
