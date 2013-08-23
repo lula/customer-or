@@ -88,11 +88,13 @@ SimpleNavigation::Configuration.run do |navigation|
       
       primary.item :sep, "", class: "divider-vertical"
       
-      primary.item :visits, 'Visits', visits_url, highlights_on: /\/visits/ do |sub_nav|
+      primary.item :visits, 'Visits', visits_url, highlights_on: /\/visits|\/visit_plans/ do |sub_nav|
         sub_nav.dom_class = "nav nav-list"
         sub_nav.item :head_vis, "Visits", class: "nav-header"
         sub_nav.item :visits, "Search", visits_url
         sub_nav.item :new_visit, "New", new_visit_url
+        sub_nav.item :head_vispl, "Visit Planning", class: "nav-header"
+        sub_nav.item :new_visit_plan, "New", new_visit_plan_path
       end
     end
     

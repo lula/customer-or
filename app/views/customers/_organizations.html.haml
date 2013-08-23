@@ -1,5 +1,5 @@
 - editable ||= false
 #organizations-table
-  = datagrid_table OrganizationsGrid.new, @organizations, html: { class: "table table-condensed table-hover table-bordered" }
+  = datagrid_table OrganizationsGrid.new, @organizations, path: :admin, html: { class: "table table-condensed table-hover table-bordered" }
 
 = paginate @organizations, pagination_class: "pagination-small pagination-centered"

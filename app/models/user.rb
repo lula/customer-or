@@ -41,7 +41,7 @@ class User
   # field :authentication_token, :type => String
   
   field :created_at, type: Date, default: Time.now
-  
+  field :name, type: String
   
   belongs_to :representative
   

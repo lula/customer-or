@@ -6,10 +6,11 @@
         .controls
           = f.datagrid_filter filter
   = f.submit I18n.t("datgrid.form.submit", :default => "Search").html_safe, class: "btn btn-small btn-primary"
-
+  
 :javascript
   $('.date_filter').datepicker({
-    format: 'yyyy-mm-dd'
+    format: 'yyyy-mm-dd',
+    autoclose: true
   });
   
   $("select").width("220px").select2({allowClear: true})

@@ -13,13 +13,16 @@
   = @visit.comment
 
 %p
+  %strong= model_class.human_attribute_name(:status) + ':'
+  = @visit.status_text
+
+%p
   %strong= t(:customer) + ':'
   = link_to @visit.customer.name, customer_path(@visit.customer)
 
 %p
   %strong= t(:representative) + ':'
   = link_to @visit.representative.name, representative_path(@visit.representative)
-
 
 .form-actions
   = link_to t('.edit', :default => t("helpers.links.edit")), edit_visit_path(@visit), :class => 'btn btn-small'

@@ -20,6 +20,10 @@ body {
 	height: 40px;
 }
 
+a:hover {
+	text-decoration: none;
+}
+
 .navbar, 
 .navbar-inner, 
 ul.nav > * {
@@ -93,3 +97,44 @@ input[disabled] {
 	background-color: transparent;
 	text-shadow: none;
 }
+
+
+.select2-choices {
+  display: inline-block;
+  height: 20px;
+  padding: 4px 6px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #555555;
+  vertical-align: middle;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+					
+  width: 220px;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+}
+
+.select2-drop-multi {
+	margin-top: -3px;
+	width: 222px !important;
+}
+
+.danger {
+	color: red;
+}
+
+.order i {
+	font-size: 17px;
+}
+
+.order .selected {
+	color: green;
+}
+
+.navigation {
+	width: 130px !important;
+}
+

@@ -1,5 +1,6 @@
 class BusinessHoursController < ApplicationController
   before_action :set_customer
+  before_action :new_business_hour, only: [:create]
   load_and_authorize_resource
   
   def edit
@@ -64,5 +65,9 @@ class BusinessHoursController < ApplicationController
   
   def set_customer
     @customer = Customer.find(params[:customer_id])
+  end
+  
+  def new_business_hour
+    @business_hour = BusinessHour.new(params[business_hours_params])
   end
 end

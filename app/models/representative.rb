@@ -9,6 +9,7 @@ class Representative
   has_many :visits
   has_and_belongs_to_many :organizations
   has_one :user
+  has_many :customers
   
   accepts_nested_attributes_for :address
   

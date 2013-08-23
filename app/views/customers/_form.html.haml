@@ -8,18 +8,21 @@
       = f.input :valid_to, input_html: { class: "datepicker" }
 
   - if @customer.new_record?
-    %legend
-      = t(:address)
-    #address_form
-      = f.simple_fields_for :addresses do |a|
-        .row
-          .span6
-            = a.input :street do
-              = a.input_field :street, label: false
-              = a.input_field :house_nr, style: "width: 40px"
-          .span6
-            = a.input :city
-            = a.input :country, iso_codes: true, input_html: { style: "width: 220px;"}
+    .row
+      .span12
+        %legend
+          = t(:address)
+        #address_form
+          = f.simple_fields_for :addresses do |a|
+            .row
+              .span6
+                = a.input :street do
+                  = a.input_field :street, label: false
+                  = a.input_field :house_nr, style: "width: 40px"
+              .span6
+                = a.input :city
+                = a.input :country, iso_codes: true, input_html: { style: "width: 220px;"}
+        
   - else
     .row
       .span6
@@ -33,17 +36,22 @@
           = link_to "New", new_customer_business_hour_path(@customer), class: "btn btn-small btn-primary"
         = render "business_hours", editable: true
   .row
-    .span12
+    .span6
+      %legend= t(:representative)
+      = f.input :representative_id do
+        = f.collection_select :representative_id, Representative.all, :id, :name,  {include_blank: true}, {style: "width: 220px;"}
+    .span6
       %legend= t(:organizations)
       = f.input :organization_ids, collection: Organization.all, input_html: { multiple: true, style: "width: 220px" }
     
     
   .form-actions
     = f.button :submit, :class => 'btn btn-primary btn-small'
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), customer_path(@customer), :class => 'btn btn-small'
+    = link_to t('helpers.links.cancel', :default => "Cancel"), customer_path(@customer), :class => 'btn btn-small'
 
 :javascript
   $('.datepicker').datepicker({
-    format: 'yyyy-mm-dd'
+    format: 'yyyy-mm-dd',
+    autoclose: true
   });
   $("select").select2({allowClear: true})

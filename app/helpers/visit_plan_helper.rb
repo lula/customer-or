@@ -1,0 +1,2 @@
+module VisitPlanHelper
+end

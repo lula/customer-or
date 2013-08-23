@@ -1,6 +1,7 @@
 = simple_form_for [:admin, @user], :html => { :class => 'form-horizontal' } do |f|
   .row
     .span6
+      = f.input :name
       = f.input :email, disabled: true
       = f.input :locked_at, disabled: true
       = f.input :failed_attempts, disabled: true

@@ -1,7 +1,18 @@
 .order
-  = link_to I18n.t("datagrid.table.order.asc", default: "&uarr;".html_safe).html_safe,
-      url_for(grid.param_name => grid.as_query.merge(:order => column.name, :descending => false)),
-      class: "asc"
-  = link_to I18n.t("datagrid.table.order.desc", :default => "&darr;".html_safe).html_safe,
-      url_for(grid.param_name => grid.as_query.merge(:order => column.name, :descending => true )),
-      :class => "desc"
+  / = link_to I18n.t("datagrid.table.order.asc", default: "&uarr;".html_safe).html_safe,
+  /     url_for(grid.param_name => grid.as_query.merge(:order => column.name, :descending => false)),
+  /     class: "asc"
+  / = link_to I18n.t("datagrid.table.order.desc", :default => "&darr;".html_safe).html_safe,
+  /     url_for(grid.param_name => grid.as_query.merge(:order => column.name, :descending => true )),
+  /     :class => "desc"
+  
+  - if grid.order == column.name  
+    = link_to url_for(grid.param_name => grid.as_query.merge(:order => column.name, :descending => !grid.descending?)), class: grid.descending ? "desc" : "asc" do 
+      - order_icon_class =  grid.descending? ? "icon-sort-by-attributes-alt selected" : "icon-sort-by-attributes selected"
+      %i{class: order_icon_class}
+  - else
+    = link_to url_for(grid.param_name => grid.as_query.merge(:order => column.name, :descending => false)), class: "asc" do 
+      %i.icon-sort-by-attributes
+    / = link_to url_for(grid.param_name => grid.as_query.merge(:order => column.name, :descending => true )), class: "desc" do
+    /   %i.icon-sort-by-attributes-alt
+    

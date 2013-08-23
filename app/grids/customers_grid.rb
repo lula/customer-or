@@ -16,6 +16,10 @@ class CustomersGrid
   filter :address_country, :enum, select: ::CountrySelect::COUNTRIES.collect { |k,v| [v, k] } do |value|
     where(:"addresses.country" => value)
   end
+  
+  filter :representative_is_null, :boolean do |value|
+    where(:representative.exists => false)
+  end
 
   filter :created_at, :date, :range => true
 

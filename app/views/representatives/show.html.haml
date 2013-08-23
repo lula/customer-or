@@ -9,7 +9,22 @@
 %p
   %strong= model_class.human_attribute_name(:address) + ':'
   = @representative.address.full_description
-  
+
+%p
+  %strong
+    = t(:customers)
+    / |
+    / = link_to "New", new_representative_visit_path(@representative)
+  %br
+  = render "customers", editable: false
+
+%p
+  %strong
+    = t(:visits)
+    |
+    = link_to "New", new_representative_visit_path(@representative)
+  %br
+  = render "visits", editable: false
 
 .form-actions
   = link_to t('.edit', :default => t("helpers.links.edit")), edit_representative_path(@representative), :class => 'btn btn-small'

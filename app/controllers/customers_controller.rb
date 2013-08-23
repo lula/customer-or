@@ -13,7 +13,7 @@ class CustomersController < ApplicationController
         Customer.in(organization_ids: current_user.representative.organizations.inject([]){|arr,org| arr << org.id})
       end
     end
-    
+
     @assets = @grid.assets.page(params[:page])
   end
 
@@ -86,7 +86,7 @@ class CustomersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.require(:customer).permit(:name, :valid_from, :valid_to, :created_at, addresses_attributes: [ :_id, :street, :house_nr, :city, :country, :description], organization_ids: [])
+      params.require(:customer).permit(:name, :valid_from, :valid_to, :created_at, :representative_id, addresses_attributes: [ :_id, :street, :house_nr, :city, :country, :description], organization_ids: [])
     end
     
     def new_customer

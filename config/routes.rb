@@ -6,14 +6,20 @@ CustomerOr::Application.routes.draw do
     resources :addresses
   end
 
-  resources :representatives, concerns: :addressable
+  resources :representatives, concerns: :addressable do
+    resource :visit, only: [:new]
+  end
   
   resources :customers, concerns: :addressable do
     resources :business_hours
     resource :visit, only: [:new]
   end
   
-  resources :visits
+  resources :visits do
+    post "toolbar_actions", on: :collection
+  end
+  
+  resources :visit_plans
 
   namespace :admin do
     resources :organizations

@@ -1,12 +1,20 @@
 - model_class = Customer
 .page-header
-  %h2=t '.title', :default => model_class.model_name.human.titleize
+  %h2
+    =t '.title', :default => model_class.model_name.human.titleize  
+    = link_to edit_customer_path(@customer) do 
+      %i.icon-edit
+    = link_to customer_path(@customer), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } do
+      %i.icon-trash.danger
 
 .row 
   .span6
     %p
       %strong= model_class.human_attribute_name(:name) + ':'
       = @customer.name
+    %p
+      %strong= t("mongoid.models.representative", default: "Representative") + ':'
+      = @customer.representative.name
   .span6
     %p
       %strong= model_class.human_attribute_name(:valid_from) + ':'
@@ -14,7 +22,7 @@
     %p
       %strong= model_class.human_attribute_name(:valid_to) + ':'
       = @customer.valid_to
-
+%br
 .row
   .span6
     %p
@@ -31,8 +39,7 @@
         |
         = link_to "New", new_customer_business_hour_path(@customer)
       %br
-        = render "business_hours", show: true
-
+      = render "business_hours", show: true
 .row
   .span12
     %p
@@ -42,7 +49,6 @@
         = link_to "New", new_customer_visit_path(@customer)
       %br
       = render "visits", show: true
-      
 .row
   .span12
     %p
@@ -51,8 +57,8 @@
       %br
       = render "organizations", show: true
 
-.row
-  .span12
-    .form-actions
-      = link_to t('.edit', :default => t("helpers.links.edit")), edit_customer_path(@customer), :class => 'btn btn-small'
-      = link_to t('.destroy', :default => t("helpers.links.destroy")), customer_path(@customer), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger btn-small'
+/ .row
+/   .span12
+/     .form-actions
+/       = link_to t('.edit', :default => t("helpers.links.edit")), edit_customer_path(@customer), :class => 'btn btn-small'
+/       = link_to t('.destroy', :default => t("helpers.links.destroy")), customer_path(@customer), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger btn-small'

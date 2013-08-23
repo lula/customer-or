@@ -12,6 +12,8 @@ class Customer
 
   has_and_belongs_to_many :organizations
   
+  belongs_to :representative
+  
   accepts_nested_attributes_for :addresses
 
   def main_address

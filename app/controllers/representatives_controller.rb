@@ -16,6 +16,8 @@ class RepresentativesController < ApplicationController
   # GET /representatives/1
   # GET /representatives/1.json
   def show
+    @visits = @representative.visits.page(params[:visits_page])
+    @customers = @representative.customers.page(params[:customers_page])
   end
 
   # GET /representatives/new

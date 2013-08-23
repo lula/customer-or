@@ -28,6 +28,7 @@
     %ul.nav.pull-right
       %li.divider-vertical
       - if admin_signed_in?
+        %li= link_to current_admin.email
         %li= link_to "Sign Out", destroy_admin_session_path, method: :delete
       - elsif user_signed_in?
         %li= link_to current_user.email

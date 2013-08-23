@@ -20,13 +20,9 @@
 
   %body 
     = render "layouts/navbar"
-
-    .navigation
-      .pull-left{style: "padding-top: 50px"}
-        .tabbable.tabs-left
-          
-          = render_navigation(level: 2)
-    
+    .navigation.pull-left{style: "padding-top: 50px;"}
+      = render_navigation(level: 2)
+  
     .container
       .row
         .span12
@@ -35,3 +31,4 @@
               
       / %footer
       /   %p &copy; Company 2013
+

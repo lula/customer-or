@@ -5,7 +5,7 @@ class VisitsController < ApplicationController
   
   # GET /visits
   # GET /visits.json
-  def index
+  def index      
     @grid = VisitsGrid.new(params[:visits_grid])
     @assets = @grid.assets.page(params[:page])
   end
@@ -21,6 +21,9 @@ class VisitsController < ApplicationController
     if params[:customer_id]
       @customer = Customer.find(params[:customer_id])
       @visit = @customer.visits.new
+    elsif params[:representative_id]
+      @representative = Representative.find(params[:representative_id])
+      @visit = @representative.visits.new
     else
       @visit = Visit.new
     end
@@ -69,6 +72,14 @@ class VisitsController < ApplicationController
     end
   end
 
+  def toolbar_actions
+    if params[:delete_selected]
+      visits = Visit.in(id: params[:selected])
+      visits.delete_all
+      redirect_to visits_path, notice: I18n.t("mongoid.messages.delete.ok", default: 'Objects deleted succesfully', object_name: I18n.t("mongoid.models.visit", count: 2, default: "Visits"))
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_visit
@@ -77,7 +88,7 @@ class VisitsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def visit_params
-      params.require(:visit).permit(:description, :vdate, :comment, :customer_id, :representative_id)
+      params.require(:visit).permit(:description, :vdate, :comment, :customer_id, :representative_id, :status)
     end
     
     def new_visit

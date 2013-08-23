@@ -15,3 +15,14 @@ en:
         name: "Name"
       address:
         city: "City"
+      visits:
+        statuses:
+          proposed: "Proposed"
+          planned: "Planned"
+    messages:
+      delete:
+        ok: "%{object_name} deleted succesfully"
+        nok: "Errors occurred when deleting %{object_name}"
+    errors:
+      visits:
+        already_exists: "A %{status} visit already exists for customer %{customer} on %{vdate}" 
