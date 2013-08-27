@@ -4,5 +4,8 @@
       = yield(:panel_title)
       |
       = yield(:panel_toolbar)
+      .pull-right
+        %a.panel-collapse{ href: "#", data: { toggle: "collapse", target: "#visits_panel" } }
+          %i.icon-chevron-sign-up
   .panel-body
     = yield(:panel_body)

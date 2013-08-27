@@ -17,6 +17,7 @@ en:
         name: "Name"
       address:
         city: "City"
+        street_house_nr: "Street / Nr"
       visits:
         statuses:
           proposed: "Proposed"

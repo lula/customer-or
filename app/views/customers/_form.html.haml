@@ -1,61 +1,51 @@
 = simple_form_for @customer, :html => { :class => 'form-horizontal', role: "form" }, defaults: { wrapper: :form_horizontal} do |f|
-  .row
-    .col-md-5
-      = f.input :name, input_html: { class: "form-control" }
-    .col-md-5
-      = f.input :valid_from, input_html: { class: "datepicker form-control" }
-      = f.input :valid_to, input_html: { class: "datepicker form-control" }
+  .col-md-4
+    = f.input :name, input_html: { class: "form-control" }
+  .col-md-8
+    = f.input :valid_from, input_html: { class: "datepicker form-control" }
+    = f.input :valid_to, input_html: { class: "datepicker form-control" }
 
   - if @customer.new_record?
     .row
       .col-md-12
-        %legend
-          = t(:address)
+        %legend= t("mongoid.models.address", count: 1, default: "Address")
         #address_form
           = f.simple_fields_for :addresses do |a|
             .row
-              .col-md-5
-                = a.input :street do
-                  .row
-                    .col-md-10
-                      = a.input_field :street, label: false
-                    .col-md-2
-                      = a.input_field :house_nr, style: "width: 70px"
+              .col-md-6
+                = a.input :street, label: t("mongoid.attributes.address.street_house_nr")
+              .col-md-2
+                = a.input :house_nr, label: false, input_html: { style: "width: 70px;" }
             .row
-              .col-md-5
-                = a.input :city, input_html: { class: "form-control" }
+              .col-md-6
+                = a.input :city
             .row
-              .col-md-5
+              .col-md-6
                 = a.input :country, iso_codes: true
         
   - else
     .row
-      .col-md-5
-        %legend
-          = t(:addresses)
-          = link_to "New", new_customer_address_path(@customer), class: "btn btn-small btn-primary"
-        = render "addresses", editable: true
-      .col-md-5
-        %legend
-          = t(:business_hours)
-          = link_to "New", new_customer_business_hour_path(@customer), class: "btn btn-small btn-primary"
-        = render "business_hours", editable: true
+      .col-md-6
+        = panel t("mongoid.models.address", count: 2, default: "Addresses"), "addresses_panel", links: [[t("mongoid.actions.new", default: "New"), new_customer_address_path(@customer)]] do
+          = render "addresses", editable: true
+      .col-md-6
+        = panel t("mongoid.models.business_hour", count: 2, default: "Business Hours"), "business_hours_panel", links: [[t("mongoid.actions.new", default: "New"), new_customer_business_hour_path(@customer)]] do
+          = render "business_hours", editable: true
+
   .row
-    .col-md-5
+    .col-md-6
       %legend= t(:representative)
       = f.input :representative_id do
         = f.collection_select :representative_id, Representative.all, :id, :name,  {include_blank: true}, {style: "width: 220px;"}
-    .col-md-5
+    .col-md-6
       %legend= t(:organizations)
       = f.input :organization_ids, collection: Organization.all, input_html: { multiple: true, style: "width: 220px" }
-    
-    
-  .form-actions
-    = f.button :submit, :class => 'btn btn-primary btn-small'
-    = link_to t('helpers.links.cancel', :default => "Cancel"), customer_path(@customer), :class => 'btn btn-small'
 
-
-
+  .row
+    .col-md-12
+      .form-actions
+        = f.button :submit, :class => 'btn btn-primary btn-sm'
+        = link_to t('helpers.links.cancel', :default => "Cancel"), customer_path(@customer), :class => 'btn btn-default btn-sm'
 
 :javascript
   $('.datepicker').datepicker({

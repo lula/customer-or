@@ -73,9 +73,11 @@ input{
 }
 
 .form-actions {
+	border-top: 1px solid $legend-border-color;
 	padding: 8px 10px 10px;
-	background-color: #fff;
-	margin-bottom: 30px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	text-align: center;
 }
 
 td.selected {
@@ -107,6 +109,10 @@ a:hover {
 	a {
 		color: $link-color !important;
 	}
+}
+
+legend {
+	margin-top: 10px;
 }
 
 //body {
