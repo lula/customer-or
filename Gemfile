@@ -54,6 +54,7 @@ gem "mongoid", git: 'git://github.com/mongoid/mongoid.git'
 # Twitter Boostrap
 gem 'twitter-bootstrap-rails', git: 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'bootstrap-datepicker-rails'#, git: 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
+gem 'bootstrap-sass', git: "git://github.com/thomas-mcdonald/bootstrap-sass.git", branch: "3"
 
 # Simple_form
 gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git'

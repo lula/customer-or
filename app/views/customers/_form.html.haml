@@ -1,46 +1,51 @@
-= simple_form_for @customer, :html => { :class => 'form-horizontal' } do |f|
-  / %legend.no-title &nbsp;
+= simple_form_for @customer, :html => { :class => 'form-horizontal', role: "form" }, defaults: { wrapper: :form_horizontal} do |f|
   .row
-    .span6
-      = f.input :name
-    .span6
-      = f.input :valid_from, input_html: { class: "datepicker" }
-      = f.input :valid_to, input_html: { class: "datepicker" }
+    .col-md-5
+      = f.input :name, input_html: { class: "form-control" }
+    .col-md-5
+      = f.input :valid_from, input_html: { class: "datepicker form-control" }
+      = f.input :valid_to, input_html: { class: "datepicker form-control" }
 
   - if @customer.new_record?
     .row
-      .span12
+      .col-md-12
         %legend
           = t(:address)
         #address_form
           = f.simple_fields_for :addresses do |a|
             .row
-              .span6
+              .col-md-5
                 = a.input :street do
-                  = a.input_field :street, label: false
-                  = a.input_field :house_nr, style: "width: 40px"
-              .span6
-                = a.input :city
-                = a.input :country, iso_codes: true, input_html: { style: "width: 220px;"}
+                  .row
+                    .col-md-10
+                      = a.input_field :street, label: false
+                    .col-md-2
+                      = a.input_field :house_nr, style: "width: 70px"
+            .row
+              .col-md-5
+                = a.input :city, input_html: { class: "form-control" }
+            .row
+              .col-md-5
+                = a.input :country, iso_codes: true
         
   - else
     .row
-      .span6
+      .col-md-5
         %legend
           = t(:addresses)
           = link_to "New", new_customer_address_path(@customer), class: "btn btn-small btn-primary"
         = render "addresses", editable: true
-      .span6
+      .col-md-5
         %legend
           = t(:business_hours)
           = link_to "New", new_customer_business_hour_path(@customer), class: "btn btn-small btn-primary"
         = render "business_hours", editable: true
   .row
-    .span6
+    .col-md-5
       %legend= t(:representative)
       = f.input :representative_id do
         = f.collection_select :representative_id, Representative.all, :id, :name,  {include_blank: true}, {style: "width: 220px;"}
-    .span6
+    .col-md-5
       %legend= t(:organizations)
       = f.input :organization_ids, collection: Organization.all, input_html: { multiple: true, style: "width: 220px" }
     
@@ -48,6 +53,9 @@
   .form-actions
     = f.button :submit, :class => 'btn btn-primary btn-small'
     = link_to t('helpers.links.cancel', :default => "Cancel"), customer_path(@customer), :class => 'btn btn-small'
+
+
+
 
 :javascript
   $('.datepicker').datepicker({

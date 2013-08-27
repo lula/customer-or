@@ -1,11 +1,28 @@
-= simple_form_for grid, options do |f|
+= form_for grid, options do |f|
+  - form_horizontal = options[:html] && options[:html][:class] && options[:html][:class].include?("form-horizontal")
   - grid.filters.each do |filter|
-    .filter
-      .control-group
-        = f.datagrid_label filter, class: "control-label"
-        .controls
-          = f.datagrid_filter filter
-  = f.submit I18n.t("datgrid.form.submit", :default => "Search").html_safe, class: "btn btn-small btn-primary"
+    .form-group
+      .filter
+        - if form_horizontal
+          .col-md-3 
+            = f.datagrid_label filter, class: "control-label"
+          .col-md-5
+            = f.datagrid_filter filter, class: "form-control", style: "display: inline-block;"
+        - else 
+          .row
+            .col-md-6
+              = f.datagrid_label filter, class: "control-label"
+              = f.datagrid_filter filter, class: "form-control"
+        
+        
+        / - if filter.is_a?(Datagrid::Filters::FILTER_TYPES[:boolean])
+        /   = f.input filter.name, as: :boolean, required: false, input_html: { style: "width: 220px" }
+        / - else
+        /   = f.input filter.name, required: false, input_html: { style: "width: 220px", class: filter.class.to_s.demodulize.underscore }
+        
+        
+  .form-actions
+    = f.submit I18n.t("datgrid.form.submit", :default => "Search").html_safe, class: "btn btn-small btn-primary"
   
 :javascript
   $('.date_filter').datepicker({

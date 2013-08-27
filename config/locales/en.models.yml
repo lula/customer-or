@@ -1,7 +1,9 @@
 en:
   mongoid:
     models:
-      address: "Address"
+      address: 
+        one: "Address"
+        other: "Addresses"
     attributes:
       business_hour:
         mon: "Monday"
@@ -26,3 +28,8 @@ en:
     errors:
       visits:
         already_exists: "A %{status} visit already exists for customer %{customer} on %{vdate}" 
+    actions: 
+      new: "New"
+      edit: "Edit"
+      delete: "Delete"
+      update: "update"

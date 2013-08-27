@@ -1,0 +1,8 @@
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      = yield(:panel_title)
+      |
+      = yield(:panel_toolbar)
+  .panel-body
+    = yield(:panel_body)

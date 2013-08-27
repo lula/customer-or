@@ -1,5 +1,6 @@
 - editable ||= false
 #addresses-table
-  = datagrid_table AddressesShortGrid.new, @customer.addresses, path: @customer, editable: editable, starred: :is_main?, html: { class: "table table-condensed table-hover table-bordered" }
-
-= paginate @addresses, pagination_class: "pagination-small pagination-centered"
+  = datagrid_table AddressesShortGrid.new, @customer.addresses, path: @customer, editable: editable, starred: :is_main?, html: { class: "table table-condensed table-hover" }
+  
+  .text-center
+    = paginate @addresses, pagination_class: "pagination-sm"

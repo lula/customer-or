@@ -1,5 +1,5 @@
-- show ||= false
+- editable ||= true
 #visits-table
-  = datagrid_table VisitsGrid.new, @visits, html: { class: "table table-condensed table-hover table-bordered" }
-  
-= paginate @visits, pagination_class: "pagination-small pagination-centered", param_name: "visits_page"
+  = datagrid_table VisitsGrid.new, @visits, editable: editable, html: { class: "table table-condensed table-hover" }
+  .text-center
+    = paginate @visits, pagination_class: "pagination-sm", param_name: "visits_page"

@@ -1,0 +1,191 @@
+/*
+  =#require twitter-bootstrap-static/bootstrap
+	=#require bootstrap-themes/bootstrap-cerulean
+
+  Use Font Awesome icons (default)
+  To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
+
+  =require twitter-bootstrap-static/fontawesome	
+*/
+
+@import "bootstrap";
+
+.select2-container {
+	display: block;
+	
+	a {
+		height: 30px !important;
+		.select2-chosen {
+			margin-top: 2px;
+		}
+	}
+}
+
+.select2-container-multi {
+	display: block;
+	
+	a {
+		height: 13px !important;
+		.select2-chosen {
+			margin-top: 2px;
+		}
+	}
+}
+
+.select2-choices {
+  display: inline-block;
+  height: 20px;
+  padding: 4px 6px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #555555;
+  vertical-align: middle;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+					
+  width: 220px;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+}
+
+.select2-drop {
+	margin-top: -5px;
+}
+
+.select2-drop-multi {
+	margin-top: -3px;
+
+}
+
+div.form-control {
+	border: none;
+	box-shadow: none;
+	padding: 0;
+	margin: 0;
+}
+
+input{
+	&.datepicker, &.date_filter {
+		width: 105px !important;
+	}	
+}
+
+.form-actions {
+	padding: 8px 10px 10px;
+	background-color: #fff;
+	margin-bottom: 30px;
+}
+
+td.selected {
+	background-color: #3daae9 !important;
+	color: #fff;
+}
+
+th .order {
+	display: inline;
+}
+
+.danger {
+	color: red;
+}
+
+.order i {
+	font-size: 17px;
+}
+
+.order .selected {
+	color: green;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+.panel-title {
+	a {
+		color: $link-color !important;
+	}
+}
+
+//body {
+//	padding-top: 30px;
+//}
+//
+//.container {
+//	padding-top: 20px;
+//}
+//
+//.page-header {
+//	height: 40px;
+//}
+//
+//
+//.navbar, 
+//.navbar-inner, 
+//ul.nav > * {
+//	height: 40px !important;
+//	min-height: 40px !important;
+//	line-height: 10px !important;
+//}
+//
+//.navbar a.brand {
+//	margin: 0px;
+//}
+//
+//a.dropdown-toggle b.caret {
+//	margin-top: 4px !important;
+//}
+//
+//
+//legend.no-title {
+//	border: 1px solid transparent;
+//}
+//
+//
+//.navbar, 
+//.navbar-inner, 
+//ul.nav > * {
+//	height: 40px !important;
+//	min-height: 40px !important;
+//	line-height: 10px !important;
+//}
+//
+//.navbar li a [class^="icon-"],
+//.navbar li a [class*=" icon-"] {
+//	line-height: 10px;
+//}
+//
+//input[disabled] {
+//	background-color: #fff;
+//	color: #000 !important;
+//}
+//
+//.nav-list li {
+//	min-height: 20px !important;
+//	height: 20px !important;
+//	border: none;
+//}
+//
+//.nav-list li a.active,
+//.nav-list li a.active:hover {
+//	color: rgb(49, 126, 172);
+//	font-weight: bold;
+//}
+//
+//.nav-list li a.active,
+//.nav-list li a.active:hover,
+//.nav-list li a,
+//.nav-list li a:hover {
+//	display: block;
+//	height: inherit;
+//	background-color: transparent;
+//	text-shadow: none;
+//}
+//
+//
+//.navigation {
+//	width: 130px !important;
+//}
+

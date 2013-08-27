@@ -51,13 +51,13 @@ SimpleNavigation::Configuration.run do |navigation|
     #
     # primary.item :key_1, 'name', url, options
 
-    primary.dom_class = "nav" 
+    primary.dom_class = "nav navbar-nav"
     
     primary.item :sep, "", class: "divider-vertical"
     
     if admin_signed_in?
       primary.item :users, 'Users', admin_users_url, highlights_on: /\/users/ do |sub_nav|
-        sub_nav.dom_class = "nav nav-list"
+        sub_nav.dom_class = "nav navbar"
         sub_nav.item :head_users, "Users", class: "nav-header"
         sub_nav.item :users, "Search", admin_users_url
         sub_nav.item :new_user, "New", new_admin_user_url

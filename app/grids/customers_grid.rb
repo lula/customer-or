@@ -18,7 +18,7 @@ class CustomersGrid
   end
   
   filter :representative_is_null, :boolean do |value|
-    where(:representative.exists => false)
+    where(:representative => nil)
   end
 
   filter :created_at, :date, :range => true

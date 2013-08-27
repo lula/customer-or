@@ -18,13 +18,21 @@ GIT
 
 GIT
   remote: git://github.com/seyhunak/twitter-bootstrap-rails.git
-  revision: cdda8d78b41275e1fa4a6d7aa71b370573ca2553
+  revision: 40ffd567ee6bea9974710c58646d309d6a95faaf
   specs:
-    twitter-bootstrap-rails (2.2.7)
+    twitter-bootstrap-rails (2.2.8)
       actionpack (>= 3.1)
       execjs
       rails (>= 3.1)
       railties (>= 3.1)
+
+GIT
+  remote: git://github.com/thomas-mcdonald/bootstrap-sass.git
+  revision: 4a8d1a9add83896cbc5f5441e209b00626f74338
+  branch: 3
+  specs:
+    bootstrap-sass (3.0.0.0)
+      sass (~> 3.2)
 
 GEM
   remote: https://rubygems.org/
@@ -182,6 +190,7 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   bootstrap-datepicker-rails
+  bootstrap-sass!
   cancan
   coffee-rails (~> 4.0.0)
   country_select
