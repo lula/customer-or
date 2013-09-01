@@ -1,26 +1,36 @@
-= simple_form_for @representative, html: { class: "form-horizontal" } do |f|
+= simple_form_for @representative, html: { class: "form-horizontal" }, defaults: { wrapper: :form_horizontal } do |f|
   = f.error_notification
   
-  = f.input :name
+  = panel t("views.titles.details", default: "Details"), "details_panel" do 
+    .row
+      .col-md-6
+        = f.input :name
   
-  #address_form
-    = f.simple_fields_for @representative.address do |a|
-      %legend= t(:address)
-      .row
-        .span6
-          = f.input :street do
-            = a.input_field :street, label: false
-            = a.input_field :house_nr, style: "width: 40px"
-        .span6
-          = a.input :city
-          = a.input :country, as: :country, iso_codes: true, input_html: { style: "width: 220px;"}
-
-  %legend=t(:organizations)
-  = f.input :organization_ids, collection: Organization.all, input_html: { multiple: true, style: "width: 220px"  }
+  = panel t("mongoid.models.address", count: 1, default: "Address"), "address_panel" do
+    #address_form
+      = f.simple_fields_for @representative.address do |a|
+        .row
+          .col-md-6
+            = a.input :street, label: t("mongoid.attributes.address.street_house_nr")
+          .col-md-2
+            = a.input :house_nr, label: false, input_html: { style: "width: 70px;" }
+        .row
+          .col-md-6
+            = a.input :city
+        .row
+          .col-md-6
+            = a.input :country, iso_codes: true
   
-  .form-actions
-    = f.button :submit, :class => 'btn btn-primary btn-small'
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), representative_path(@representative), :class => 'btn btn-small'
+  = panel t("mongoid.models.organization", count: 2, default: "Organizations"), "organizations_panel" do
+    .row
+      .col-md-6
+        = f.input :organization_ids, collection: Organization.all, input_html: { multiple: true }
+  
+  .row
+    .col-md-12
+      .form-actions
+        = f.button :submit, :class => 'btn btn-primary btn-sm'
+        = link_to t('.cancel', :default => t("helpers.links.cancel")), representative_path(@representative), :class => 'btn btn-default btn-sm'
 
 :javascript
-  $("select").select2({allowClear: true})
+  $("select").addClass("form-control").select2({allowClear: true})

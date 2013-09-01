@@ -17,7 +17,7 @@
   - grid.columns(*options[:columns]).each do |column|
     %td{ class: datagrid_column_classes(grid, column) }
       = datagrid_format_value(grid, column, asset)
-  - if options[:editable] || admin_signed_in?
+  - if options[:editable]
     %td.text-center
       = link_to edit_path, title: t("mongoid.actions.edit", default: "Edit"), rel: "tooltip" do
         %i.icon-edit{ style: "font-size: 1.2em" }

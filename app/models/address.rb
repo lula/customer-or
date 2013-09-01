@@ -16,6 +16,10 @@ class Address
     main == "1" || main == true
   end
   
+  def addressable!
+    self.addressable
+  end
+  
   def full_description
     addr = "" 
     addr += "#{self.description}, " if self.description && !self.description.empty?

@@ -8,7 +8,13 @@
   =require twitter-bootstrap-static/fontawesome	
 */
 
+$navbar-height: 40px;
+
 @import "bootstrap";
+
+.field_with_errors {
+  @extend .has-error;
+}
 
 .select2-container {
 	display: block;
@@ -34,7 +40,8 @@
 
 .select2-choices {
   display: inline-block;
-  height: 20px;
+  height: inherit;
+  width: inherit;
   padding: 4px 6px;
   margin-bottom: 10px;
   font-size: 14px;
@@ -44,8 +51,6 @@
   -webkit-border-radius: 4px;
      -moz-border-radius: 4px;
           border-radius: 4px;
-					
-  width: 220px;
   background-color: #ffffff;
   border: 1px solid #cccccc;
 }
@@ -66,18 +71,20 @@ div.form-control {
 	margin: 0;
 }
 
-input{
+input {
 	&.datepicker, &.date_filter {
 		width: 105px !important;
 	}	
 }
 
+.time_picker {
+	width: 150px !important;
+}
+
 .form-actions {
-	border-top: 1px solid $legend-border-color;
-	padding: 8px 10px 10px;
-	margin-top: 20px;
-	margin-bottom: 20px;
-	text-align: center;
+//	border-top: 1px solid $legend-border-color;
+	padding: 0px 0px 30px 0px;
+//	margin-top: 20px;
 }
 
 td.selected {
@@ -115,14 +122,45 @@ legend {
 	margin-top: 10px;
 }
 
-//body {
-//	padding-top: 30px;
-//}
-//
-//.container {
-//	padding-top: 20px;
-//}
-//
+abbr {
+	text-decoration: none;
+	border: none !important;
+}
+
+.no-right {
+	padding-right: 0; 
+	margin-right: 0;
+}
+
+.no-left {
+	padding-left: 0; 
+	margin-left: 0;
+}
+
+.form-link {
+	display: block;
+	height: $input-height-base;
+	float: left;
+	padding-top: $padding-base-vertical;
+	padding-bottom: $padding-base-vertical;
+	padding-left: $padding-base-horizontal;
+	padding-right: $padding-base-horizontal;
+}
+
+
+body {
+	padding-top: 30px;
+}
+
+.container {
+	padding-top: 20px;
+}
+
+label.checkbox input[type=checkbox] {
+	display: inline-block;
+	padding-right: 10px;
+}
+
 //.page-header {
 //	height: 40px;
 //}

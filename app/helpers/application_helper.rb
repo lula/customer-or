@@ -1,6 +1,8 @@
 module ApplicationHelper  
   
   def panel(title, id, options={}, &block)
+    panel_class = options[:panel_class] ? "panel #{options[:panel_class]}" : "panel panel-default"
+  
     heading = content_tag :div, class: "panel-heading" do
       content_tag :h3, class: "panel-title" do
         
@@ -25,7 +27,7 @@ module ApplicationHelper
       end
     end
     
-    content_tag :div, class: "panel panel-default" do 
+    content_tag :div, class: panel_class do 
       heading << body
     end
   end

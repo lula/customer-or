@@ -5,8 +5,12 @@ class Customer
   field :valid_from, type: Date
   field :valid_to, type: Date
   field :created_at, type: Date, default: Time.now
+
+  # Indexes
+  index({ name: 1 }, { unique: true, name: "name_index" })
+
   
-  embeds_many :addresses
+  embeds_many :addresses, as: :addressable, cascade_callbacks: true
   embeds_many :business_hours, cascade_callbacks: true
   has_many :visits
 
@@ -23,4 +27,5 @@ class Customer
   end
   
   validates_presence_of :name
+  
 end

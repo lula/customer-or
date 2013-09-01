@@ -49,7 +49,7 @@ gem 'debugger', group: [:development, :test]
 gem 'haml-rails'
 
 # MongoDB # ~> 4.0.0
-gem "mongoid", git: 'git://github.com/mongoid/mongoid.git'
+gem "mongoid", github: 'mongoid/mongoid'#, git: 'git://github.com/mongoid/mongoid.git'
 
 # Twitter Boostrap
 gem 'twitter-bootstrap-rails', git: 'git://github.com/seyhunak/twitter-bootstrap-rails.git'

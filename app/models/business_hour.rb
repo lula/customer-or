@@ -63,6 +63,34 @@ class BusinessHour
     
     self.schedule = s.to_hash
   end
+
+  def mon?
+    mon == true || mon == "1" || mon == 1
+  end
+  
+  def tue?
+    tue == true || tue == "1" || tue == 1
+  end
+  
+  def wed?
+    wed == true || wed == "1" || wed == 1
+  end
+  
+  def thu?
+    thu == true || thu == "1" || thu == 1
+  end
+  
+  def fri?
+    fri == true || fri == "1" || fri == 1
+  end
+  
+  def sat?
+    sat == true || sat == "1" || sat == 1
+  end
+  
+  def sun?
+    sun == true || sun == "1" || sun == 1
+  end
   
   private
   

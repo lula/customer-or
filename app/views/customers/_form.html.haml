@@ -1,27 +1,31 @@
-= simple_form_for @customer, :html => { :class => 'form-horizontal', role: "form" }, defaults: { wrapper: :form_horizontal} do |f|
-  .col-md-4
-    = f.input :name, input_html: { class: "form-control" }
-  .col-md-8
-    = f.input :valid_from, input_html: { class: "datepicker form-control" }
-    = f.input :valid_to, input_html: { class: "datepicker form-control" }
-
+= simple_form_for @customer, :html => { :class => 'form-horizontal', role: "form" }, defaults: { wrapper: :form_horizontal } do |f|
+  .row
+    .col-md-12
+      = panel "Details", "details_panel" do
+        .row
+          .col-md-6
+            = f.input :name
+          .col-md-6
+            = f.input :valid_from, input_html: { class: "datepicker" }
+            = f.input :valid_to, input_html: { class: "datepicker" }
+    
   - if @customer.new_record?
     .row
       .col-md-12
-        %legend= t("mongoid.models.address", count: 1, default: "Address")
-        #address_form
-          = f.simple_fields_for :addresses do |a|
-            .row
-              .col-md-6
-                = a.input :street, label: t("mongoid.attributes.address.street_house_nr")
-              .col-md-2
-                = a.input :house_nr, label: false, input_html: { style: "width: 70px;" }
-            .row
-              .col-md-6
-                = a.input :city
-            .row
-              .col-md-6
-                = a.input :country, iso_codes: true
+        = panel t("mongoid.models.address", count: 1, default: "Address"), "address_panel" do
+          #address_form
+            = f.simple_fields_for :addresses do |a|
+              .row
+                .col-md-6
+                  = a.input :street, label: t("mongoid.attributes.address.street_house_nr")
+                .col-md-2
+                  = a.input :house_nr, label: false, input_html: { style: "width: 70px;" }
+              .row
+                .col-md-6
+                  = a.input :city
+              .row
+                .col-md-6
+                  = a.input :country, iso_codes: true
         
   - else
     .row
@@ -34,12 +38,12 @@
 
   .row
     .col-md-6
-      %legend= t(:representative)
-      = f.input :representative_id do
-        = f.collection_select :representative_id, Representative.all, :id, :name,  {include_blank: true}, {style: "width: 220px;"}
+      = panel t("mongoid.models.representative", count: 1, default: "Representative"), "representative_panel" do
+        = f.input :representative_id do
+          = f.collection_select :representative_id, Representative.all, :id, :name,  {include_blank: true}, { }
     .col-md-6
-      %legend= t(:organizations)
-      = f.input :organization_ids, collection: Organization.all, input_html: { multiple: true, style: "width: 220px" }
+      = panel t("mongoid.models.organization", count: 2, default: "Organizations"), "organizations_panel" do
+        = f.input :organization_ids, collection: Organization.all, input_html: { multiple: true }
 
   .row
     .col-md-12
@@ -52,4 +56,4 @@
     format: 'yyyy-mm-dd',
     autoclose: true
   });
-  $("select").select2({allowClear: true})
+  $("select").addClass("form-control").select2({allowClear: true})

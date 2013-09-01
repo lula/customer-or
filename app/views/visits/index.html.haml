@@ -1,9 +1,11 @@
 - model_class = Visit
 .page-header
-  %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+  %h2=t '.title', :default => model_class.model_name.human.pluralize.titleize
 
-= datagrid_form_for @grid, :method => :get, :url => visits_path, html: { class: "form-horizontal" }
+#visits-search-form
+  = datagrid_form_for @grid, :method => :get, :url => visits_path, html: { class: "form-horizontal" }
 
-#visits-table
-  = datagrid_table @grid, @assets, toolbar: "visits/grid_toolbar", selectable: true, html: { class: "table table-condensed table-hover table-bordered datatable" }
-  = paginate @assets, pagination_class: "pagination-small pagination-centered"
+#visits-search-results
+  = datagrid_table @grid, @assets, toolbar: "visits/grid_toolbar", selectable: true, html: { class: "table table-condensed table-hover table-bordered" }
+.text-center
+  = paginate @assets, pagination_class: "pagination-sm"

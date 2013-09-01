@@ -1,29 +1,28 @@
 # Use this setup block to configure all options available in SimpleForm.
 SimpleForm.setup do |config|
-  
   # Bootstrap 3
-  config.wrappers :bootstrap3, tag: 'div', class: 'form-group', error_class: 'error' do |b|
+  config.wrappers :bootstrap3, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
     b.use :placeholder
     b.use :label
     b.use :input
-    b.use :error, wrap_with: { tag: 'span', class: 'help-inline' }
+    b.use :error, wrap_with: { tag: 'span', class: 'help-block' }
     b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
   end
   
-  config.wrappers :form_horizontal, tag: 'div', class: 'form-group', error_class: 'error' do |b|
+  config.wrappers :form_horizontal, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
     b.use :placeholder
     b.use :label
-    b.wrapper tag: "div", class: "col-md-9" do |field|
-      field.use :input
-      field.use :error, wrap_with: { tag: 'span', class: 'help-inline' }
-      field.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+    b.wrapper tag: "div", class: "col-md-9" do |b1|
+      b1.use :input
+      b1.use :error, wrap_with: { tag: 'span', class: 'help-block' }
+      b1.use :hint,  wrap_with: { tag: 'span', class: 'help-inline' }
     end
   end
-  
+    
   # Bootstrap 2
-  config.wrappers :bootstrap, tag: 'div', class: 'control-group', error_class: 'error' do |b|
+  config.wrappers :bootstrap2, tag: 'div', class: 'control-group', error_class: 'error' do |b|
     b.use :html5
     b.use :placeholder
     b.use :label
@@ -34,7 +33,7 @@ SimpleForm.setup do |config|
     end
   end
   
-  config.wrappers :prepend, tag: 'div', class: "control-group", error_class: 'error' do |b|
+  config.wrappers :prepend2, tag: 'div', class: "control-group", error_class: 'error' do |b|
     b.use :html5
     b.use :placeholder
     b.use :label
@@ -47,7 +46,7 @@ SimpleForm.setup do |config|
     end
   end
 
-  config.wrappers :append, tag: 'div', class: "control-group", error_class: 'error' do |b|
+  config.wrappers :append2, tag: 'div', class: "control-group", error_class: 'error' do |b|
     b.use :html5
     b.use :placeholder
     b.use :label

@@ -3,4 +3,4 @@
   = datagrid_table OrganizationsGrid.new, @organizations, path: :admin, html: { class: "table table-condensed table-hover" }
 
   .text-center
-    = paginate @organizations, pagination_class: "pagination-sm"
+    = paginate @organizations, pagination_class: "pagination-sm", param_name: "organizations_page"

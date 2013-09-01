@@ -5,7 +5,7 @@ class Representative
   
   validates_presence_of :name
   
-  embeds_one :address, cascade_callbacks: true
+  embeds_one :address, as: :addressable, cascade_callbacks: true
   has_many :visits
   has_and_belongs_to_many :organizations
   has_one :user

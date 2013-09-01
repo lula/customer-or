@@ -1,63 +1,63 @@
-- model_class = BusinessHour
-.page-header
-  %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
-%table.table.table-striped
-  %thead
-    %tr
-      %th= model_class.human_attribute_name(:id)
-      %th= model_class.human_attribute_name(:mon)
-      %th= model_class.human_attribute_name(:mon_start_at)
-      %th= model_class.human_attribute_name(:mon_end_at)
-      %th= model_class.human_attribute_name(:tue)
-      %th= model_class.human_attribute_name(:tue_start_at)
-      %th= model_class.human_attribute_name(:tue_end_at)
-      %th= model_class.human_attribute_name(:wed)
-      %th= model_class.human_attribute_name(:wed_start_at)
-      %th= model_class.human_attribute_name(:wed_end_at)
-      %th= model_class.human_attribute_name(:thu)
-      %th= model_class.human_attribute_name(:thu_start_at)
-      %th= model_class.human_attribute_name(:thu_end_at)
-      %th= model_class.human_attribute_name(:fri)
-      %th= model_class.human_attribute_name(:fri_start_at)
-      %th= model_class.human_attribute_name(:fri_end_at)
-      %th= model_class.human_attribute_name(:sat)
-      %th= model_class.human_attribute_name(:sat_start_at)
-      %th= model_class.human_attribute_name(:sat_end_at)
-      %th= model_class.human_attribute_name(:sun)
-      %th= model_class.human_attribute_name(:sun_start_at)
-      %th= model_class.human_attribute_name(:sun_end_at)
-      %th= model_class.human_attribute_name(:schedule)
-      %th= model_class.human_attribute_name(:created_at)
-      %th{ width: "90px"}=t '.actions', :default => t("helpers.actions")
-  %tbody
-    - @business_hours.each do |business_hour|
-      %tr
-        %td= link_to business_hour.id, business_hour_path(business_hour)
-        %td= business_hour.mon
-        %td= business_hour.mon_start_at
-        %td= business_hour.mon_end_at
-        %td= business_hour.tue
-        %td= business_hour.tue_start_at
-        %td= business_hour.tue_end_at
-        %td= business_hour.wed
-        %td= business_hour.wed_start_at
-        %td= business_hour.wed_end_at
-        %td= business_hour.thu
-        %td= business_hour.thu_start_at
-        %td= business_hour.thu_end_at
-        %td= business_hour.fri
-        %td= business_hour.fri_start_at
-        %td= business_hour.fri_end_at
-        %td= business_hour.sat
-        %td= business_hour.sat_start_at
-        %td= business_hour.sat_end_at
-        %td= business_hour.sun
-        %td= business_hour.sun_start_at
-        %td= business_hour.sun_end_at
-        %td= business_hour.schedule
-        %td=l business_hour.created_at
-        %td
-          = link_to t('.edit', :default => t("helpers.links.edit")), edit_business_hour_path(business_hour), :class => 'btn btn-mini'
-          = link_to t('.destroy', :default => t("helpers.links.destroy")), business_hour_path(business_hour), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
-
-= link_to t('.new', :default => t("helpers.links.new")), new_business_hour_path, :class => 'btn btn-primary'
+/ - model_class = BusinessHour
+/ .page-header
+/   %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+/ %table.table.table-striped
+/   %thead
+/     %tr
+/       %th= model_class.human_attribute_name(:id)
+/       %th= model_class.human_attribute_name(:mon)
+/       %th= model_class.human_attribute_name(:mon_start_at)
+/       %th= model_class.human_attribute_name(:mon_end_at)
+/       %th= model_class.human_attribute_name(:tue)
+/       %th= model_class.human_attribute_name(:tue_start_at)
+/       %th= model_class.human_attribute_name(:tue_end_at)
+/       %th= model_class.human_attribute_name(:wed)
+/       %th= model_class.human_attribute_name(:wed_start_at)
+/       %th= model_class.human_attribute_name(:wed_end_at)
+/       %th= model_class.human_attribute_name(:thu)
+/       %th= model_class.human_attribute_name(:thu_start_at)
+/       %th= model_class.human_attribute_name(:thu_end_at)
+/       %th= model_class.human_attribute_name(:fri)
+/       %th= model_class.human_attribute_name(:fri_start_at)
+/       %th= model_class.human_attribute_name(:fri_end_at)
+/       %th= model_class.human_attribute_name(:sat)
+/       %th= model_class.human_attribute_name(:sat_start_at)
+/       %th= model_class.human_attribute_name(:sat_end_at)
+/       %th= model_class.human_attribute_name(:sun)
+/       %th= model_class.human_attribute_name(:sun_start_at)
+/       %th= model_class.human_attribute_name(:sun_end_at)
+/       %th= model_class.human_attribute_name(:schedule)
+/       %th= model_class.human_attribute_name(:created_at)
+/       %th{ width: "90px"}=t '.actions', :default => t("helpers.actions")
+/   %tbody
+/     - @business_hours.each do |business_hour|
+/       %tr
+/         %td= link_to business_hour.id, business_hour_path(business_hour)
+/         %td= business_hour.mon
+/         %td= business_hour.mon_start_at
+/         %td= business_hour.mon_end_at
+/         %td= business_hour.tue
+/         %td= business_hour.tue_start_at
+/         %td= business_hour.tue_end_at
+/         %td= business_hour.wed
+/         %td= business_hour.wed_start_at
+/         %td= business_hour.wed_end_at
+/         %td= business_hour.thu
+/         %td= business_hour.thu_start_at
+/         %td= business_hour.thu_end_at
+/         %td= business_hour.fri
+/         %td= business_hour.fri_start_at
+/         %td= business_hour.fri_end_at
+/         %td= business_hour.sat
+/         %td= business_hour.sat_start_at
+/         %td= business_hour.sat_end_at
+/         %td= business_hour.sun
+/         %td= business_hour.sun_start_at
+/         %td= business_hour.sun_end_at
+/         %td= business_hour.schedule
+/         %td=l business_hour.created_at
+/         %td
+/           = link_to t('.edit', :default => t("helpers.links.edit")), edit_business_hour_path(business_hour), :class => 'btn btn-mini'
+/           = link_to t('.destroy', :default => t("helpers.links.destroy")), business_hour_path(business_hour), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+/ 
+/ = link_to t('.new', :default => t("helpers.links.new")), new_business_hour_path, :class => 'btn btn-primary'

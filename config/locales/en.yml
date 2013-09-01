@@ -24,3 +24,7 @@ en:
   
   datagrid:
     no_results: "No results"
+  
+  views:
+    titles:
+      details: "Details"  

@@ -1,17 +1,19 @@
-%h1 Visit Planning
-= simple_form_for :visit_plan, url: visit_plans_path do |f|
+%h2 
+  = t("views.visit_plans.title", default: "Visit Planning")
+= simple_form_for :visit_plan, url: visit_plans_path, html: { class: "form-horizontal" }, defaults: { wrapper: :form_horizontal } do |f|
   .row
-    .span6
+    .col-md-6
       = f.input :start_date, input_html: { class: "datepicker" }
       = f.input :end_date, input_html: { class: "datepicker" }
-    .span6
-      = f.input :customer_ids, collection: Customer.all, input_html: { multiple: true, style: "width: 220px" }
-  
-  = f.submit class: "btn btn-primary btn-small"
+    .col-md-6
+      = f.input :customer_ids, collection: Customer.all, input_html: { multiple: true }
+  .row
+    .form-actions.col-md-12
+      = f.submit class: "btn btn-primary btn-sm"
   
 :javascript
   $('.datepicker').datepicker({
     format: 'yyyy-mm-dd',
     autoclose: true
   });
-  $("select").select2({allowClear: true})
+  $("select").addClass("form-control").select2({allowClear: true})

@@ -1,21 +1,36 @@
-= simple_form_for [@customer, @business_hour], :html => { :class => 'form-inline' } do |f|
+= simple_form_for [@customer, @business_hour], :html => { role: "form", :class => 'form-horizontal' }, defaults: { wrapper: :form_horizontal } do |f|
   - if @business_hour.errors.messages[:bh]
     .alert.alert-error
       %strong Can't save business hours:
       %ul
         - @business_hour.errors.messages[:bh].each do |msg|
           %li= msg
-  = render "form_day_fields", f: f, day: :mon
-  = render "form_day_fields", f: f, day: :tue
-  = render "form_day_fields", f: f, day: :wed
-  = render "form_day_fields", f: f, day: :thu
-  = render "form_day_fields", f: f, day: :fri
-  = render "form_day_fields", f: f, day: :sat
-  = render "form_day_fields", f: f, day: :sun
+
+  .row
+    .col-md-12
+      = render "form_day_fields", f: f, day: :mon
+  .row
+    .col-md-12
+      = render "form_day_fields", f: f, day: :tue
+  .row
+    .col-md-12
+      = render "form_day_fields", f: f, day: :wed
+  .row
+    .col-md-12
+      = render "form_day_fields", f: f, day: :thu
+  .row
+    .col-md-12
+      = render "form_day_fields", f: f, day: :fri
+  .row
+    .col-md-12
+      = render "form_day_fields", f: f, day: :sat
+  .row
+    .col-md-12
+      = render "form_day_fields", f: f, day: :sun
     
   .form-actions
-    = f.button :submit, :class => 'btn-primary'
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), edit_customer_path(@customer), :class => 'btn'
+    = f.button :submit, :class => 'btn btn-primary btn.sm'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), edit_customer_path(@customer), :class => 'btn btn-default btn-sm'
 
 :javascript
-  $('select').select2({allowClear: true})
+  $('select').addClass("form-control").select2({allowClear: true})

@@ -20,8 +20,8 @@ class CustomersController < ApplicationController
   # GET /customers/1
   # GET /customers/1.json
   def show
-    @addresses = @customer.addresses.page(params[:page])
-    @business_hours = @customer.business_hours.page(params[:bh_page])
+    @addresses = @customer.addresses.page(params[:addresses_page])
+    @business_hours = @customer.business_hours.page(params[:business_hours_page])
     @visits = @customer.visits.page(params[:visits_page])
     @organizations = @customer.organizations.page(params[:organizations_page])
   end
@@ -57,6 +57,7 @@ class CustomersController < ApplicationController
   # PATCH/PUT /customers/1
   # PATCH/PUT /customers/1.json
   def update
+    debugger
     respond_to do |format|
       if @customer.update(customer_params)
         format.html { redirect_to @customer, notice: 'Customer was successfully updated.' }

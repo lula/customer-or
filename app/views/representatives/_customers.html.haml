@@ -1,5 +1,5 @@
 - editable ||= false
 #customers-table
-  = datagrid_table CustomersGrid.new, @customers, editable: editable, html: { class: "table table-condensed table-hover table-bordered" }
-
-= paginate @customers, pagination_class: "pagination-small pagination-centered", param_name: "customers_page"
+  = datagrid_table CustomersGrid.new, @customers, editable: editable, html: { class: "table table-condensed table-hover" }
+  .text-center
+    = paginate @customers, pagination_class: "pagination-sm", param_name: "customers_page"

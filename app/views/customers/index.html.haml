@@ -2,9 +2,10 @@
 .page-header
   %h2=t '.title', :default => model_class.model_name.human.pluralize.titleize
 
-#account_search_form 
-  = datagrid_form_for @grid, :method => :get, :url => customers_path, html: { class: "form-horizontal" }
+#customers-search-form 
+  = datagrid_form_for @grid, :method => :get, :url => customers_path, clear_url: customers_path, html: { class: "form-horizontal" }
 
-#accounts-table
+#customers-table
   = datagrid_table @grid, @assets, html: { class: "table table-condensed table-hover table-bordered" }
-  = paginate @assets, pagination_class: "pagination-small pagination-centered"
+  .text-center
+    = paginate @assets, pagination_class: "pagination-sm"

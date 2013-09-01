@@ -3,8 +3,7 @@
 / * assets - Array of database Entities
 / * options - passed options Hash
 
-=# simple_form_for :selected, url: toolbar_actions_visits_path do |f|
-= content_tag :table, options[:html] do
+- table = content_tag :table, options[:html] do
   %thead
     = datagrid_header(grid, options)
   %tbody
@@ -14,3 +13,10 @@
           = I18n.t 'datagrid.no_results', :default => '&mdash;&mdash;'.html_safe
     -else
       = datagrid_rows(grid, assets, options)
+
+- if options[:toolbar]
+  = simple_form_for :selected, url: toolbar_actions_visits_path do |f|
+    = table
+- else
+  = table
+  

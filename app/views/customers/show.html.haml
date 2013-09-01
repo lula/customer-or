@@ -7,7 +7,7 @@
     = link_to customer_path(@customer), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } do
       %i.icon-trash.danger
 
-= panel "Details", "details_panel" do 
+= panel t("views.titles.details", default: "Details"), "details_panel" do 
   .row 
     .col-md-6
       %p
@@ -27,15 +27,15 @@
 .row
   .col-md-6
     = panel t("mongoid.models.address", count: 2, default: "Addresses"), "addresses_panel", links: [[t("mongoid.actions.new", default: "New"), new_customer_address_path(@customer)]] do
-      = render "addresses"
+      = render "addresses", editable: false
 
   .col-md-6      
     = panel t("mongoid.models.business_hour", count: 2, default: "Business Hours"), "business_hours_panel", links: [[t("mongoid.actions.new", default: "New"), new_customer_business_hour_path(@customer)]] do
-      = render "business_hours"
+      = render "business_hours", editable: false
 .row
   .col-md-12
     = panel t("mongoid.models.visit", count: 2, default: "Visits"), "visits_panel", links: [[t("mongoid.actions.new", default: "New"), new_customer_visit_path(@customer)]] do
-      = render "visits"
+      = render "visits", editable: false
 .row
   .col-md-12
     = panel t("mongoid.models.organization", count: 2, default: "Organizations"), "organizations_panel" do

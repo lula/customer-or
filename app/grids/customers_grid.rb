@@ -24,9 +24,11 @@ class CustomersGrid
   filter :created_at, :date, :range => true
 
   column :name, 
-    header: I18n.t(:city, scope: [:mongoid, :attributes, :customer], default: "Name"),
-    url: ->(customer){ Rails.application.routes.url_helpers.customer_path(customer) }
-    
+        order: "name", 
+        header: I18n.t(:city, scope: [:mongoid, :attributes, :customer], default: "Name"), html: true do |customer|
+    link_to customer.name, customer_path(customer)
+  end
+
   column :address_city,
     header: I18n.t(:city, scope: [:mongoid, :attributes, :address], default: "City") do 
       self.main_address.city

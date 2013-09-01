@@ -1,4 +1,6 @@
-%h2 Visit Plan
+%h2 
+  = t("views.visit_plans.title", default: "Visit Planning")
+
 #visits-table
   - unless @errors.empty?
     .alert.alert-info
@@ -9,4 +11,5 @@
             - msg.each do |m|
               %li= m
   = datagrid_table VisitsGrid.new, @visits, html: { class: "table table-condensed table-hover table-bordered" }
-  = paginate @visits, pagination_class: "pagination-small pagination-centered"
+
+= paginate @visits, pagination_class: "pagination-small"

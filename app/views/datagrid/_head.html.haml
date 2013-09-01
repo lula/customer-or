@@ -1,7 +1,7 @@
-- editable = options[:editable] || admin_signed_in?
 - if options[:toolbar]
   %tr
-    - colspan = editable ? grid.columns(*options[:columns]).length + 2 : grid.columns(*options[:columns]).length
+    - colspan = options[:editable] ? grid.columns(*options[:columns]).length + 2 : grid.columns(*options[:columns]).length
+    - colspan += 1 if options[:selectable]
     %th{ colspan: colspan }
       = render options[:toolbar], grid: grid
       &nbsp;
@@ -9,7 +9,7 @@
   - if options[:selectable]
     %th
       %a.select-all{href: "#"}
-        %i.icon-save
+        %i.icon-th
   - if options[:starred]
     %th
   - grid.columns(*options[:columns]).each do |column|
@@ -18,5 +18,5 @@
       = datagrid_order_for(grid, column) if column.order && options[:order]
   
   -# Actions
-  - if editable
+  - if options[:editable]
     %th{ style: "width: 60px" }

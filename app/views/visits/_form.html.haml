@@ -1,4 +1,4 @@
-= simple_form_for @visit, :html => { :class => 'form-horizontal' } do |f|
+= simple_form_for @visit, :html => { :class => 'form-horizontal' }, defaults: { wrapper: :form_horizontal } do |f|
   - if f.error_notification
     .alert.alert-error
       %strong Please notice:
@@ -7,20 +7,24 @@
           - msg.each do |m|
             %li= m
   .row
-    .span6
+    .col-md-6
       = f.input :description
       = f.input :vdate, input_html: { class: "datepicker" }
+      
+    .col-md-6
+      = f.input :status, collection: Visit::STATUSES, input_html: { }
       = f.input :comment, as: :text
-    .span6
-      = f.input :status, collection: Visit::STATUSES, input_html: { style: "width: 220px;" }
+  .row
+    .col-md-6
       = f.input :customer do
-        = f.collection_select :customer_id, Customer.all, :id, :name, {include_blank: true}, {style: "width: 220px;"}
+        = f.collection_select :customer_id, Customer.all, :id, :name, {include_blank: true}, { }
+    .col-md-6
       = f.input :representative do 
-        = f.collection_select :representative_id, Representative.all, :id, :name, {include_blank: true}, {style: "width: 220px;"}
+        = f.collection_select :representative_id, Representative.all, :id, :name, {include_blank: true}, { }
   
   .form-actions
-    = f.button :submit, :class => 'btn btn-primary btn-small'
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), visits_path, :class => 'btn btn-small'
+    = f.button :submit, :class => 'btn btn-primary btn-sm'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), visits_path, :class => 'btn btn-default btn-sm'
 
 :javascript
   $('.datepicker').datepicker({
@@ -28,4 +32,4 @@
     autoclose: true
   });
   
-  $("select").select2();
+  $("select").addClass("form-control").select2();

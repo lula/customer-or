@@ -1,19 +1,24 @@
-= simple_form_for [@addressable, @address], html: { class: "form-horizontal" } do |f|
+= simple_form_for [@addressable, @address], html: { class: "form-horizontal" }, defaults: { wrapper: :form_horizontal} do |f|
   .row
-    .span6
+    .col-md-6
       = f.input :description
-      = f.input :street do
-        = f.input_field :street, label: false
-        = f.input_field :house_nr, style: "width: 40px"
-    .span6
+  .row
+    .col-md-6
+      = f.input :street, label: t("mongoid.attributes.address.street_house_nr")
+    .col-md-2
+      = f.input :house_nr, label: false, input_html: { style: "width: 70px;" }
+  .row
+    .col-md-6
       = f.input :city
-      = f.input :country, iso_codes: true, input_html: { style: "width: 220px;"}
-      = f.input :main, as: :boolean
+  .row
+    .col-md-6
+      = f.input :country, iso_codes: true
   
-  
-  .form-actions
-    = f.button :submit, :class => 'btn btn-primary btn-small'
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), edit_polymorphic_path(@addressable), :class => 'btn btn-small'
+  .row
+    .col-md-12
+      .form-actions
+        = f.button :submit, :class => 'btn btn-primary btn-small'
+        = link_to t('.cancel', :default => t("helpers.links.cancel")), edit_polymorphic_path(@addressable), :class => 'btn btn-small'
     
 :javascript
-  $('select').select2({allowClear: true})
+  $('select').addClass("form-control").select2({allowClear: true})
