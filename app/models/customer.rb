@@ -17,6 +17,7 @@ class Customer
   belongs_to :representative
   
   validates_presence_of :name
+
   
   def addresses
     self.alt_addresses.push(self.address)

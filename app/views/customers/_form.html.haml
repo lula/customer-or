@@ -38,7 +38,6 @@
       .col-md-6
         = panel t("mongoid.models.business_hour", count: 2, default: "Business Hours"), "business_hours_panel", links: [[t("mongoid.actions.new", default: "New"), new_customer_business_hour_path(@customer)]] do
           = render "business_hours", editable: true
-
   .row
     .col-md-6
       = panel t("mongoid.models.representative", count: 1, default: "Representative"), "representative_panel" do

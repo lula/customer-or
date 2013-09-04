@@ -26,5 +26,11 @@ en:
     no_results: "No results"
   
   views:
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "..."
     titles:
       details: "Details"  

@@ -3,10 +3,10 @@
 - pagination_param_name = pagination_param_name || "page"
 - editable ||= false
 - remote ||= false
-- table_class = table_class || "table table-condensed table-hover"
+- html = html || { class: "table table-condensed table-hover"}
 - starred ||= nil
 - path ||= nil
 
-= datagrid_table grid, assets, path: path, editable: editable, starred: starred, remote: true, html: { class: table_class }
+= datagrid_table grid, assets, path: path, editable: editable, starred: starred, remote: true, html: html
 .text-center
   = paginate assets, pagination_class: "pagination-sm", remote: remote, param_name: pagination_param_name

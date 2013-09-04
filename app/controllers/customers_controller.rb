@@ -103,9 +103,9 @@ class CustomersController < ApplicationController
         @customer.organizations
       end
     
-      @addresses = @addresses_grid.assets.page(params[:addresses_page])
-      @business_hours = @business_hours_grid.assets.page(params[:business_hours_page])
-      @visits = @visits_grid.assets.page(params[:visits_page])
-      @organizations = @organizations_grid.assets.page(params[:organizations_page])
+      @addresses = @addresses_grid.assets.page(params[:addresses_page]).per(1)
+      @business_hours = @business_hours_grid.assets.page(params[:business_hours_page]).per(3)
+      @visits = @visits_grid.assets.page(params[:visits_page]).per(3)
+      @organizations = @organizations_grid.assets.page(params[:organizations_page]).per(3)
     end
 end
