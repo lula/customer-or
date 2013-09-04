@@ -14,10 +14,10 @@ SimpleForm.setup do |config|
     b.use :html5
     b.use :placeholder
     b.use :label
-    b.wrapper tag: "div", class: "col-md-9" do |b1|
+    b.wrapper tag: "div" do |b1|
       b1.use :input
       b1.use :error, wrap_with: { tag: 'span', class: 'help-block' }
-      b1.use :hint,  wrap_with: { tag: 'span', class: 'help-inline' }
+      b1.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
     end
   end
     

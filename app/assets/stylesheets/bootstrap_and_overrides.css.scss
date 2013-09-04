@@ -12,6 +12,8 @@ $navbar-height: 40px;
 
 @import "bootstrap";
 
+$order-link-color: $link-color;
+
 .field_with_errors {
   @extend .has-error;
 }
@@ -82,9 +84,7 @@ input {
 }
 
 .form-actions {
-//	border-top: 1px solid $legend-border-color;
 	padding: 0px 0px 30px 0px;
-//	margin-top: 20px;
 }
 
 td.selected {
@@ -104,8 +104,19 @@ th .order {
 	font-size: 17px;
 }
 
-.order .selected {
-	color: green;
+.order a {
+	color: lighten($link-color, 15%);
+	
+	&:hover {
+		color: $link-hover-color;
+	}
+	
+	&.selected {
+		color: $link-color;
+		&:hover{
+			color: $link-hover-color;
+		}
+	}	
 }
 
 a:hover {
@@ -159,6 +170,18 @@ body {
 label.checkbox input[type=checkbox] {
 	display: inline-block;
 	padding-right: 10px;
+}
+
+.inactive {
+	color: $gray-light;
+}
+
+.no-overflow {
+  overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	width: 100%;
+	display: block;
 }
 
 //.page-header {

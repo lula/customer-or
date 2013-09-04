@@ -1,2 +1,4 @@
-%h2 Edit Address
+- model_class = Address
+.page-header
+  %h2=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize
 = render "form"

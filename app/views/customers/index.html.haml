@@ -5,7 +5,5 @@
 #customers-search-form 
   = datagrid_form_for @grid, :method => :get, :url => customers_path, clear_url: customers_path, html: { class: "form-horizontal" }
 
-#customers-table
-  = datagrid_table @grid, @assets, html: { class: "table table-condensed table-hover table-bordered" }
-  .text-center
-    = paginate @assets, pagination_class: "pagination-sm"
+#customers-search-results
+  = render "grid"

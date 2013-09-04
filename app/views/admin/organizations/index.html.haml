@@ -6,6 +6,4 @@
   = datagrid_form_for @grid, :method => :get, path: :admin, :url => admin_organizations_path, html: { class: "form-horizontal" }
 
 #organizations-search-result
-  = datagrid_table @grid, @assets, path: :admin, html: { class: "table table-condensed table-hover table-bordered" }, editable: true
-.text-center
-  = paginate @assets, pagination_class: "pagination-sm"
+  = render "layouts/grid", table_class: "table table-condensed table-hover table-bordered"

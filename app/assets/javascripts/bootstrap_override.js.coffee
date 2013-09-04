@@ -4,6 +4,8 @@ jQuery ->
 	$(this)
 		.on "mouseenter", "a[rel~=tooltip], .has-tooltip", (event) ->
 			$(@).tooltip()
+		.on "click", "a[rel~=popover], .has-popover", (event) -> 
+			$(@).popover()
 		
 		.on "click", "tr[selectable]", (event) ->
 			check_box = $(@).find("input[type=checkbox]")

@@ -1,14 +1,3 @@
-/ = f.input day, as: :boolean, label: false do
-/   = f.input_field day, as: :boolean
-/   = f.label day, style: "display: inline-block;"
-/   = f.label "Start at / End at", style: "margin-left: 40px; display: inline-block;"
-/   = f.input_field :"#{day.to_s}_start_at", as: :time_picker
-/   = f.input_field :"#{day.to_s}_end_at", as: :time_picker
-/   .error.control-group
-/     = f.full_error day
-/     = f.full_error :"#{day.to_s}_start_at", style: "display: block"
-/     = f.full_error :"#{day.to_s}_end_at"
-
 .row
   .col-md-2
     = f.input day, as: :boolean, inline_label: t("mongoid.attributes.business_hour.#{day}"), label: false

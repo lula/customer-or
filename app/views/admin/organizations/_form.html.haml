@@ -1,8 +1,9 @@
-= simple_form_for [:admin, @organization], :html => { :class => 'form-horizontal' }, defaults: { wrapper: :form_horizontal } do |f|
+= simple_form_for [:admin, @organization], :html => { role: "form" } do |f|
   = panel t("views.titles.details", default: "Details"), "details_panel" do
     .row
-      .col-md-6
+      .col-md-3
         = f.input :name
+      .col-md-3.col-md-offset-1
         = f.input :country, iso_codes: true
 
   .form-actions

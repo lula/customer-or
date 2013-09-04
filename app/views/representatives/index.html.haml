@@ -2,10 +2,8 @@
 .page-header
   %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
   
-#reprensentatives-search-form  
+#reprensentatives-search-form
   = datagrid_form_for @grid, :method => :get, :url => representatives_path, html: { class: "form-horizontal" }
 
 #representatives-search-results
-  = datagrid_table @grid, @assets, html: { class: "table table-condensed table-hover table-bordered" }
-  .text-center
-    = paginate @assets, pagination_class: "pagination-sm"
+  = render "grid"

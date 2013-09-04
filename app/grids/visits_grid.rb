@@ -24,11 +24,11 @@ class VisitsGrid
   column :status do |model|
     model.status_text
   end
-  column :customer, 
+  column :customer, order: "customer.name",
     url: ->(model){ Rails.application.routes.url_helpers.customer_path(model.customer) } do |model| 
     model.customer.name
   end
-  column :representative, 
+  column :representative, order: "representative.name",
     url: ->(model){ Rails.application.routes.url_helpers.representative_path(model.representative) } do |model| 
     model.representative.name
   end

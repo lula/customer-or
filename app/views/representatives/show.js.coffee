@@ -1,0 +1,2 @@
+$("#visits-table").html("<%= escape_javascript(render 'layouts/grid', grid: VisitsGrid.new, assets: @visits, pagination_param_name: 'visits_page', remote: true) %>")
+$("#customers-table").html("<%= escape_javascript(render 'layouts/grid', grid: CustomersGrid.new, assets: @customers, pagination_param_name: 'organizations_page', remote: true) %>")

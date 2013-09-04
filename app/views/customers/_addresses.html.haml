@@ -1,6 +1,11 @@
 - editable ||= false
 #addresses-table
-  = datagrid_table AddressesShortGrid.new, @customer.addresses, path: @customer, editable: editable, starred: :is_main?, html: { class: "table table-condensed table-hover" }
-  
-  .text-center
-    = paginate @addresses, pagination_class: "pagination-sm", param_name: "addresses_page"
+  = render "layouts/grid", 
+    grid: @addresses_grid, 
+    assets: @addresses, 
+    path: @customer, 
+    editable: editable, 
+    pagination_param_name: "addresses_page", 
+    starred: :is_main?, 
+    remote: true,
+    html: { class: "table table-condensed table-hover" }

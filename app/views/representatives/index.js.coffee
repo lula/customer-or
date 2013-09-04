@@ -1,0 +1,1 @@
+$("#representatives-search-results").html("<%= escape_javascript(render 'grid') %>")

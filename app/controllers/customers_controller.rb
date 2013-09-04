@@ -20,29 +20,24 @@ class CustomersController < ApplicationController
   # GET /customers/1
   # GET /customers/1.json
   def show
-    @addresses = @customer.addresses.page(params[:addresses_page])
-    @business_hours = @customer.business_hours.page(params[:business_hours_page])
-    @visits = @customer.visits.page(params[:visits_page])
-    @organizations = @customer.organizations.page(params[:organizations_page])
+    retrieve_relationships
   end
 
   # GET /customers/new
   def new
     @customer = Customer.new
-    @address = @customer.addresses.build
+    @address = @customer.build_address
   end
 
   # GET /customers/1/edit
   def edit
-    @addresses = @customer.addresses.page(params[:page])
-    @business_hours = @customer.business_hours.page(params[:bh_page])
+    retrieve_relationships
   end
 
   # POST /customers
   # POST /customers.json
   def create
     @customer = Customer.new(customer_params)
-    @customer.addresses.first.main = true
     respond_to do |format|
       if @customer.save
         format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
@@ -57,7 +52,6 @@ class CustomersController < ApplicationController
   # PATCH/PUT /customers/1
   # PATCH/PUT /customers/1.json
   def update
-    debugger
     respond_to do |format|
       if @customer.update(customer_params)
         format.html { redirect_to @customer, notice: 'Customer was successfully updated.' }
@@ -87,10 +81,31 @@ class CustomersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.require(:customer).permit(:name, :valid_from, :valid_to, :created_at, :representative_id, addresses_attributes: [ :_id, :street, :house_nr, :city, :country, :description], organization_ids: [])
+      params.require(:customer).permit(:name, :valid_from, :valid_to, :created_at, :representative_id, address: [ :_id, :street, :house_nr, :city, :country, :description, :main], organization_ids: [])
     end
     
     def new_customer
       @customer = Customer.new(params[customer_params])
+    end
+    
+    def retrieve_relationships
+      @visits_grid = VisitsGrid.new(params[:visits_grid]) { @customer.visits }
+      @addresses_grid = AddressesGrid.new(params[:addresses_grid]) do
+        if params[:addresses_grid]
+          @customer.addresses
+        else
+          @customer.addresses.asc(:main)
+        end
+       end
+      @business_hours_grid = BusinessHoursGrid.new(params[:business_hours_grid]) { @customer.business_hours }
+      
+      @organizations_grid = OrganizationsGrid.new(params[:organizations_grid]) do |scope|
+        @customer.organizations
+      end
+    
+      @addresses = @addresses_grid.assets.page(params[:addresses_page])
+      @business_hours = @business_hours_grid.assets.page(params[:business_hours_page])
+      @visits = @visits_grid.assets.page(params[:visits_page])
+      @organizations = @organizations_grid.assets.page(params[:organizations_page])
     end
 end

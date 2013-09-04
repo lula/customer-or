@@ -1,7 +1,9 @@
 - editable ||= false
 
 #business-hours-table
-  = datagrid_table BusinessHoursGrid.new, @customer.business_hours, path: @customer, editable: editable, html: { class: "table table-condensed table-hover" }
-  
-  .text-center
-    = paginate @business_hours, pagination_class: "pagination-sm", param_name: "business_hours_page"
+  = render "layouts/grid", 
+    grid: @business_hours_grid, 
+    assets: @business_hours, 
+    path: @customer, 
+    editable: editable, 
+    pagination_param_name: "business_hours_page"

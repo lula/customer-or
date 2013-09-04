@@ -8,8 +8,6 @@ class Visit
     [I18n.t("mongoid.attributes.visits.statuses.completed", default: "Completed"), :completed]
   ]
   
-  default_scope order_by(:vdate.asc)
-  
   field :description, type: String
   field :vdate, type: Date
   field :comment, type: String

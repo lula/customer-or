@@ -23,19 +23,17 @@ class CustomersGrid
 
   filter :created_at, :date, :range => true
 
-  column :name, 
-        order: "name", 
-        header: I18n.t(:city, scope: [:mongoid, :attributes, :customer], default: "Name"), html: true do |customer|
+  column :name, header: I18n.t(:city, scope: [:mongoid, :attributes, :customer], default: "Name"), html: true do |customer|
     link_to customer.name, customer_path(customer)
   end
 
-  column :address_city,
+  column :address_city, order: "address.city",
     header: I18n.t(:city, scope: [:mongoid, :attributes, :address], default: "City") do 
-      self.main_address.city
+      self.address.city
   end
   
   column :address_country,
     header: I18n.t(:country, scope: [:mongoid, :attributes, :address], default: "Country") do 
-      ::CountrySelect::COUNTRIES[self.main_address.country]
+      ::CountrySelect::COUNTRIES[self.address.country]
   end
 end

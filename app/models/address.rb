@@ -7,7 +7,7 @@ class Address
   field :country, type: String
   field :description, type: String
   field :main, type: Boolean
-    
+  
   embedded_in :addressable, polymorphic: true
   
   validates_presence_of :city

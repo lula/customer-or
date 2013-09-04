@@ -21,7 +21,7 @@ class RepresentativesGrid
     header: I18n.t(:city, scope: [:mongoid, :attributes, :customer], default: "Name"),
     url: ->(model){ Rails.application.routes.url_helpers.representative_path(model) }
     
-  column :address_city, order: "addresses.city", 
+  column :address_city, order: "address.city", 
     header: I18n.t(:city, scope: [:mongoid, :attributes, :address], default: "City") do 
       self.address.city
   end

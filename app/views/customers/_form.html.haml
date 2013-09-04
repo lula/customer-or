@@ -1,12 +1,13 @@
-= simple_form_for @customer, :html => { :class => 'form-horizontal', role: "form" }, defaults: { wrapper: :form_horizontal } do |f|
+= simple_form_for @customer, html: { role: "form" } do |f|
   .row
     .col-md-12
       = panel "Details", "details_panel" do
         .row
-          .col-md-6
-            = f.input :name
-          .col-md-6
+          .col-md-5
+            = f.input :name, autofocus: true
+          .col-md-2.col-md-offset-1
             = f.input :valid_from, input_html: { class: "datepicker" }
+          .col-md-2
             = f.input :valid_to, input_html: { class: "datepicker" }
     
   - if @customer.new_record?
@@ -14,17 +15,19 @@
       .col-md-12
         = panel t("mongoid.models.address", count: 1, default: "Address"), "address_panel" do
           #address_form
-            = f.simple_fields_for :addresses do |a|
+            = f.simple_fields_for @customer.address do |a|
+              .hidden
+                = a.input :main, as: :boolean, input_html: { checked: true }
               .row
-                .col-md-6
-                  = a.input :street, label: t("mongoid.attributes.address.street_house_nr")
+                .col-md-4
+                  = a.input :street, label: t("mongoid.attributes.address.street", default: "Street")
                 .col-md-2
-                  = a.input :house_nr, label: false, input_html: { style: "width: 70px;" }
+                  = a.label :house_nr, class: "no-overflow"
+                  = a.input :house_nr, label: false, input_html: {style: "max-width: 70px"}
               .row
-                .col-md-6
+                .col-md-4
                   = a.input :city
-              .row
-                .col-md-6
+                .col-md-3
                   = a.input :country, iso_codes: true
         
   - else
@@ -39,11 +42,15 @@
   .row
     .col-md-6
       = panel t("mongoid.models.representative", count: 1, default: "Representative"), "representative_panel" do
-        = f.input :representative_id do
-          = f.collection_select :representative_id, Representative.all, :id, :name,  {include_blank: true}, { }
+        .row
+          .col-md-8
+            = f.input :representative_id do
+              = f.collection_select :representative_id, Representative.all, :id, :name,  {include_blank: true}, { }
     .col-md-6
       = panel t("mongoid.models.organization", count: 2, default: "Organizations"), "organizations_panel" do
-        = f.input :organization_ids, collection: Organization.all, input_html: { multiple: true }
+        .row
+          .col-md-8
+            = f.input :organization_ids, collection: Organization.all, input_html: { multiple: true }
 
   .row
     .col-md-12

@@ -1,10 +1,13 @@
-%h2 
-  = t("views.visit_plans.title", default: "Visit Planning")
-= simple_form_for :visit_plan, url: visit_plans_path, html: { class: "form-horizontal" }, defaults: { wrapper: :form_horizontal } do |f|
+.page-header
+  %h2
+    = t("views.visit_plans.title", default: "Visit Planning")
+= simple_form_for :visit_plan, url: visit_plans_path do |f|
   .row
-    .col-md-6
-      = f.input :start_date, input_html: { class: "datepicker" }
-      = f.input :end_date, input_html: { class: "datepicker" }
+    .col-md-4
+      = f.input :start_date, input_html: { class: "datepicker", value: Time.now }
+    .col-md-3
+      = f.input :end_date, input_html: { class: "datepicker", value: Time.now + 7.days }
+  .row
     .col-md-6
       = f.input :customer_ids, collection: Customer.all, input_html: { multiple: true }
   .row

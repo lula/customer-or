@@ -1,29 +1,29 @@
-= simple_form_for @representative, html: { class: "form-horizontal" }, defaults: { wrapper: :form_horizontal } do |f|
+= simple_form_for @representative, html: { role: "form" } do |f|
   = f.error_notification
   
-  = panel t("views.titles.details", default: "Details"), "details_panel" do 
+  = panel t("views.titles.details", default: "Details"), "details_panel" do
     .row
-      .col-md-6
+      .col-md-4
         = f.input :name
   
   = panel t("mongoid.models.address", count: 1, default: "Address"), "address_panel" do
     #address_form
       = f.simple_fields_for @representative.address do |a|
         .row
-          .col-md-6
+          .col-md-4
             = a.input :street, label: t("mongoid.attributes.address.street_house_nr")
           .col-md-2
-            = a.input :house_nr, label: false, input_html: { style: "width: 70px;" }
+            = a.label :house_nr, class: "no-overflow"
+            = a.input :house_nr, label: false, input_html: {style: "max-width: 70px"}
         .row
-          .col-md-6
+          .col-md-4
             = a.input :city
-        .row
-          .col-md-6
+          .col-md-3
             = a.input :country, iso_codes: true
   
   = panel t("mongoid.models.organization", count: 2, default: "Organizations"), "organizations_panel" do
     .row
-      .col-md-6
+      .col-md-4
         = f.input :organization_ids, collection: Organization.all, input_html: { multiple: true }
   
   .row
