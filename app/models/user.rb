@@ -46,7 +46,10 @@ class User
   belongs_to :representative
   
   index({ representative: 1 }, { unique: true, name: "representative_index" })
-  validates_uniqueness_of :representative
+  
+  validates_uniqueness_of :representative, if: ->(user){ !user.representative.nil? }
+  validates_presence_of :email
+  
   
   def lock
     self.locked_at = Time.now

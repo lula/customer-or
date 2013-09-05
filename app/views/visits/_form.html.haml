@@ -11,12 +11,9 @@
     .row
       .col-md-5
         = f.input :description
-      .col-md-2
-        = f.input :vdate, input_html: { class: "datepicker" }
-      .col-md-3
         = f.input :status, collection: Visit::STATUSES, input_html: { }
-    .row
       .col-md-5
+        = f.input :vdate, input_html: { class: "datepicker" }
         = f.input :comment, as: :text
     .row
       .col-md-5
@@ -31,8 +28,12 @@
               = f.collection_select :representative_id, Representative.all, :id, :name, {include_blank: true}, { }
   
   .form-actions
-    = f.button :submit, :class => 'btn btn-primary btn-sm'
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), visits_path, :class => 'btn btn-default btn-sm'
+    = button_tag type: :submit, :class => 'btn btn-primary btn-sm' do
+      %i.icon-save
+      = t("mongoid.actions.visit.save", default: t("helpers.links.save"))
+    = link_to visits_path, :class => 'btn btn-danger btn-sm' do
+      %i.icon-remove
+      = t('.cancel', :default => t("helpers.links.cancel"))
 
 :javascript
   $('.datepicker').datepicker({

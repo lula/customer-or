@@ -18,7 +18,7 @@ class Admin::UsersController < ApplicationController
     @user = User.new(users_params)
     respond_to do |format|
       if @user.save
-        format.html { redirect_to [:admin, @user], notice: 'User was successfully created.' }
+        format.html { redirect_to [:edit, :admin, @user], notice: 'User was successfully created.' }
         format.json { render action: 'show', status: :created, location: @user }
       else
         format.html { render action: 'new' }
@@ -29,31 +29,43 @@ class Admin::UsersController < ApplicationController
   
   
   def update
-    notice = 'User was successfully updated.'
-    
-    if params[:lock]
-      @user.lock
-      notice = 'User was successfully locked.'
-    elsif params[:unlock]
-      @user.unlock
-      notice = 'User was successfully unlocked.'
-    end
-    
+    notice = 'User was successfully updated.'    
+
     respond_to do |format|
-      if @user.update(users_params)
+      if params[:lock]
+        @user.lock
+        notice = 'User was successfully locked.'
+        format.html { redirect_to [:edit, :admin, @user], notice: notice }
+        format.json { head :no_content }
+      elsif params[:unlock]
+        @user.unlock
+        notice = 'User was successfully unlocked.'
         format.html { redirect_to [:edit, :admin, @user], notice: notice }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        if @user.update(users_params)
+          format.html { redirect_to [:edit, :admin, @user], notice: notice }
+          format.json { head :no_content }
+        else
+          format.html { render action: 'edit' }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       end
+    end
+  end
+  
+  def destroy
+    @user.destroy
+    respond_to do |format|
+      format.html { redirect_to admin_users_url }
+      format.json { head :no_content }
     end
   end
   
   protected 
   
   def users_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :name, :representative_id)
+    params.require(:user).permit(:email, :password, :password_confirmation, :username, :name, :representative_id)
   end
   
   def set_user

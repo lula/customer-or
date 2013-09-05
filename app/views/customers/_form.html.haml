@@ -1,36 +1,36 @@
 = simple_form_for @customer, html: { role: "form" } do |f|
   .row
     .col-md-12
-      = panel "Details", "details_panel" do
+      = panel t("views.panels.customer.details", default: "Details"), "details_panel" do
         .row
           .col-md-5
+            %legend= t("views.legends.customer.data", default: "Customer")
             = f.input :name, autofocus: true
-          .col-md-2.col-md-offset-1
-            = f.input :valid_from, input_html: { class: "datepicker" }
-          .col-md-2
-            = f.input :valid_to, input_html: { class: "datepicker" }
-    
-  - if @customer.new_record?
-    .row
-      .col-md-12
-        = panel t("mongoid.models.address", count: 1, default: "Address"), "address_panel" do
-          #address_form
-            = f.simple_fields_for @customer.address do |a|
-              .hidden
-                = a.input :main, as: :boolean, input_html: { checked: true }
-              .row
-                .col-md-4
-                  = a.input :street, label: t("mongoid.attributes.address.street", default: "Street")
-                .col-md-2
-                  = a.label :house_nr, class: "no-overflow"
-                  = a.input :house_nr, label: false, input_html: {style: "max-width: 70px"}
-              .row
-                .col-md-4
-                  = a.input :city
-                .col-md-3
-                  = a.input :country, iso_codes: true
-        
-  - else
+            .row
+              .col-md-6
+                = f.input :valid_from, input_html: { class: "datepicker" }
+              .col-md-6
+                = f.input :valid_to, input_html: { class: "datepicker" }
+          .col-md-7
+            - if @customer.new_record?
+              #address_form
+                %legend= t("views.legends.address.data", default: "Address")
+                = f.simple_fields_for @customer.address do |a|
+                  .hidden
+                    = a.input :main, as: :boolean, input_html: { checked: true }
+                  .row
+                    .col-md-6
+                      = a.input :street, label: t("mongoid.attributes.address.street", default: "Street")
+                    .col-md-6
+                      = a.label :house_nr, class: "no-overflow"
+                      = a.input :house_nr, label: false, input_html: {style: "max-width: 70px"}
+                  .row
+                    .col-md-6
+                      = a.input :city
+                    .col-md-5
+                      = a.input :country, iso_codes: true
+  
+  - unless @customer.new_record?
     .row
       .col-md-6
         = panel t("mongoid.models.address", count: 2, default: "Addresses"), "addresses_panel", links: [[t("mongoid.actions.new", default: "New"), new_customer_address_path(@customer)]] do
@@ -54,8 +54,13 @@
   .row
     .col-md-12
       .form-actions
-        = f.button :submit, :class => 'btn btn-primary btn-sm'
-        = link_to t('helpers.links.cancel', :default => "Cancel"), customer_path(@customer), :class => 'btn btn-default btn-sm'
+        = button_tag type: :submit, :class => 'btn btn-primary btn-sm' do
+          %i.icon-save
+          = t("mongoid.actions.customer.save")
+        = link_to customer_path(@customer), :class => 'btn btn-danger btn-sm' do
+          %i.icon-remove
+          = t('.cancel', :default => t("helpers.links.cancel"))
+          
 
 :javascript
   $('.datepicker').datepicker({

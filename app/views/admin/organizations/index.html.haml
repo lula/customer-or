@@ -1,9 +1,9 @@
 - model_class = Organization
 .page-header
-  %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+  %h2=t '.title', :default => model_class.model_name.human.pluralize.titleize
   
 #organizations-search-form 
   = datagrid_form_for @grid, :method => :get, path: :admin, :url => admin_organizations_path, html: { class: "form-horizontal" }
 
 #organizations-search-result
-  = render "layouts/grid", html: { class: "table table-condensed table-hover table-bordered" },
+  = render "layouts/grid", html: { class: "table table-condensed table-hover table-bordered" }

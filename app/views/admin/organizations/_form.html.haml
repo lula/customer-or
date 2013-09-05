@@ -7,8 +7,12 @@
         = f.input :country, iso_codes: true
 
   .form-actions
-    = f.button :submit, :class => 'btn btn-primary btn-sm'
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), admin_organizations_path, :class => 'btn btn-default btn-sm'
+    = button_tag type: :submit, :class => 'btn btn-primary btn-sm' do
+      %i.icon-save
+      = t("mongoid.actions.organization.save", default: t("helpers.links.save"))
+    = link_to admin_organizations_path, :class => 'btn btn-danger btn-sm' do
+      %i.icon-remove
+      = t('.cancel', :default => t("helpers.links.cancel"))
 
 :javascript
   $("select").addClass("form-control").select2({allowClear: true})

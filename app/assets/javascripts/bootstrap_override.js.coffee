@@ -2,7 +2,7 @@ jQuery ->
   # $("a[rel~=popover], .has-popover").popover()
   # $("a[rel~=tooltip], .has-tooltip").tooltip()
 	$(this)
-		.on "mouseenter", "a[rel~=tooltip], .has-tooltip", (event) ->
+		.on "mouseenter", "button[rel~=tooltip], a[rel~=tooltip], .has-tooltip", (event) ->
 			$(@).tooltip()
 		.on "click", "a[rel~=popover], .has-popover", (event) -> 
 			$(@).popover()

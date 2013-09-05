@@ -26,8 +26,8 @@
     .container
       .row
         .col-md-2
-          .navigation.pull-left{style: "padding-top: 50px;"}
-            = render_navigation(level: 2)
+          .navigation{style: "padding-top: 50px;"}
+            = render_navigation level: 2, renderer: :links
         .col-md-10
           = render "layouts/bootstrap_flash"
           = yield

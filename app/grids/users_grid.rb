@@ -13,8 +13,8 @@ class UsersGrid
   
   column :name
   column :email, url: ->(model){ Rails.application.routes.url_helpers.edit_admin_user_path(model) }
-  column :representative, url: ->(model){ Rails.application.routes.url_helpers.representative_path(model.representative) } do |model|
-    model.representative.name
+  column :representative, url: ->(model){ Rails.application.routes.url_helpers.representative_path(model.representative) } do |user|
+    user.representative ? user.representative.name : ""    
   end
   column :sign_in_count
   column :last_sign_in_at

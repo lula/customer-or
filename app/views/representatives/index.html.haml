@@ -1,9 +1,9 @@
 - model_class = Representative
 .page-header
-  %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+  %h2=t '.title', :default => model_class.model_name.human.pluralize.titleize
   
 #reprensentatives-search-form
-  = datagrid_form_for @grid, :method => :get, :url => representatives_path, html: { class: "form-horizontal" }
+  = datagrid_form_for @grid, :method => :get, :url => representatives_path, clear_url: representatives_path, html: { class: "form-horizontal" }
 
 #representatives-search-results
   = render "grid"

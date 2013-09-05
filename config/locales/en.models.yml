@@ -4,6 +4,9 @@ en:
       address: 
         one: "Address"
         other: "Addresses"
+      visit:
+        one: "Visit"
+        other: "Visits"
     attributes:
       business_hour:
         mon: "Monday"
@@ -18,7 +21,7 @@ en:
       address:
         city: "City"
         street_house_nr: "Street / Nr"
-      visits:
+      visit:
         statuses:
           proposed: "Proposed"
           planned: "Planned"
@@ -29,8 +32,14 @@ en:
     errors:
       visits:
         already_exists: "A %{status} visit already exists for customer %{customer} on %{vdate}" 
-    actions: 
-      new: "New"
-      edit: "Edit"
-      delete: "Delete"
-      update: "update"
+    actions:
+      customer:
+        new: "New"
+        edit: "Edit"
+        delete: "Delete"
+        update: "update"
+        save: "Save"
+      visit_plan:
+        new: "New"
+        save: "Save"
+      

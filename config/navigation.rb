@@ -51,53 +51,6 @@ SimpleNavigation::Configuration.run do |navigation|
     #
     # primary.item :key_1, 'name', url, options
 
-    primary.dom_class = "nav navbar-nav"
-    
-    primary.item :sep, "", class: "divider-vertical"
-    
-    if admin_signed_in?
-      primary.item :users, 'Users', admin_users_url, highlights_on: /\/users/ do |sub_nav|
-        sub_nav.dom_class = "nav navbar"
-        sub_nav.item :head_users, "Users", class: "nav-header"
-        sub_nav.item :users, "Search", admin_users_url
-        sub_nav.item :new_user, "New", new_admin_user_url
-      end
-      
-     primary.item :sep, "", class: "divider-vertical"
-      
-      primary.item :organizations, 'Organizations', admin_organizations_url, highlights_on: /\/organizations/ do |sub_nav|
-        sub_nav.dom_class = "nav nav-list"
-        sub_nav.item :head_org, "Organizations", class: "nav-header"
-        sub_nav.item :organizations, "Search", admin_organizations_url
-        sub_nav.item :new_organization, "New", new_admin_organization_url
-      end
-      
-      primary.item :sep, "", class: "divider-vertical"
-    end
-    
-    if user_signed_in? || admin_signed_in?
-      primary.item :customers, 'Customers', customers_url, highlights_on: /\/customers|\/representatives/ do |sub_nav|
-        sub_nav.dom_class = "nav nav-list"
-        sub_nav.item :head_cust, "Customers", class: "nav-header"
-        sub_nav.item :customers, "Search", customers_url
-        sub_nav.item :new_customer, "New", new_customer_url   
-        sub_nav.item :head_rep, "Representatives", class: "nav-header"
-        sub_nav.item :representative, "Search", representatives_url
-        sub_nav.item :new_representative, "New", new_representative_url        
-      end
-      
-      primary.item :sep, "", class: "divider-vertical"
-      
-      primary.item :visits, 'Visits', visits_url, highlights_on: /\/visits|\/visit_plans/ do |sub_nav|
-        sub_nav.dom_class = "nav nav-list"
-        sub_nav.item :head_vis, "Visits", class: "nav-header"
-        sub_nav.item :visits, "Search", visits_url
-        sub_nav.item :new_visit, "New", new_visit_url
-        sub_nav.item :head_vispl, "Visit Planning", class: "nav-header"
-        sub_nav.item :new_visit_plan, "New", new_visit_plan_path
-      end
-    end
-    
     # Add an item which has a sub navigation (same params, but with block)
     # primary.item :key_2, 'name', url, options do |sub_nav|
     #   # Add an item to the sub navigation (same params again)
@@ -118,6 +71,48 @@ SimpleNavigation::Configuration.run do |navigation|
     # You can turn off auto highlighting for a specific level
     # primary.auto_highlight = false
 
-  end
 
+    primary.dom_class = "nav navbar-nav"
+    
+    primary.item :sep, "", class: "divider-vertical"
+    
+    if admin_signed_in?
+      primary.item :users, t("views.navigation.user.title", default: "Users"), admin_users_url, highlights_on: /\/users/ do |sub_nav|
+        sub_nav.dom_class = "list-group"
+        sub_nav.item :head_user, t("views.navigation.user.title", default: "Users"),"#", class: "list-group-header"
+        sub_nav.item :users, t("views.navigation.customer.search", default: "Search"), admin_users_url, class: "list-group-item"
+        sub_nav.item :new_user, t("views.navigation.customer.new", default: "New"), new_admin_user_url, class: "list-group-item"
+      end
+      primary.item :sep, "", class: "divider-vertical"
+      primary.item :organizations, t("views.navigation.organization.title", default: "Organizations"), admin_organizations_url, highlights_on: /\/organizations/ do |sub_nav|
+        sub_nav.dom_class = "list-group"
+        sub_nav.item :head_org, t("views.navigation.organization.title", default: "Organizations"), "#", class: "list-group-header"
+        sub_nav.item :organizations, t("views.navigation.organization.search", default: "Search"), admin_organizations_url, class: "list-group-item"
+        sub_nav.item :new_organization, t("views.navigation.organization.new", default: "New"), new_admin_organization_url, class: "list-group-item"
+      end
+      
+      primary.item :sep, "", class: "divider-vertical"
+    end
+    
+    if user_signed_in? || admin_signed_in?
+      primary.item :customers, t("views.navigation.customer.title", default: "Customers"), customers_url, highlights_on: /\/customers|\/representatives/ do |sub_nav|
+        sub_nav.dom_class = "list-group"
+        sub_nav.item :head_cust, t("views.navigation.customer.title", default: "Customers"),"#", class: "list-group-header"
+        sub_nav.item :customers, t("views.navigation.customer.search", default: "Search"), customers_url, class: "list-group-item"
+        sub_nav.item :new_customer, t("views.navigation.customer.new", default: "New"), new_customer_url, class: "list-group-item"
+        sub_nav.item :head_rep, t("views.navigation.representative.title", default: "Representatives"), "#", class: "list-group-header"
+        sub_nav.item :representative, t("views.navigation.representative.search", default: "Search"), representatives_url, class: "list-group-item"
+        sub_nav.item :new_representative, t("views.navigation.representative.new", default: "New"), new_representative_url, class: "list-group-item"
+      end
+      primary.item :sep, "", class: "divider-vertical"
+      primary.item :visits, t("views.navigation.visit.title", default: "Visits"), visits_url, highlights_on: /\/visits|\/visit_plans/ do |sub_nav|
+        sub_nav.dom_class = "list-group"
+        sub_nav.item :head_vis, t("views.navigation.visit.title", default: "Visits"), "#", class: "list-group-header"
+        sub_nav.item :visits, t("views.navigation.visit.search", default: "Search"), visits_url, class: "list-group-item"
+        sub_nav.item :new_visit, t("views.navigation.visit.new", default: "New"), new_visit_url, class: "list-group-item"
+        sub_nav.item :head_vispl,  t("views.navigation.visit_plan.title", default: "Visit Plan"), "#", class: "list-group-header"
+        sub_nav.item :new_visit_plan, "New", new_visit_plan_path, class: "list-group-item"
+      end
+    end
+  end
 end

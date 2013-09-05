@@ -32,5 +32,37 @@ en:
       previous: "&lsaquo;"
       next: "&rsaquo;"
       truncate: "..."
-    titles:
-      details: "Details"  
+    navigation:
+      user:
+        title: "Users"
+        search: "Search"
+        new: "New"
+      organization:
+        title: "Organizations"
+        search: "Search"
+        new: "New"
+      customer:
+        title: "Customers"
+        search: "Search"
+        new: "New"
+      visit:
+        title: "Visits"
+        search: "Search"
+        new: "New"
+      visit_plan:
+        title: "Visit Plan"
+        new: "New"  
+    panels:
+      customer:
+        data: "Customer"
+        details: "Details"
+    legends:
+      customer:
+        form: "Customer"
+      address:
+        form: "Address"
+        
+    visit_plan:
+      one: "Visit Plan"
+      other: "Visit Plan"
+      

@@ -14,8 +14,54 @@ $navbar-height: 40px;
 
 $order-link-color: $link-color;
 
+body {
+	padding-top: 30px;
+}
+
+.container {
+	padding-top: 20px;
+}
+
 .field_with_errors {
   @extend .has-error;
+}
+
+.no-overflow {
+  overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	width: 100%;
+	display: block;
+}
+
+.list-group-header, a.list-group-header:hover {
+	@extend .list-group-item;
+	@extend .no-overflow;
+	
+	font-weight: bold;
+	background-color: #f7f5fa;
+	color: $text-color;
+}
+
+.list-group-item.active {
+	color: #fff;
+}
+
+.page-header {
+	button {
+		display: inline;
+		border: none;
+		margin: 0;
+		padding: 0;
+		font-size: inherit;
+		font-weight: inherit;
+		line-height: inherit;
+		height: auto;
+		vertical-align: top;
+		&:hover {
+			text-decoration: none;
+		}
+	}
 }
 
 .select2-container {
@@ -63,7 +109,6 @@ $order-link-color: $link-color;
 
 .select2-drop-multi {
 	margin-top: -3px;
-
 }
 
 div.form-control {
@@ -87,45 +132,54 @@ input {
 	padding: 0px 0px 30px 0px;
 }
 
-td.selected {
-	background-color: #3daae9 !important;
-	color: #fff;
-}
-
-th .order {
-	display: inline;
+td {
+	&.selected {
+		background-color: #3daae9 !important;
+		color: #fff;
+	}
 }
 
 .danger {
 	color: red;
 }
 
-.order i {
-	font-size: 17px;
-}
-
-.order a {
-	color: lighten($link-color, 15%);
+.order {
+	display: inline;
 	
-	&:hover {
-		color: $link-hover-color;
+	i {
+		// font-size: 1em;
 	}
 	
-	&.selected {
-		color: $link-color;
-		&:hover{
+	a {
+		color: lighten($link-color, 15%);
+	
+		&:hover {
 			color: $link-hover-color;
 		}
-	}	
+	
+		&.selected {
+			color: $link-color;
+			&:hover{
+				color: $link-hover-color;
+			}
+		}	
+	}
 }
 
 a:hover {
 	text-decoration: none;
 }
 
-.panel-title {
-	a {
-		color: $link-color !important;
+.panel {
+	.panel-title {
+		a {
+			color: $link-color !important;
+		}
+	}		
+	
+	legend {
+		font-size: 1em;
+		font-weight: bold;
 	}
 }
 
@@ -159,13 +213,6 @@ abbr {
 }
 
 
-body {
-	padding-top: 30px;
-}
-
-.container {
-	padding-top: 20px;
-}
 
 label.checkbox input[type=checkbox] {
 	display: inline-block;
@@ -176,88 +223,7 @@ label.checkbox input[type=checkbox] {
 	color: $gray-light;
 }
 
-.no-overflow {
-  overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	width: 100%;
-	display: block;
-}
-
 .pagination {
 	margin-top: 0px;
 	margin-bottom: 0px;
 }
-
-//.page-header {
-//	height: 40px;
-//}
-//
-//
-//.navbar, 
-//.navbar-inner, 
-//ul.nav > * {
-//	height: 40px !important;
-//	min-height: 40px !important;
-//	line-height: 10px !important;
-//}
-//
-//.navbar a.brand {
-//	margin: 0px;
-//}
-//
-//a.dropdown-toggle b.caret {
-//	margin-top: 4px !important;
-//}
-//
-//
-//legend.no-title {
-//	border: 1px solid transparent;
-//}
-//
-//
-//.navbar, 
-//.navbar-inner, 
-//ul.nav > * {
-//	height: 40px !important;
-//	min-height: 40px !important;
-//	line-height: 10px !important;
-//}
-//
-//.navbar li a [class^="icon-"],
-//.navbar li a [class*=" icon-"] {
-//	line-height: 10px;
-//}
-//
-//input[disabled] {
-//	background-color: #fff;
-//	color: #000 !important;
-//}
-//
-//.nav-list li {
-//	min-height: 20px !important;
-//	height: 20px !important;
-//	border: none;
-//}
-//
-//.nav-list li a.active,
-//.nav-list li a.active:hover {
-//	color: rgb(49, 126, 172);
-//	font-weight: bold;
-//}
-//
-//.nav-list li a.active,
-//.nav-list li a.active:hover,
-//.nav-list li a,
-//.nav-list li a:hover {
-//	display: block;
-//	height: inherit;
-//	background-color: transparent;
-//	text-shadow: none;
-//}
-//
-//
-//.navigation {
-//	width: 130px !important;
-//}
-

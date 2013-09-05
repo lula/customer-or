@@ -3,23 +3,27 @@
   
   = panel t("views.titles.details", default: "Details"), "details_panel" do
     .row
-      .col-md-4
+      .col-md-5
+        %legend= t("views.legends.representative.data", default: "Representative")
         = f.input :name
-  
-  = panel t("mongoid.models.address", count: 1, default: "Address"), "address_panel" do
-    #address_form
-      = f.simple_fields_for @representative.address do |a|
-        .row
-          .col-md-4
-            = a.input :street, label: t("mongoid.attributes.address.street_house_nr")
-          .col-md-2
-            = a.label :house_nr, class: "no-overflow"
-            = a.input :house_nr, label: false, input_html: {style: "max-width: 70px"}
-        .row
-          .col-md-4
-            = a.input :city
-          .col-md-3
-            = a.input :country, iso_codes: true
+      .col-md-7
+        #address_form
+          %legend= t("views.legends.address.data", default: "Address")
+          = f.simple_fields_for @representative.address do |a|
+            .hidden
+              = a.input :main, as: :boolean, input_html: { checked: true }
+            .row
+              .col-md-6
+                = a.input :street, label: t("mongoid.attributes.address.street", default: "Street")
+              .col-md-6
+                = a.label :house_nr, class: "no-overflow"
+                = a.input :house_nr, label: false, input_html: {style: "max-width: 70px"}
+            .row
+              .col-md-6
+                = a.input :city
+              .col-md-5
+                = a.input :country, iso_codes: true
+      
   
   = panel t("mongoid.models.organization", count: 2, default: "Organizations"), "organizations_panel" do
     .row
@@ -29,8 +33,12 @@
   .row
     .col-md-12
       .form-actions
-        = f.button :submit, :class => 'btn btn-primary btn-sm'
-        = link_to t('.cancel', :default => t("helpers.links.cancel")), representative_path(@representative), :class => 'btn btn-default btn-sm'
+        = button_tag type: :submit, :class => 'btn btn-primary btn-sm' do
+          %i.icon-save
+          = t("mongoid.actions.representative.save")
+        = link_to representative_path(@representative), :class => 'btn btn-danger btn-sm' do
+          %i.icon-remove
+          = t('.cancel', :default => t("helpers.links.cancel"))
 
 :javascript
   $("select").addClass("form-control").select2({allowClear: true})
