@@ -30,8 +30,11 @@ en:
         ok: "%{object_name} deleted succesfully"
         nok: "Errors occurred when deleting %{object_name}"
     errors:
-      visits:
-        already_exists: "A %{status} visit already exists for customer %{customer} on %{vdate}" 
+      visit:
+        already_exists: "A %{status} visit already exists for %{customer} on %{vdate}" 
+      visit_plan: 
+        customer:
+          no_business_hours: "No business hours found for %{customer}"
     actions:
       customer:
         new: "New"

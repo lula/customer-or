@@ -8,6 +8,12 @@ class VisitPlansController < ApplicationController
     @errors = []
     customers = Customer.find(options[:customer_ids])
     customers.each do |customer|
+      if customer.business_hours.empty?
+         error = ActiveModel::Errors.new(self) 
+         error.add(:business_hours, t("mongoid.errors.visit_plan.customer.no_business_hours", customer: customer.name, default: "No business hours found for #{customer.name}"))
+         @errors << error
+        break
+      end
       start_date = Date.parse(options[:start_date])
       end_date = Date.parse(options[:end_date])
       

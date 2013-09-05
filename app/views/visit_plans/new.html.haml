@@ -10,12 +10,12 @@
       .col-md-2
         = f.input :end_date, input_html: { class: "datepicker", value: Time.now + 7.days }
       .col-md-4
-        = f.input :customer_ids, collection: Customer.all, input_html: { multiple: true }      
-.row
-  .col-md-4
-    = button_tag type: :submit, class: "btn btn-primary btn-sm" do
-      %i.icon-save
-      = t("mongoid.actions.visit_plan.save")
+        = f.input :customer_ids, collection: Customer.all, input_html: { multiple: true }
+  .row
+    .col-md-4
+      = button_tag type: :submit, class: "btn btn-primary btn-sm" do
+        %i.icon-save
+        = t("mongoid.actions.visit_plan.save")
   
 :javascript
   $('.datepicker').datepicker({
