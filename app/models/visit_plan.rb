@@ -8,10 +8,7 @@ class VisitPlan
   field :customer_ids, type: Array
   
   belongs_to :user
+  belongs_to :admin
   has_many :visits
-  
-  # before_save do
-  #   self.user = current_user || current_admin
-  # end
   
 end

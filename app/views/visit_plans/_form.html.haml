@@ -8,6 +8,10 @@
             %li= raw msg
   .row
     .col-md-12
+      - if current_user
+        = f.input :user, input_html: { value: current_user.id }
+      - if current_admin
+        = f.input :admin, input_html: { value: current_admin.id }
       = f.input :start_date, input_html: { class: "datepicker", value: Time.now }
       = f.input :end_date, input_html: { class: "datepicker", value: Time.now + 7.days }
       = f.input :customer_ids, collection: Customer.all, input_html: { multiple: true }

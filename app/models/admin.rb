@@ -39,7 +39,9 @@ class Admin
   # field :authentication_token, :type => String
   
   field :name, type: String
-  
+    
+  has_many :visit_plans
+    
   def admin?
     true
   end

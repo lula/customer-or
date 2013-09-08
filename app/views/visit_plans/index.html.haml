@@ -1,0 +1,9 @@
+- model_class = VisitPlan
+.page-header
+  %h2=t '.title', :default => model_class.model_name.human.pluralize.titleize
+
+#visit-plans-search-form
+  = datagrid_form_for @grid, :method => :get, :url => visit_plans_path, clear_url: visit_plans_path, html: { class: "form-horizontal" }
+
+#visit-plans-search-results
+  = render "grid"

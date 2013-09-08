@@ -111,6 +111,7 @@ SimpleNavigation::Configuration.run do |navigation|
         sub_nav.item :visits, t("views.navigation.visit.search", default: "Search"), visits_url, class: "list-group-item"
         sub_nav.item :new_visit, t("views.navigation.visit.new", default: "New"), new_visit_url, class: "list-group-item"
         sub_nav.item :head_vispl,  t("views.navigation.visit_plan.title", default: "Visit Plan"), "#", class: "list-group-header"
+        sub_nav.item :visits, t("views.navigation.visit_plan.search", default: "Search"), visit_plans_url, class: "list-group-item"
         sub_nav.item :new_visit_plan, "New", new_visit_plan_path, class: "list-group-item"
       end
     end

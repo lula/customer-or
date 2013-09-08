@@ -6,7 +6,8 @@
 - html = html || { class: "table table-condensed table-hover"}
 - starred ||= nil
 - path ||= nil
+- toolbar = toolbar || false
 
-= datagrid_table grid, assets, path: path, editable: editable, starred: starred, remote: true, html: html
+= datagrid_table grid, assets, path: path, editable: editable, starred: starred, toolbar: toolbar, remote: true, html: html
 .text-center
   = paginate assets, pagination_class: "pagination-sm", remote: remote, param_name: pagination_param_name

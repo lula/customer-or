@@ -15,7 +15,7 @@
       = datagrid_rows(grid, assets, options)
 
 - if options[:toolbar]
-  = simple_form_for :selected, url: toolbar_actions_visits_path do |f|
+  = simple_form_for :selected, url: options[:toolbar][:url] do |f|
     = table
 - else
   = table

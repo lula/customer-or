@@ -19,7 +19,9 @@ CustomerOr::Application.routes.draw do
     post "toolbar_actions", on: :collection
   end
   
-  resources :visit_plans
+  resources :visit_plans do
+    post "toolbar_actions", on: :collection
+  end
 
   namespace :admin do
     resources :organizations

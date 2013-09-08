@@ -77,7 +77,10 @@ class VisitsController < ApplicationController
       visits = Visit.in(id: params[:selected])
       visits.delete_all
       redirect_to visits_path, notice: I18n.t("mongoid.messages.delete.ok", default: 'Objects deleted succesfully', object_name: I18n.t("mongoid.models.visit", count: 2, default: "Visits"))
-    end
+    elsif params[:delete_all]
+      Visit.delete_all
+      redirect_to visits_path, notice: I18n.t("mongoid.messages.delete.ok", default: 'Objects deleted succesfully', object_name: I18n.t("mongoid.models.visit", count: 2, default: "Visits"))
+    end 
   end
 
   private

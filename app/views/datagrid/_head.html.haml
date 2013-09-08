@@ -3,7 +3,7 @@
     - colspan = options[:editable] ? grid.columns(*options[:columns]).length + 2 : grid.columns(*options[:columns]).length
     - colspan += 1 if options[:selectable]
     %th{ colspan: colspan }
-      = render options[:toolbar], grid: grid
+      = render options[:toolbar][:partial], grid: grid
       &nbsp;
 %tr
   - if options[:selectable]
