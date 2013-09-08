@@ -75,20 +75,9 @@ body {
 	}
 }
 
-.select2-container-multi {
-	display: block;
-	
-	a {
-		height: 13px !important;
-		.select2-chosen {
-			margin-top: 2px;
-		}
-	}
-}
-
 .select2-choices {
-  display: inline-block;
-  height: inherit;
+  display: block;
+  height: 100px;
   width: inherit;
   padding: 4px 6px;
   margin-bottom: 10px;
@@ -101,6 +90,20 @@ body {
           border-radius: 4px;
   background-color: #ffffff;
   border: 1px solid #cccccc;
+	overflow-y: auto;
+}
+
+.select2-container-multi {
+	display: block;
+	
+	a {
+		height: 13px !important;
+		.select2-chosen {
+			margin-top: 2px;
+		}
+	}
+	
+	
 }
 
 .select2-drop {
@@ -226,4 +229,10 @@ label.checkbox input[type=checkbox] {
 .pagination {
 	margin-top: 0px;
 	margin-bottom: 0px;
+}
+
+.alert {
+	a {
+		font-weight: bold;
+	}
 }

@@ -3,7 +3,7 @@
   %h2=t '.title', :default => model_class.model_name.human.pluralize.titleize
 
 #visits-search-form
-  = datagrid_form_for @grid, :method => :get, :url => visits_path, html: { class: "form-horizontal" }
+  = datagrid_form_for @grid, :method => :get, :url => visits_path, clear_url: visits_path, html: { class: "form-horizontal" }
 
 #visits-search-results
   = render "grid"

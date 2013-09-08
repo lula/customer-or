@@ -1,0 +1,28 @@
+= simple_form_for @visit_plan, remote: false do |f|
+  - unless @visit_plan.errors.empty?
+    .alert.alert-info
+      %strong Please notice:
+      %ul
+        - @visit_plan.errors.messages.values.each do |msgs|
+          - msgs.each do |msg|
+            %li= raw msg
+  .row
+    .col-md-12
+      = f.input :start_date, input_html: { class: "datepicker", value: Time.now }
+      = f.input :end_date, input_html: { class: "datepicker", value: Time.now + 7.days }
+      = f.input :customer_ids, collection: Customer.all, input_html: { multiple: true }
+      = f.input :comment, as: :text
+
+  .row
+    .col-md-12
+      .form-actions
+        = button_tag type: :submit, class: "btn btn-primary btn-sm" do
+          %i.icon-save
+          = t("mongoid.actions.visit_plan.save")
+
+:javascript
+  $('.datepicker').datepicker({
+    format: 'yyyy-mm-dd',
+    autoclose: true
+  });
+  $("select").addClass("form-control").select2({allowClear: true})

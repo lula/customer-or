@@ -52,16 +52,22 @@ en:
       visit_plan:
         title: "Visit Plan"
         new: "New"  
+        
     panels:
       customer:
         data: "Customer"
         details: "Details"
+        
     legends:
       customer:
         form: "Customer"
       address:
         form: "Address"
-        
+    
+    grids:
+      customer:
+        with_out_business_hours: "With/out business hours"
+      
     visit_plan:
       one: "Visit Plan"
       other: "Visit Plan"

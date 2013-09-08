@@ -1,6 +1,6 @@
 class CustomersGrid
   include Datagrid
-
+    
   scope do
     Customer
   end
@@ -17,8 +17,20 @@ class CustomersGrid
     where(:"addresses.country" => value)
   end
   
-  filter :representative_is_null, :boolean do |value|
-    where(:representative => nil)
+  filter :representative_assigned, :eboolean, header: I18n.t("views.grids.customer.representative_assigned", default: "Rep. assigned") do |value|
+    if value == 'YES'
+      where(:representative.ne => nil)
+    elsif value == 'NO'
+      where(:representative => nil)
+    end
+  end
+
+  filter :business_hours_exist, :eboolean do |value|
+    where(:business_hours.exists => value)
+  end
+  
+  filter :with_business_hours, :boolean do |value|
+    where(:business_hours.exists => true)
   end
 
   filter :created_at, :date, :range => true

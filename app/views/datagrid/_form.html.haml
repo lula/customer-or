@@ -2,17 +2,17 @@
   - form_horizontal = options[:html] && options[:html][:class] && options[:html][:class].include?("form-horizontal")
 
   - grid.filters.each do |filter|
-    .filter
-      .form-group
-        - if form_horizontal
-          = f.datagrid_label filter, class: "control-label col-md-3"
-          .col-md-4
-            = f.datagrid_filter filter, class: "form-control", style: "display: inline-block;"
-        - else 
-          .row
-            .col-md-6
-              = f.datagrid_label filter, class: "control-label"
-              = f.datagrid_filter filter, class: "form-control"
+    .form-group
+      - if form_horizontal
+        = f.datagrid_label filter, class: "control-label col-md-3"
+        .col-md-4
+          = f.datagrid_filter filter, class: "form-control", style: "display: inline-block;"
+      - else 
+        .row
+          .col-md-6
+            = f.datagrid_label filter, class: "control-label"
+            = f.datagrid_filter filter, class: "form-control"
+     
   .row
     .col-md-12
       .form-actions.text-center{ style: "margin-top: 10px"}

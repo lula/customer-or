@@ -3,7 +3,17 @@
   %h2=t '.title', :default => model_class.model_name.human.pluralize.titleize
 
 #customers-search-form 
-  = datagrid_form_for @grid, :method => :get, :url => customers_path, clear_url: customers_path, html: { class: "form-horizontal" }
-
+  =# datagrid_form_for @grid, :method => :get, :url => customers_path, clear_url: customers_path, html: { class: "form-horizontal" }
+  = render "search_form", grid: @grid, url: customers_path
 #customers-search-results
   = render "grid"
+
+
+  
+:javascript
+  $('.date_filter').datepicker({
+    format: 'yyyy-mm-dd',
+    autoclose: true
+  });
+  
+  $("select").select2({allowClear: true})

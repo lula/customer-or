@@ -1,11 +1,27 @@
-= search_form_for @search, html: { class: "form-horizontal" } do |f|
-  .control-group
-    = f.input :name_match, label: "Name", required: false
-    = f.input :addresses_city_match, label: "City", required: false
-    = f.input :addresses_country_match, as: :country, label: "Country", required: false, input_html: { style: "width: 220px;" }
+= form_for grid, url: url, html: { method: :get, class: "form-horizontal" } do |f|
+  .form-group
+    = f.datagrid_label :name, class: "control-label col-md-2"
+    .col-md-4
+      = f.datagrid_filter :name, class: "form-control"
+    = f.datagrid_label :address_city, class: "control-label col-md-2"
+    .col-md-4
+      = f.datagrid_filter :address_city, class: "form-control"
+  .form-group
+    = f.datagrid_label :address_country, class: "control-label col-md-2"
+    .col-md-4
+      = f.datagrid_filter :address_country, class: "form-control"
+    = f.datagrid_label :representative_assigned, class: "control-label col-md-2"
+    .col-md-4
+      = f.datagrid_filter :representative_assigned, class: "form-control"
+  .form-group
+    = f.datagrid_label :business_hours_exist, class: "control-label col-md-2"
+    .col-md-4
+      = f.datagrid_filter :business_hours_exist, class: "form-control"
+    = f.datagrid_label :created_at, class: "control-label col-md-2"
+    .col-md-4
+      = f.datagrid_filter :created_at, class: "form-control", style: "display: inline-block;"
   
-  = button_tag type: :submit, class: "btn btn-primary btn-small" do
-    Search
-  
-:javascript
-  $('select').addClass("form-control").select2()
+  .form-group
+    .col-md-12.form-actions.text-center{ style: "margin-top: 10px"}
+      = f.submit I18n.t("datagrid.form.submit", :default => "Search").html_safe, class: "btn btn-primary btn-sm"
+      = link_to t("datagrid.form.clear", default: "Clear").html_safe, customers_path, class: "btn btn-default btn-sm"

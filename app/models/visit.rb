@@ -16,13 +16,14 @@ class Visit
   
   belongs_to :customer
   belongs_to :representative
+  belongs_to :visit_plan
   
   validates_presence_of :description, :vdate, :customer, :representative
   
   validate :visit_exists
    
   def visit_exists
-    return unless [:planned].include? self.status.to_sym
+    return unless [:planned, :proposed].include? self.status.to_sym
     unless Visit.where(
         :id.ne => self.id,
         status: self.status,
@@ -30,7 +31,7 @@ class Visit
         customer: self.customer,
         representative: self.representative
       ).empty?
-      errors.add(:gen, "#{I18n.t("mongoid.errors.visits.already_exists", default: "Visit already exists", status: self.status_text.downcase, vdate: self.vdate, customer: self.customer.name) }")
+      errors.add(:base, "#{I18n.t('mongoid.errors.visit.already_exists', default: 'Visit already exists', status: self.status_text.downcase, vdate: self.vdate, customer: ActionController::Base.helpers.link_to(self.customer.name, Rails.application.routes.url_helpers.customer_path(self.customer)))}")
     end
   end
   

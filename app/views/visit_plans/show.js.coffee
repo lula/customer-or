@@ -1,0 +1,1 @@
+$("#visit-plan-table").html("<%= escape_javascript(render 'visits') %>")
