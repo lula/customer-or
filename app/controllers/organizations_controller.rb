@@ -1,5 +1,5 @@
-class Admin::OrganizationsController < ApplicationController
-  before_filter :authenticate_admin!
+class OrganizationsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
   before_action :new_organization, only: [:create]
   load_and_authorize_resource
@@ -34,7 +34,7 @@ class Admin::OrganizationsController < ApplicationController
 
     respond_to do |format|
       if @organization.save
-        format.html { redirect_to admin_organization_url(@organization), notice: 'Organization was successfully created.' }
+        format.html { redirect_to organization_url(@organization), notice: 'Organization was successfully created.' }
         format.json { render action: 'show', status: :created, location: @organization }
       else
         format.html { render action: 'new' }
@@ -48,7 +48,7 @@ class Admin::OrganizationsController < ApplicationController
   def update
     respond_to do |format|
       if @organization.update(organization_params)
-        format.html { redirect_to admin_organization_url(@organization), notice: 'Organization was successfully updated.' }
+        format.html { redirect_to organization_url(@organization), notice: 'Organization was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -62,7 +62,7 @@ class Admin::OrganizationsController < ApplicationController
   def destroy
     @organization.destroy
     respond_to do |format|
-      format.html { redirect_to admin_organizations_url }
+      format.html { redirect_to organizations_url }
       format.json { head :no_content }
     end
   end

@@ -7,10 +7,12 @@ class CustomersController < ApplicationController
   # GET /customers.json
   def index
     @grid = CustomersGrid.new(params[:customers_grid])
-    if user_signed_in?
-      # A User can only see customers belonging to his organizations
+    unless current_user.admin?
+      # A user can only see customers belonging to his organizations
       @grid.scope do
-        Customer.in(organization_ids: current_user.representative.organizations.inject([]){|arr,org| arr << org.id})
+        if current_user.representative
+          Customer.in(organization_ids: current_user.representative.organizations.inject([]){|arr,org| arr << org.id})
+        end
       end
     end
 

@@ -2,7 +2,7 @@
 .page-header
   %h2=t '.title', :default => [:'helpers.titles.new', 'Create %{model}'], :model => model_class.model_name.human.titleize
 
-= simple_form_for [:admin, @user] do |f|
+= simple_form_for @user do |f|
   = panel t("views.panels.user.details", default: "Details") , "details_panel" do
     .row
       .col-md-5
@@ -21,7 +21,7 @@
     = button_tag type: :submit, class: "btn btn-primary btn-sm" do
       %i.icon-save
       = t("mongoid.actions.user.save", default: t("helpers.links.save"))
-    = link_to admin_users_path, :class => 'btn btn-danger btn-sm' do
+    = link_to users_path, :class => 'btn btn-danger btn-sm' do
       %i.icon-remove
       = t('helpers.links.cancel', :default => "Cancel")
 

@@ -7,23 +7,14 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, :alert => exception.message
   end
   
-  before_filter :authenticate
+  before_filter :authenticate_user!
   
   protected
   
-  def authenticate
-    return :authenticate_admin! if admin_signed_in?
-    authenticate_user!
+  def current_auth_resource
+    current_user
   end
   
-  def current_auth_resource
-    if admin_signed_in?
-      current_admin
-    else
-      current_user
-    end
-  end
-
   def current_ability
       @current_ability || @current_ability = Ability.new(current_auth_resource)
   end

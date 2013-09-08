@@ -76,25 +76,25 @@ SimpleNavigation::Configuration.run do |navigation|
     
     primary.item :sep, "", class: "divider-vertical"
     
-    if admin_signed_in?
-      primary.item :users, t("views.navigation.user.title", default: "Users"), admin_users_url, highlights_on: /\/users/ do |sub_nav|
+    if current_user && current_user.admin?
+      primary.item :users, t("views.navigation.user.title", default: "Users"), users_url, highlights_on: /\/users/ do |sub_nav|
         sub_nav.dom_class = "list-group"
         sub_nav.item :head_user, t("views.navigation.user.title", default: "Users"),"#", class: "list-group-header"
-        sub_nav.item :users, t("views.navigation.customer.search", default: "Search"), admin_users_url, class: "list-group-item"
-        sub_nav.item :new_user, t("views.navigation.customer.new", default: "New"), new_admin_user_url, class: "list-group-item"
+        sub_nav.item :users, t("views.navigation.customer.search", default: "Search"), users_url, class: "list-group-item"
+        sub_nav.item :new_user, t("views.navigation.customer.new", default: "New"), new_user_url, class: "list-group-item"
       end
       primary.item :sep, "", class: "divider-vertical"
-      primary.item :organizations, t("views.navigation.organization.title", default: "Organizations"), admin_organizations_url, highlights_on: /\/organizations/ do |sub_nav|
+      primary.item :organizations, t("views.navigation.organization.title", default: "Organizations"), organizations_url, highlights_on: /\/organizations/ do |sub_nav|
         sub_nav.dom_class = "list-group"
         sub_nav.item :head_org, t("views.navigation.organization.title", default: "Organizations"), "#", class: "list-group-header"
-        sub_nav.item :organizations, t("views.navigation.organization.search", default: "Search"), admin_organizations_url, class: "list-group-item"
-        sub_nav.item :new_organization, t("views.navigation.organization.new", default: "New"), new_admin_organization_url, class: "list-group-item"
+        sub_nav.item :organizations, t("views.navigation.organization.search", default: "Search"), organizations_url, class: "list-group-item"
+        sub_nav.item :new_organization, t("views.navigation.organization.new", default: "New"), new_organization_url, class: "list-group-item"
       end
       
       primary.item :sep, "", class: "divider-vertical"
     end
     
-    if user_signed_in? || admin_signed_in?
+    if user_signed_in?
       primary.item :customers, t("views.navigation.customer.title", default: "Customers"), customers_url, highlights_on: /\/customers|\/representatives/ do |sub_nav|
         sub_nav.dom_class = "list-group"
         sub_nav.item :head_cust, t("views.navigation.customer.title", default: "Customers"),"#", class: "list-group-header"

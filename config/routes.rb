@@ -1,6 +1,5 @@
 CustomerOr::Application.routes.draw do
   devise_for :users
-  devise_for :admins
   
   concern :addressable do 
     resources :addresses
@@ -23,14 +22,8 @@ CustomerOr::Application.routes.draw do
     post "toolbar_actions", on: :collection
   end
 
-  namespace :admin do
-    resources :organizations
-    resources :users
-  end
-  
-  authenticated :admin do
-    root to: "admin/admin#dashboard", as: "admin_root"
-  end
+  resources :organizations
+  resources :users
     
   root to: "home#index"
   

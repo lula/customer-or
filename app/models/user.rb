@@ -1,5 +1,11 @@
 class User
   include Mongoid::Document
+  
+  ROLES = [
+    [:user, I18n.t("mongoid.models.users.roles.user", default: "User")],
+    [:admin, I18n.t("mongoid.models.users.roles.admin", default: "Admin")]
+  ]
+  
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :rememberable,
   # :lockable, :timeoutable and :omniauthable
@@ -42,6 +48,7 @@ class User
   
   field :created_at, type: Date, default: Time.now
   field :name, type: String
+  field :roles, type: Array, default: [:user]
   
   belongs_to :representative
   has_many :visit_plans
@@ -62,7 +69,7 @@ class User
   end
   
   def admin?
-    false
+    self.roles.include?(:admin)
   end
   
 end

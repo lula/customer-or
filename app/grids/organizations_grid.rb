@@ -13,7 +13,7 @@ class OrganizationsGrid
     where(country: value)
   end
   
-  column :name,  url: ->(model) { Rails.application.routes.url_helpers.admin_organization_path(model) }
+  column :name,  url: ->(model) { Rails.application.routes.url_helpers.organization_path(model) }
   column :country do 
     ::CountrySelect::COUNTRIES[self.country]
   end

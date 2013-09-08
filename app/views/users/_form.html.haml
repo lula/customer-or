@@ -1,4 +1,4 @@
-= simple_form_for [:admin, @user], :html => { role: "form" } do |f|
+= simple_form_for @user, :html => { role: "form" } do |f|
   = panel t("views.panels.user.details", default: "Details"), "details_panel" do
     .row
       .col-md-5
@@ -29,7 +29,7 @@
         = button_tag type: :submit, class: "btn btn-sm btn-primary" do
           %i.icon-save
           = t(:save)
-        = link_to admin_user_path(@user), :method => :delete, class: "btn btn-danger btn-sm", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } do
+        = link_to user_path(@user), :method => :delete, class: "btn btn-danger btn-sm", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } do
           %i.icon-trash
           = t("mongoid.actions.delete", default: "Delete")
         = button_tag name: :lock, type: :submit, class: "btn btn-sm btn-warning", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm_lock", :default => 'Lock User?')) } do

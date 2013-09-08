@@ -2,9 +2,9 @@
 .page-header
   %h2
     =t '.title', :default => model_class.model_name.human.titleize
-    = link_to edit_admin_organization_path(@organization) do 
+    = link_to edit_organization_path(@organization) do 
       %i.icon-edit
-    = link_to admin_organization_path(@organization), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } do
+    = link_to organization_path(@organization), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } do
       %i.icon-trash.danger
     
     
