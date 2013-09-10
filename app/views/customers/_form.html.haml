@@ -44,12 +44,12 @@
         .row
           .col-md-8
             = f.input :representative_id do
-              = f.collection_select :representative_id, Representative.all, :id, :name,  {include_blank: true}, { }
+              = f.collection_select :representative_id, @representatives, :id, :name, { selected: current_user.representative, include_blank: true}, { }
     .col-md-6
       = panel t("mongoid.models.organization", count: 2, default: "Organizations"), "organizations_panel" do
         .row
           .col-md-8
-            = f.input :organization_ids, collection: Organization.all, input_html: { multiple: true }
+            = f.input :organization_ids, collection: @organizations, input_html: { multiple: true }
 
   .row
     .col-md-12

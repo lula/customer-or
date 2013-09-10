@@ -31,7 +31,7 @@ class Visit
         customer: self.customer,
         representative: self.representative
       ).empty?
-      errors.add(:base, "#{I18n.t('mongoid.errors.visit.already_exists', default: 'Visit already exists', status: self.status_text.downcase, vdate: self.vdate, customer: ActionController::Base.helpers.link_to(self.customer.name, Rails.application.routes.url_helpers.customer_path(self.customer)))}")
+      errors.add(:base, "#{I18n.t('mongoid.errors.visit.already_exists', default: 'Visit already exists', status: self.status_text.downcase, vdate: self.vdate, customer: ActionController::Base.helpers.link_to(self.customer.name, Rails.application.routes.url_helpers.customer_path(self.customer), class: "alert-link"))}")
     end
   end
   

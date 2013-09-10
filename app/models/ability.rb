@@ -5,7 +5,12 @@ class Ability
     if user.admin?
       can :manage, :all
     else
-      can :read, :all
+      can [:read, :edit, :create], [Address, Visit, BusinessHour, Representative, VisitPlan]
+      
+      can [:read, :edit, :create], Customer do |customer|
+        !customer.organizations.in(id: user.organizations.inject([]){|arr,obj| arr << obj.id}).empty?
+      end
+      
     end
     
     # Define abilities for the passed in user here. For example:

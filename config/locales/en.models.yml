@@ -31,10 +31,11 @@ en:
         nok: "Errors occurred when deleting %{object_name}"
     errors:
       visit:
-        already_exists: "A %{status} visit already exists for %{customer} on %{vdate}" 
+        already_exists: "%{customer}: a %{status} visit already exists on %{vdate}" 
       visit_plan: 
         customer:
-          no_business_hours: "No business hours found for %{customer}"
+          no_business_hours: "%{customer}: no business hours created"
+          no_representative: "%{customer}: no representative assigned"
     actions:
       customer:
         new: "New"

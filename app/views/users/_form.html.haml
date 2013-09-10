@@ -13,16 +13,19 @@
         = f.input :last_sign_in_at, disabled: true
         = f.input :last_sign_in_ip, disabled: true
   
-  = panel t("views.panels.customer.organizational_data", default: "Organizational Data"), "orgdata_panel" do      
-    .row
-      .col-md-4.no-right
-        = f.input :representative_id do
-          = f.collection_select :representative_id, Representative.all, :id, :name, {include_blank: true}, { }
-      .col-md-1.no-left
-        %label{ style: "display: block;" } &nbsp;
-        = link_to representative_path(@user.representative), class: "form-link" do
-          %i.icon-circle-arrow-right
-
+  - unless @user.admin?
+    = panel t("views.panels.customer.organizational_data", default: "Organizational Data"), "orgdata_panel" do      
+      .row
+        .col-md-3.no-right
+          = f.input :representative_id do
+            = f.collection_select :representative_id, Representative.all, :id, :name, {include_blank: true}, { }
+        .col-md-1.no-left
+          %label{ style: "display: block;" } &nbsp;
+          = link_to representative_path(@user.representative), class: "form-link" do
+            %i.icon-circle-arrow-right
+        .col-md-5.col-md-offset-1
+          = f.input :organization_ids, collection: Organization.all, input_html: { multiple: true }
+      
   .row
     .col-md-12
       .form-actions

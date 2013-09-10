@@ -51,6 +51,7 @@ class User
   field :roles, type: Array, default: [:user]
   
   belongs_to :representative
+  has_and_belongs_to_many :organizations
   has_many :visit_plans
   
   index({ representative: 1 }, { unique: true, name: "representative_index" })

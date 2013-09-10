@@ -3,9 +3,16 @@
     = f.datagrid_label :name, class: "control-label col-md-2"
     .col-md-4
       = f.datagrid_filter :name, class: "form-control"
+    = f.datagrid_label :created_at, class: "control-label col-md-2"
+    .col-md-4
+      = f.datagrid_filter :created_at, class: "form-control", style: "display: inline-block;"
+  .form-group
     = f.datagrid_label :address_city, class: "control-label col-md-2"
     .col-md-4
       = f.datagrid_filter :address_city, class: "form-control"
+    = f.datagrid_label :business_hours_exist, class: "control-label col-md-2"
+    .col-md-4
+      = f.datagrid_filter :business_hours_exist, class: "form-control"
   .form-group
     = f.datagrid_label :address_country, class: "control-label col-md-2"
     .col-md-4
@@ -13,14 +20,7 @@
     = f.datagrid_label :representative_assigned, class: "control-label col-md-2"
     .col-md-4
       = f.datagrid_filter :representative_assigned, class: "form-control"
-  .form-group
-    = f.datagrid_label :business_hours_exist, class: "control-label col-md-2"
-    .col-md-4
-      = f.datagrid_filter :business_hours_exist, class: "form-control"
-    = f.datagrid_label :created_at, class: "control-label col-md-2"
-    .col-md-4
-      = f.datagrid_filter :created_at, class: "form-control", style: "display: inline-block;"
-  
+    
   .form-group
     .col-md-12.form-actions.text-center{ style: "margin-top: 10px"}
       = f.submit I18n.t("datagrid.form.submit", :default => "Search").html_safe, class: "btn btn-primary btn-sm"

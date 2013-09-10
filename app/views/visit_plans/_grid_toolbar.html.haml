@@ -1,3 +1,3 @@
-- assets = grid.assets
-= button_tag "Delete selected", type: :submit, name: "delete_selected", class: "btn btn-danger btn-xs"
-= button_tag "Delete all", type: :submit, name: "delete_all", class: "btn btn-danger btn-xs"
+- if can? :delete, VisitPlan
+  = button_tag "Delete selected", type: :submit, name: "delete_selected", class: "btn btn-danger btn-xs"
+  = button_tag "Delete all", type: :submit, name: "delete_all", class: "btn btn-danger btn-xs"

@@ -2,7 +2,7 @@
   = panel t("views.titles.details", default: "Details"), "details_panel" do
     .row
       .col-md-3
-        = f.input :name
+        = f.input :name, autofocus: true
       .col-md-3.col-md-offset-1
         = f.input :country, iso_codes: true
 

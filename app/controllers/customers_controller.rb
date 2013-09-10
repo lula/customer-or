@@ -1,7 +1,9 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
   before_action :new_customer, only: [:create]
-  load_and_authorize_resource
+  before_action :select_options, only: [:new, :edit]
+  
+  load_and_authorize_resource except: [:new]
   
   # GET /customers
   # GET /customers.json
@@ -11,7 +13,9 @@ class CustomersController < ApplicationController
       # A user can only see customers belonging to his organizations
       @grid.scope do
         if current_user.representative
-          Customer.in(organization_ids: current_user.representative.organizations.inject([]){|arr,org| arr << org.id})
+          Customer.in(id: current_user.representative.customers.inject([]){|arr,obj| arr << obj.id})
+        else
+          Customer.in(organization_ids: current_user.organizations.inject([]){|arr,obj| arr << obj.id})
         end
       end
     end
@@ -29,6 +33,7 @@ class CustomersController < ApplicationController
   def new
     @customer = Customer.new
     @address = @customer.build_address
+    
   end
 
   # GET /customers/1/edit
@@ -109,5 +114,17 @@ class CustomersController < ApplicationController
       @business_hours = @business_hours_grid.assets.page(params[:business_hours_page]).per(3)
       @visits = @visits_grid.assets.page(params[:visits_page]).per(3)
       @organizations = @organizations_grid.assets.page(params[:organizations_page]).per(3)
+    end
+    
+    def select_options
+      if current_user.admin?
+        @representatives = Representative.all
+        @organizations = Organization.all
+      elsif current_user.representative
+        @representatives = Representative.in(id: current_user.representative)
+      else
+        @representatives = Representative.in(organization_ids: current_user.organizations.inject([]){|arr,obj| arr << obj.id})
+        @organizations = Organization.in(id: current_user.organizations.inject([]){|arr,obj| arr << obj.id})
+      end
     end
 end

@@ -7,9 +7,20 @@ class RepresentativesController < ApplicationController
   # GET /representatives.json
   def index
     # @search = Representative.search(params[:search])
-    # @representatives = @search.all.page(params[:page])
-    
+    # @representatives = @search.all.page(params[:page])    
     @grid = RepresentativesGrid.new(params[:representatives_grid])
+    
+    unless current_user.admin?
+      # A user can only see customers belonging to his organizations
+      @grid.scope do
+        if current_user.representative
+          Representative.in(id: current_user.representative)
+        else
+          Representative.in(organization_ids: current_user.organizations.inject([]){|arr,org| arr << org.id})
+        end
+      end
+    end
+    
     @assets = @grid.assets.page(params[:page])
   end
 

@@ -1,5 +1,8 @@
-class VisitPlansController < ApplicationController  
+class VisitPlansController < ApplicationController
   before_action :visit_plan, only: [:show]
+  before_action :determine_customers, only: [:new]
+  
+  load_and_authorize_resource except: [:create, :update]
   
   def index
     @grid = VisitPlansGrid.new(params[:visit_plans])
@@ -13,27 +16,32 @@ class VisitPlansController < ApplicationController
   def show
   end
   
-  def create    
+  def create
     @visit_plan = VisitPlan.new(visit_plans_params)
 
     # Add visits for customers
     customers = Customer.find(@visit_plan.customer_ids)
     customers.each do |customer|
       if customer.business_hours.empty?
-         @visit_plan.errors.add(:base, t("mongoid.errors.visit_plan.customer.no_business_hours", customer: ActionController::Base.helpers.link_to(customer.name, customer_path(customer)), default: "No business hours found for #{customer.name}"))
-        break
+        @visit_plan.errors.add(:base, t("mongoid.errors.visit_plan.customer.no_business_hours", customer: ActionController::Base.helpers.link_to(customer.name, customer_path(customer), class: "alert-link"), default: "No business hour created for #{customer.name}"))
+        next
       end
-
+      
+      unless customer.representative
+        @visit_plan.errors.add(:base, t("mongoid.errors.visit_plan.customer.no_representative", customer: ActionController::Base.helpers.link_to(customer.name, customer_path(customer), class: "alert-link"), default: "No representative assigned to #{customer.name}"))
+        next
+      end
+      
       (@visit_plan.start_date..@visit_plan.end_date).each do |date|
         customer.business_hours.each do |bh|
           if bh.occurs_on? date
             visit = Visit.new(description: "planned visit", vdate: date, representative: customer.representative, customer: customer)
             if visit.save
               @visit_plan.visits << visit
-              break
+              next
             else
-              visit.errors.messages.each do |err|
-                @visit_plan.errors.add(:visits, err.second.join(","))
+              visit.errors.full_messages.each do |msg|
+                @visit_plan.errors.add(:visits, msg)
               end
             end
           end
@@ -42,16 +50,17 @@ class VisitPlansController < ApplicationController
     end
         
     respond_to do |format|
-      if @visit_plan.visits.empty?
-        flash[:notice] = "No visit created"
-        format.html { render action: :new }
-        format.json { render json: @visit_plan.errors, status: :unprocessable_entity }
-      elsif @visit_plan.save
+      if !@visit_plan.visits.empty? && @visit_plan.save
         @visits = @visit_plan.visits.page(params[:page])
-        notice = @visit_plan.errors.empty? ? 'Visit Plan was successfully created.' : 'Please check the below '
-        format.html { redirect_to @visit_plan, notice: notice }
+        format.html { redirect_to @visit_plan }
         format.json { render action: :show, status: :created, location: @visit_plan }
       else
+        if @visit_plan.visits.empty?
+          @visit_plan.errors.add(:visits, "No visits created")
+        else
+          @visits = @visit_plan.visits.page(params[:page])
+        end
+        determine_customers
         format.html { render action: :new }
         format.json { render json: @visit_plan.errors, status: :unprocessable_entity }
       end
@@ -77,7 +86,16 @@ class VisitPlansController < ApplicationController
   end
   
   def visit_plans_params
-    params.require(:visit_plan).permit(:admin, :user, :start_date, :end_date, :comment, :created_at, customer_ids: [])
+    params.require(:visit_plan).permit(:user, :start_date, :end_date, :comments, :created_at, customer_ids: [])
   end
   
+  def determine_customers
+    if current_user.admin?
+      @customers = Customer.all
+    elsif current_user.representative
+      @customers = representative.customers
+    else
+      @customers = Customer.in(organization_ids: current_user.organizations.inject([]){|arr,org| arr << org.id})
+    end
+  end
 end
