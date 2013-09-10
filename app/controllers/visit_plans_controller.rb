@@ -35,11 +35,9 @@ class VisitPlansController < ApplicationController
       (@visit_plan.start_date..@visit_plan.end_date).each do |date|
         customer.business_hours.each do |bh|
           if bh.occurs_on? date
-            visit = Visit.new(description: "planned visit", vdate: date, representative: customer.representative, customer: customer)
-            if visit.save
-              @visit_plan.visits << visit
-              next
-            else
+            visit = @visit_plan.visits.build(description: "planned visit", vdate: date, representative: customer.representative, customer: customer)
+            unless visit.save
+              @visit_plan.visits.delete(visit)
               visit.errors.full_messages.each do |msg|
                 @visit_plan.errors.add(:visits, msg)
               end
@@ -48,7 +46,7 @@ class VisitPlansController < ApplicationController
         end
       end
     end
-        
+
     respond_to do |format|
       if !@visit_plan.visits.empty? && @visit_plan.save
         @visits = @visit_plan.visits.page(params[:page])
@@ -56,10 +54,11 @@ class VisitPlansController < ApplicationController
         format.json { render action: :show, status: :created, location: @visit_plan }
       else
         if @visit_plan.visits.empty?
-          @visit_plan.errors.add(:visits, "No visits created")
+          @visit_plan.errors.add(:base, "No visits created")
         else
           @visits = @visit_plan.visits.page(params[:page])
         end
+        
         determine_customers
         format.html { render action: :new }
         format.json { render json: @visit_plan.errors, status: :unprocessable_entity }

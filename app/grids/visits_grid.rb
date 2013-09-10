@@ -33,7 +33,8 @@ class VisitsGrid
     model.representative.name
   end
   
-  column(:created_at) do |model|
+  column :created_at do |model|
     model.created_at.to_date
   end
+  
 end

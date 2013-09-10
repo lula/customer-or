@@ -1,5 +1,5 @@
 = simple_form_for @visit, :html => { role: "form" } do |f|
-  - if f.error_notification
+  - unless @visit.errors.messages.reject{ |k,v| k != :gen }.empty?
     .alert.alert-error
       %strong Please notice:
       %ul
@@ -20,12 +20,12 @@
         .row
           .col-md-8
             = f.input :customer do
-              = f.collection_select :customer_id, Customer.all, :id, :name, {include_blank: true}, { }
+              = f.collection_select :customer_id, @customers, :id, :name, {include_blank: true}, { }
       .col-md-5
         .row
           .col-md-8
             = f.input :representative do
-              = f.collection_select :representative_id, Representative.all, :id, :name, {include_blank: true}, { }
+              = f.collection_select :representative_id, @customers, :id, :name, {include_blank: true}, { }
   
   .form-actions
     = button_tag type: :submit, :class => 'btn btn-primary btn-sm' do

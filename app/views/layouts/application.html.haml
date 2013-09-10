@@ -29,8 +29,13 @@
           .navigation{style: "padding-top: 50px;"}
             = render_navigation level: 2, renderer: :links
         .col-md-10
-          = render "layouts/bootstrap_flash"
-          = yield
+          .row
+            .col-md-12
+              .bootstrap-flash
+                = render "layouts/bootstrap_flash"
+          .row
+            .col-md-12
+              = yield
               
       / %footer
       /   %p &copy; Company 2013

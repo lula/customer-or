@@ -1,8 +1,7 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
   before_action :new_customer, only: [:create]
-  before_action :select_options, only: [:new, :edit]
-  
+    
   load_and_authorize_resource except: [:new]
   
   # GET /customers
@@ -33,12 +32,13 @@ class CustomersController < ApplicationController
   def new
     @customer = Customer.new
     @address = @customer.build_address
-    
+    select_options
   end
 
   # GET /customers/1/edit
   def edit
     retrieve_relationships
+    select_options
   end
 
   # POST /customers
@@ -50,6 +50,7 @@ class CustomersController < ApplicationController
         format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
         format.json { render action: 'show', status: :created, location: @customer }
       else
+        select_options
         format.html { render action: 'new' }
         format.json { render json: @customer.errors, status: :unprocessable_entity }
       end
@@ -64,6 +65,7 @@ class CustomersController < ApplicationController
         format.html { redirect_to @customer, notice: 'Customer was successfully updated.' }
         format.json { head :no_content }
       else
+        select_options
         format.html { render action: 'edit' }
         format.json { render json: @customer.errors, status: :unprocessable_entity }
       end

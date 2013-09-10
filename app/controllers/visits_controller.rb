@@ -27,10 +27,13 @@ class VisitsController < ApplicationController
     else
       @visit = Visit.new
     end
+    
+    select_options
   end
 
   # GET /visits/1/edit
   def edit
+    select_options
   end
 
   # POST /visits
@@ -42,6 +45,7 @@ class VisitsController < ApplicationController
         format.html { redirect_to @visit, notice: 'Visit was successfully created.' }
         format.json { render action: 'show', status: :created, location: @visit }
       else
+        select_options
         format.html { render action: 'new' }
         format.json { render json: @visit.errors, status: :unprocessable_entity }
       end
@@ -56,6 +60,7 @@ class VisitsController < ApplicationController
         format.html { redirect_to @visit, notice: 'Visit was successfully updated.' }
         format.json { head :no_content }
       else
+        select_options
         format.html { render action: 'edit' }
         format.json { render json: @visit.errors, status: :unprocessable_entity }
       end
@@ -96,5 +101,18 @@ class VisitsController < ApplicationController
     
     def new_visit
       @visit = Visit.new(visit_params)
+    end
+    
+    def select_options
+      if current_user.admin?
+        @customers = Customer.all
+        @representatives = Representative.all
+      elsif current_user.representative
+        @customers = Customer.where(representative: current_user.representative)
+        @representatives = Representative.in(id: current_user.representative)
+      else
+        @customers = Customer.in(organization_ids: current_user.organizations.inject([]){|arr,obj| arr << obj.id})
+        @representatives = Representative.in(organization_ids: current_user.organizations.inject([]){|arr,obj| arr << obj.id})
+      end
     end
 end
