@@ -71,46 +71,34 @@ SimpleNavigation::Configuration.run do |navigation|
     # You can turn off auto highlighting for a specific level
     # primary.auto_highlight = false
 
-
-    primary.dom_class = "nav navbar-nav"
-    
-    primary.item :sep, "", class: "divider-vertical"
-    
+    primary.dom_class = "list-group"
+        
     if current_user && current_user.admin?
-      primary.item :users, t("views.navigation.user.title", default: "Users"), users_url, highlights_on: /\/users/ do |sub_nav|
-        sub_nav.dom_class = "list-group"
-        sub_nav.item :head_user, t("views.navigation.user.title", default: "Users"),"#", class: "list-group-header"
-        sub_nav.item :users, t("views.navigation.customer.search", default: "Search"), users_url, class: "list-group-item"
+      primary.item :users_menu, t("views.navigation.user.title", default: "Users"), users_url, class: "list-group-header" do |sub_nav|
+        sub_nav.item :src_users, t("views.navigation.customer.search", default: "Search"), users_url, class: "list-group-item"
         sub_nav.item :new_user, t("views.navigation.customer.new", default: "New"), new_user_url, class: "list-group-item"
       end
-      primary.item :sep, "", class: "divider-vertical"
-      primary.item :organizations, t("views.navigation.organization.title", default: "Organizations"), organizations_url, highlights_on: /\/organizations/ do |sub_nav|
-        sub_nav.dom_class = "list-group"
-        sub_nav.item :head_org, t("views.navigation.organization.title", default: "Organizations"), "#", class: "list-group-header"
+      primary.item :organizations, t("views.navigation.organization.title", default: "Organizations"), organizations_url, class: "list-group-header", highlights_on: /\/organizations/ do |sub_nav|
         sub_nav.item :organizations, t("views.navigation.organization.search", default: "Search"), organizations_url, class: "list-group-item"
         sub_nav.item :new_organization, t("views.navigation.organization.new", default: "New"), new_organization_url, class: "list-group-item"
       end
-      
-      primary.item :sep, "", class: "divider-vertical"
     end
     
     if user_signed_in?
-      primary.item :customers, t("views.navigation.customer.title", default: "Customers"), customers_url, highlights_on: /\/customers|\/representatives/ do |sub_nav|
-        sub_nav.dom_class = "list-group"
-        sub_nav.item :head_cust, t("views.navigation.customer.title", default: "Customers"),"#", class: "list-group-header"
+      primary.item :customers, t("views.navigation.customer.title", default: "Customers"), customers_url, class: "list-group-header", highlights_on: /\/customers/ do |sub_nav|
         sub_nav.item :customers, t("views.navigation.customer.search", default: "Search"), customers_url, class: "list-group-item"
         sub_nav.item :new_customer, t("views.navigation.customer.new", default: "New"), new_customer_url, class: "list-group-item"
-        sub_nav.item :head_rep, t("views.navigation.representative.title", default: "Representatives"), "#", class: "list-group-header"
-        sub_nav.item :representative, t("views.navigation.representative.search", default: "Search"), representatives_url, class: "list-group-item"
-        sub_nav.item :new_representative, t("views.navigation.representative.new", default: "New"), new_representative_url, class: "list-group-item"
       end
-      primary.item :sep, "", class: "divider-vertical"
-      primary.item :visits, t("views.navigation.visit.title", default: "Visits"), visits_url, highlights_on: /\/visits|\/visit_plans/ do |sub_nav|
-        sub_nav.dom_class = "list-group"
-        sub_nav.item :head_vis, t("views.navigation.visit.title", default: "Visits"), "#", class: "list-group-header"
+      
+      primary.item :representative_menu, t("views.navigation.representative.title", default: "Representatives"), representatives_url, class: "list-group-header" do |sub_nav|
+        sub_nav.item :search_rep, t("views.navigation.representative.search", default: "Search"), representatives_url, class: "list-group-item"
+        sub_nav.item :new_rep, t("views.navigation.representative.new", default: "New"), new_representative_url, class: "list-group-item"
+      end        
+      
+      primary.item :visits, t("views.navigation.visit.title", default: "Visits"), visits_url, class: "list-group-header", highlights_on: /\/visits|\/visit_plans/ do |sub_nav|
         sub_nav.item :visits, t("views.navigation.visit.search", default: "Search"), visits_url, class: "list-group-item"
         sub_nav.item :new_visit, t("views.navigation.visit.new", default: "New"), new_visit_url, class: "list-group-item"
-        sub_nav.item :head_vispl,  t("views.navigation.visit_plan.title", default: "Visit Plan"), "#", class: "list-group-header"
+        sub_nav.item :head_vispl,  t("views.navigation.visit_plan.title", default: "Visit Plan"), "#", class: "list-group-item"
         sub_nav.item :visits, t("views.navigation.visit_plan.search", default: "Search"), visit_plans_url, class: "list-group-item"
         sub_nav.item :new_visit_plan, "New", new_visit_plan_path, class: "list-group-item"
       end

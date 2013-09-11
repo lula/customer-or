@@ -1,7 +1,7 @@
 %nav.navbar.navbar-default.navbar-fixed-top{ role: "navigation"}
   .navbar-header
     %a.navbar-brand{ href: "/"} CoR
-  = render_navigation(level: 1)
+  =# render_navigation(level: 1)
   %ul.nav.navbar-nav.navbar-right
     - if user_signed_in?
       %li= link_to current_user.email

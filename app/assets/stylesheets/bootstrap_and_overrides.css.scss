@@ -9,6 +9,19 @@
 */
 
 $navbar-height: 40px;
+$list-group-header-bg: #f7f5fa;
+
+@mixin striped-bg($bg-color: #ccc, $darken-amount: 5%, $stripe-color: darken($bg-color, $darken-amount), $size: 50px) {
+	background-color: $bg-color;
+	background-image: -webkit-linear-gradient(-45deg, $stripe-color 25%, transparent 25%, transparent 50%, $stripe-color 50%, $stripe-color 75%, transparent 75%, transparent);
+	background-image: -moz-linear-gradient(-45deg, $stripe-color 25%, transparent 25%, transparent 50%, $stripe-color 50%, $stripe-color 75%, transparent 75%, transparent);
+	background-image: -ms-linear-gradient(-45deg, $stripe-color 25%, transparent 25%, transparent 50%, $stripe-color 50%, $stripe-color 75%, transparent 75%, transparent);
+	background-image: -o-linear-gradient(-45deg, $stripe-color 25%, transparent 25%, transparent 50%, $stripe-color 50%, $stripe-color 75%, transparent 75%, transparent);
+	background-image: linear-gradient($stripe-color 25%, transparent 25%, transparent 50%, $stripe-color 50%, $stripe-color 75%, transparent 75%, transparent);
+	background-size: $size $size;
+	width:100%;
+	height:100%;
+}
 
 @import "bootstrap";
 
@@ -34,17 +47,42 @@ body {
 	display: block;
 }
 
-.list-group-header, a.list-group-header:hover {
+.list-group-header, .list-group-header.active, .list-group-header.active:hover {
 	@extend .list-group-item;
 	@extend .no-overflow;
 	
 	font-weight: bold;
-	background-color: #f7f5fa;
-	color: $text-color;
+	background-color: $list-group-header-bg;
+
+	&.active {
+		@include striped-bg($list-group-header-bg, 1%);
+		
+		&:hover {
+			@include striped-bg($list-group-header-bg, 3%);
+		}
+		
+		border-color: $list-group-border;
+	}
+	a {
+		&.active {
+			color: $link-color;
+		}
+		
+		&:hover {
+			color: $link-hover-color;
+		}
+	}
 }
 
-.list-group-item.active {
-	color: #fff;
+.list-group-item
+{
+	a {
+		display: block;
+	}
+	
+	&.active a {
+		color: #fff;
+	}	
 }
 
 .page-header {
