@@ -1,6 +1,6 @@
 class Customer
   include Mongoid::Document
-  
+
   field :name, type: String
   field :valid_from, type: Date
   field :valid_to, type: Date
@@ -21,5 +21,5 @@ class Customer
   def addresses
     self.alt_addresses.push(self.address)
   end
-  
+      
 end

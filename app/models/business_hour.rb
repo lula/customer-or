@@ -1,6 +1,9 @@
 class BusinessHour
   include Mongoid::Document
   include IceCube
+    
+  field :valid_from, type: Date, default: Time.now
+  field :valid_to, type: Date
   
   field :mon, type: Boolean
   field :mon_start_at, type: Time

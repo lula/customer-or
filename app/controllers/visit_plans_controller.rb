@@ -1,12 +1,17 @@
 class VisitPlansController < ApplicationController
   before_action :visit_plan, only: [:show]
-  before_action :determine_customers, only: [:new]
-  
+  before_action :determine_customers, only: [:new]  
   load_and_authorize_resource except: [:create, :update]
   
   def index
     @grid = VisitPlansGrid.new(params[:visit_plans])
     @assets = @grid.assets.page(params[:page])
+    
+    respond_to do |format|
+      format.html
+      format.json
+      format.csv{ send_data @grid.to_csv }
+    end
   end
   
   def new
@@ -53,12 +58,6 @@ class VisitPlansController < ApplicationController
         format.html { redirect_to @visit_plan }
         format.json { render action: :show, status: :created, location: @visit_plan }
       else
-        if @visit_plan.visits.empty?
-          @visit_plan.errors.add(:base, "No visits created")
-        else
-          @visits = @visit_plan.visits.page(params[:page])
-        end
-        
         determine_customers
         format.html { render action: :new }
         format.json { render json: @visit_plan.errors, status: :unprocessable_entity }
@@ -92,7 +91,7 @@ class VisitPlansController < ApplicationController
     if current_user.admin?
       @customers = Customer.all
     elsif current_user.representative
-      @customers = representative.customers
+      @customers = current_user.representative.customers
     else
       @customers = Customer.in(organization_ids: current_user.organizations.inject([]){|arr,org| arr << org.id})
     end

@@ -1,24 +1,24 @@
 GIT
   remote: git://github.com/mongoid/mongoid.git
-  revision: 38de2e96edc8f64fbe3cdbe062f1d91e9feb388d
+  revision: 263a09e01dc7115083147721283438c2f6a77e91
   specs:
     mongoid (4.0.0)
       activemodel (~> 4.0.0)
-      moped (~> 1.5)
+      moped (~> 2.0.beta)
       origin (~> 1.0)
       tzinfo (~> 0.3.37)
 
 GIT
   remote: git://github.com/plataformatec/simple_form.git
-  revision: f0b95cb9805ebc895947cafaf33a07b67eeb8c71
+  revision: 028e762f00645fcd89ef213c9c74d9bfcf7222f5
   specs:
-    simple_form (3.0.0.rc)
+    simple_form (3.0.0)
       actionpack (>= 4.0.0, < 4.1)
       activemodel (>= 4.0.0, < 4.1)
 
 GIT
   remote: git://github.com/seyhunak/twitter-bootstrap-rails.git
-  revision: 40ffd567ee6bea9974710c58646d309d6a95faaf
+  revision: b4ec5166978a0b6ba1596827428fb2e4ffd9565d
   specs:
     twitter-bootstrap-rails (2.2.8)
       actionpack (>= 3.1)
@@ -28,7 +28,7 @@ GIT
 
 GIT
   remote: git://github.com/thomas-mcdonald/bootstrap-sass.git
-  revision: 1344c58711e9ba30cbbd028908ea3fe6df73969d
+  revision: 0e88056ac5d58fb0bbd23d3fe929eac01712d964
   branch: 3
   specs:
     bootstrap-sass (3.0.0.0)
@@ -62,13 +62,14 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     arel (4.0.0)
-    atomic (1.1.13)
+    atomic (1.1.14)
     bcrypt-ruby (3.1.2)
     better_errors (1.0.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
     bootstrap-datepicker-rails (1.1.1.7)
       railties (>= 3.0)
+    bson (2.0.0.rc2)
     builder (3.1.4)
     cancan (1.6.10)
     coderay (1.1.0)
@@ -81,7 +82,7 @@ GEM
     coffee-script-source (1.6.3)
     columnize (0.3.6)
     country_select (1.2.0)
-    datagrid (0.9.3)
+    datagrid (1.0.0)
       rails (>= 3.0)
     debugger (1.6.1)
       columnize (>= 0.3.1)
@@ -122,8 +123,11 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25)
     minitest (4.7.5)
-    moped (1.5.1)
+    moped (2.0.0.beta)
+      bson (~> 2.0.0.rc2)
+      optionable (~> 0.1.1)
     multi_json (1.8.0)
+    optionable (0.1.1)
     origin (1.1.0)
     orm_adapter (0.4.0)
     polyglot (0.3.3)
@@ -154,8 +158,7 @@ GEM
     sdoc (0.3.20)
       json (>= 1.1.3)
       rdoc (~> 3.10)
-    select2-rails (3.4.8)
-      sass-rails
+    select2-rails (3.5.0)
       thor (~> 0.14)
     simple-navigation (3.11.0)
       activesupport (>= 2.3.2)
@@ -169,7 +172,7 @@ GEM
       activesupport (>= 3.0)
       sprockets (~> 2.8)
     thor (0.18.1)
-    thread_safe (0.1.2)
+    thread_safe (0.1.3)
       atomic
     tilt (1.4.1)
     treetop (1.4.15)

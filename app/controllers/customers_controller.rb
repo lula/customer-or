@@ -1,5 +1,5 @@
 class CustomersController < ApplicationController
-  before_action :set_customer, only: [:show, :edit, :update, :destroy]
+  before_action :set_customer, only: [:show, :edit, :update, :destroy, :export_addresses]
   before_action :new_customer, only: [:create]
     
   load_and_authorize_resource except: [:new]
@@ -20,6 +20,12 @@ class CustomersController < ApplicationController
     end
 
     @assets = @grid.assets.page(params[:page])
+    
+    respond_to do |format|
+      format.html { }
+      format.json { }
+      format.csv{ send_data @grid.to_csv }
+    end
   end
 
   # GET /customers/1
@@ -30,7 +36,7 @@ class CustomersController < ApplicationController
 
   # GET /customers/new
   def new
-    @customer = Customer.new
+    @customer = Customer.new(representative: current_user.representative)
     @address = @customer.build_address
     select_options
   end
@@ -81,7 +87,37 @@ class CustomersController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
+  def import 
+    if params[:customers] && params[:customers][:file]
+      
+    end
+  end
+  
+  def export_addresses
+    respond_to do |format|
+      grid = AddressesGrid.new{ @customer.addresses }
+      format.html { }
+      format.csv { send_data grid.to_csv }
+    end
+  end
+  
+  def export_business_hours
+    respond_to do |format|
+      grid = BusinessHoursGrid.new{ @customer.business_hours }
+      format.html { }
+      format.csv { send_data grid.to_csv }
+    end
+  end
+  
+  def export_organizations
+    respond_to do |format|
+      grid = OrganizationsGrid.new{ @customer.organizations }
+      format.html { }
+      format.csv { send_data grid.to_csv }
+    end
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_customer
@@ -123,7 +159,8 @@ class CustomersController < ApplicationController
         @representatives = Representative.all
         @organizations = Organization.all
       elsif current_user.representative
-        @representatives = Representative.in(id: current_user.representative)
+        @representatives = Representative.where(id: current_user.representative)
+        @organizations = current_user.representative.organizations
       else
         @representatives = Representative.in(organization_ids: current_user.organizations.inject([]){|arr,obj| arr << obj.id})
         @organizations = Organization.in(id: current_user.organizations.inject([]){|arr,obj| arr << obj.id})

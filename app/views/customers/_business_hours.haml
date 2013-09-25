@@ -1,9 +1,4 @@
 - editable ||= false
 
 #business-hours-table
-  = render "layouts/grid", 
-    grid: @business_hours_grid, 
-    assets: @business_hours, 
-    path: @customer, 
-    editable: editable, 
-    pagination_param_name: "business_hours_page"
+  = render "layouts/grid", grid: @business_hours_grid, assets: @business_hours, path: @customer, editable: editable, pagination_param_name: "business_hours_page", export_url: export_business_hours_customer_path(@customer, format: :csv)

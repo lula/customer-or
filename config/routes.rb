@@ -12,6 +12,18 @@ CustomerOr::Application.routes.draw do
   resources :customers, concerns: :addressable do
     resources :business_hours
     resource :visit, only: [:new]
+    
+    collection do 
+      get "import"
+      post "import"
+    end
+    
+    member do 
+      get "export_addresses"
+      get "export_business_hours"
+      get "export_organizations"
+    end
+    
   end
   
   resources :visits do
@@ -23,8 +35,9 @@ CustomerOr::Application.routes.draw do
   end
 
   resources :organizations
-  resources :users
-    
+  namespace :admin do 
+    resources :users
+  end
   root to: "home#index"
   
   # The priority is based upon order of creation: first created -> highest priority.

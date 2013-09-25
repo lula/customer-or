@@ -1,0 +1,6 @@
+.page-header
+  %h2 Import customers
+
+= simple_form_for :customers, url: import_customers_path, html: { multipart: true } do |f|
+  = f.file_field :file
+  = f.submit class: "btn btn-default btn-sm"

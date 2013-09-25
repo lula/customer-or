@@ -1,3 +1,3 @@
 - editable ||= false
 #organizations-table
-  = render "layouts/grid", grid: @organizations_grid, assets: @organizations, pagination_param_name: "organizations_page", remote: true
+  = render "layouts/grid", grid: @organizations_grid, assets: @organizations, pagination_param_name: "organizations_page", remote: true, export_url: export_organizations_customer_path(@customer, format: :csv) 

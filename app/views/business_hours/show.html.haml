@@ -9,58 +9,61 @@
       %i.icon-trash.danger
     
 .row
-  .col-md-12
+  .col-md-4
     %p
       %strong= model_class.human_attribute_name(:schedule) + ':'
       = @business_hour.schedule
-
 .row
   .col-md-4
-    - if @business_hour.mon?
-      %p
-        %strong= model_class.human_attribute_name(:mon) + ':'
+    %p
+      %strong= model_class.human_attribute_name(:valid_from) + ':'
+      = @business_hour.valid_from
+  .col-md-4
+    %p
+      %strong= model_class.human_attribute_name(:valid_to) + ':'
+      = @business_hour.valid_to
+.row
+  .col-md-4
+    %p
+      %strong= model_class.human_attribute_name(:mon) + ':'
+      - if @business_hour.mon?
         = @business_hour.mon_start_at.strftime("%H:%M")
         = "-"
         = @business_hour.mon_end_at.strftime("%H:%M")
-
-    - if @business_hour.tue?
-      %p
-        %strong= model_class.human_attribute_name(:tue) + ':'
+    %p
+      %strong= model_class.human_attribute_name(:tue) + ':'
+      - if @business_hour.tue?
         = @business_hour.tue_start_at.strftime("%H:%M")
         = "-"
         = @business_hour.tue_end_at.strftime("%H:%M")
-    - if @business_hour.wed?
-      %p
-        %strong= model_class.human_attribute_name(:wed) + ':'
+    %p
+      %strong= model_class.human_attribute_name(:wed) + ':'
+      - if @business_hour.wed?
         = @business_hour.wed_start_at.strftime("%H:%M")
         = "-"
         = @business_hour.wed_end_at.strftime("%H:%M")
-  .col-md-4
-    - if @business_hour.thu?
-      %p
-        %strong= model_class.human_attribute_name(:thu) + ':'
+    %p
+      %strong= model_class.human_attribute_name(:thu) + ':'
+      - if @business_hour.thu?
         = @business_hour.thu_start_at.strftime("%H:%M")
         = "-"
         = @business_hour.thu_end_at.strftime("%H:%M")
-    - if @business_hour.fri?
-      %p
-        %strong= model_class.human_attribute_name(:fri) + ':'
+    %p
+      %strong= model_class.human_attribute_name(:fri) + ':'
+      - if @business_hour.fri?
         = @business_hour.fri_start_at.strftime("%H:%M")
         = "-"
         = @business_hour.fri_end_at.strftime("%H:%M")
-    - if @business_hour.sat?
-      %p
-        %strong= model_class.human_attribute_name(:sat) + ':'
+  .col-md-4
+    %p
+      %strong= model_class.human_attribute_name(:sat) + ':'
+      - if @business_hour.sat?
         = @business_hour.sat_start_at.strftime("%H:%M")
         = "-"
         = @business_hour.sat_end_at.strftime("%H:%M")
-    - if @business_hour.sun?
-      %p
-        %strong= model_class.human_attribute_name(:sun) + ':'
-        = @business_hour.sun
-      %p
-        %strong= model_class.human_attribute_name(:sun_start_at) + ':'
+    %p
+      %strong= model_class.human_attribute_name(:sun) + ':'
+      -if @business_hour.sun?
         = @business_hour.sun_start_at.strftime("%H:%M")
-      %p
-        %strong= model_class.human_attribute_name(:sun_end_at) + ':'
-        = @business_hour.sun_end_at.strftime("%H:%M")  
+        = "-"
+        = @business_hour.sun_end_at.strftime("%H:%M")

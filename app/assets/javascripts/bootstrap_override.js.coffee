@@ -35,3 +35,23 @@ jQuery ->
 				$(@).html("<i class='icon-chevron-sign-down'></i>")
 			else
 				$(@).html("<i class='icon-chevron-sign-up'></i>")
+		
+		.on "click", "[data-hide]", (event) ->
+			$($(@).attr("data-hide")).hide()	
+		
+		.on "click", "[data-show]", (event) ->
+			$($(@).attr("data-show")).show()
+		
+		.on "change", "#user_representative_id", (event) ->
+			if $(@).val() != ""
+				$("#organization-select").hide()
+			else
+				$("#organization-select").show()
+		
+		.on "change", "#organization-select", (event) ->
+			if $(@).find(".select2-container .select2-search-choice").length == 0
+				$("#representative-select").show()
+			else
+				$("#representative-select").hide()
+				
+		

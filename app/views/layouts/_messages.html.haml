@@ -1,0 +1,26 @@
+- if current_user
+  - unless flash.empty?
+    - {notice: [], danger: [], warning: [], info: [], alert: []}.merge(flash).reject{|n,m| m.empty?}.each do |name, msg|
+      - if name == :notice
+        - kind = "success"
+        - icon_class = "icon-ok-sign"
+      - elsif [:alert, :danger].include? name
+        - kind = "danger"
+        - icon_class = "icon-warning-sign"
+      - elsif name == :warning
+        - kind = "warning"
+        - icon_class = "icon-warning-sign"
+      - else
+        - kind = "info"
+        - icon_class = "icon-info-sign"
+
+      %a{ href: "#", style: "display: inline-block; padding-right: 0;", data: { show: ".alert-#{kind}" }}
+        %i{ class: "#{icon_class} #{kind}" }
+        %span{ class: "#{kind}" }= msg.is_a?(Array) ? msg.length : 1
+  / - else
+  /   - unless 
+  /     - kind = "danger"
+  /     - icon_class = "icon-warning-sign"
+  /     %a{ href: "#", style: "display: inline-block; padding-right: 0;", data: { show: ".alert-#{kind}" }}
+  /       %i{ class: "#{icon_class} #{kind}" }
+  /       %span{ class: "#{kind}" }= @messages.size

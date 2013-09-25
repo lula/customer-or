@@ -1,13 +1,19 @@
 class VisitsController < ApplicationController
   before_action :set_visit, only: [:show, :edit, :update, :destroy]
   before_action :new_visit, only: [:create]
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:create]
   
   # GET /visits
   # GET /visits.json
   def index      
     @grid = VisitsGrid.new(params[:visits_grid])
     @assets = @grid.assets.page(params[:page])
+    
+    respond_to do |format|
+      format.html
+      format.json
+      format.csv{ send_data @grid.to_csv }
+    end
   end
   
 

@@ -5,8 +5,15 @@ class Ability
     if user.admin?
       can :manage, :all
     else
-      can [:read, :edit, :create], [Address, Visit, BusinessHour, Representative, VisitPlan]
+      can [:read, :edit], User, id: user.id
+      can [:read, :edit], [Address, Visit, BusinessHour, VisitPlan]
       
+      can :read, Representative do |representative|
+        user.representative == representative || user.representative.nil?
+      end
+
+      can [:manage], Representative if user.representative.nil?
+       
       can [:read, :edit, :create], Customer do |customer|
         !customer.organizations.in(id: user.organizations.inject([]){|arr,obj| arr << obj.id}).empty?
       end

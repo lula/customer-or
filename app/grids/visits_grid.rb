@@ -12,7 +12,8 @@ class VisitsGrid
   filter :vdate, :date, range: true, header: I18n.t("datagrid.filters.visits.vdate", default: "Visit date from/to")
   
   filter :customers, :enum, select: Customer.all.map { |c| [c.name, c.id] }, multiple: true do |value|
-    where(:customer.in => value.reject{ |v| v.blank? })
+    customers = value.reject{ |v| v.blank? }
+    where(:customer.in => customers) unless customers.empty?
   end
   
   filter :status, :enum, select: Visit::STATUSES

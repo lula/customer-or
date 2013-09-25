@@ -1,9 +1,0 @@
-- model_class = User
-.page-header
-  %h2=t '.title', :default => model_class.model_name.human.pluralize.titleize
-
-#users-search-form 
-  = datagrid_form_for @grid, :method => :get, :url => users_path, html: { class: "form-horizontal" }
-
-#users-search-results
-  = render "layouts/grid", html: { class: "table table-condensed table-hover table-bordered" }

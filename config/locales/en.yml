@@ -20,8 +20,6 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
-  
   datagrid:
     no_results: "No results"
   
@@ -32,6 +30,7 @@ en:
       previous: "&lsaquo;"
       next: "&rsaquo;"
       truncate: "..."
+    
     navigation:
       user:
         title: "Users"
@@ -65,6 +64,8 @@ en:
         form: "Address"
     
     grids:
+      export:
+        csv: "Export to CSV"
       customer:
         with_out_business_hours: "With/out business hours"
       
@@ -72,3 +73,12 @@ en:
       one: "Visit Plan"
       other: "Visit Plan"
       
+    alerts:
+      danger:
+        title: "Please see the errors below:"
+      info:
+        title: "Please notice:"
+      warning:
+        title: "Please notice:"
+      success:
+        title: ""

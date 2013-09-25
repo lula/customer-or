@@ -2,13 +2,19 @@ class OrganizationsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
   before_action :new_organization, only: [:create]
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:create]
   
   # GET /organizations
   # GET /organizations.json
   def index
     @grid = OrganizationsGrid.new(params[:organizations_grid])
     @assets = @grid.assets.page(params[:page])
+    
+    respond_to do |format|
+      format.html
+      format.json
+      format.csv{ send_data @grid.to_csv }
+    end
   end
 
   # GET /organizations/1

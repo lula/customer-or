@@ -1,5 +1,6 @@
 - grid = grid || @grid
 - assets = assets || @assets
+- columns = columns || nil
 - pagination_param_name = pagination_param_name || "page"
 - editable ||= false
 - remote ||= false
@@ -7,7 +8,11 @@
 - starred ||= nil
 - path ||= nil
 - toolbar = toolbar || false
+- html[:id] ||= grid.class.name.tableize
+- html[:data] = { :"resizable-columns-id" => "#{html[:id]}" }
+- export_csv = defined?(export_csv) ? export_csv : false
+- export_url ||= false
 
-= datagrid_table grid, assets, path: path, editable: editable, starred: starred, toolbar: toolbar, remote: true, html: html
+= datagrid_table grid, assets, columns: columns, path: path, editable: editable, starred: starred, toolbar: toolbar, remote: true, html: html, export_csv: export_csv, export_url: export_url
 .text-center
   = paginate assets, pagination_class: "pagination-sm", remote: remote, param_name: pagination_param_name

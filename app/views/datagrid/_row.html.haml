@@ -2,7 +2,7 @@
 - edit_path = options[:path] ?  [:edit, options[:path], asset] : [:edit, asset]
 - remote = options[:remote] || false
 
-- if can? :manage, asset
+- if can? :read, asset
   %tr{class: options[:cycle] && cycle(*options[:cycle]), selectable: options[:selectable]}
     - if options[:selectable]
       %td{ style: "width: 20px"}
@@ -19,7 +19,7 @@
     - grid.columns(*options[:columns]).each do |column|
       %td{ class: datagrid_column_classes(grid, column) }
         = datagrid_format_value(grid, column, asset)
-    - if options[:editable]
+    - if options[:editable] && can?(:edit, asset)
       %td.text-center
         = link_to edit_path, title: t("mongoid.actions.edit", default: "Edit"), rel: "tooltip" do
           %i.icon-edit{ style: "font-size: 1.2em" }

@@ -5,7 +5,12 @@
       %ul
         - @business_hour.errors.messages[:bh].each do |msg|
           %li= msg
-
+          
+  .row
+    .col-md-2
+      = f.input :valid_from, input_html: { class: "datepicker" }
+    .col-md-3
+      = f.input :valid_to, input_html: { class: "datepicker" }
   .row
     .col-md-12
       = render "form_day_fields", f: f, day: :mon
@@ -33,4 +38,8 @@
     = link_to t('.cancel', :default => t("helpers.links.cancel")), edit_customer_path(@customer), :class => 'btn btn-default btn-sm'
 
 :javascript
+  $('.datepicker').datepicker({
+    format: 'yyyy-mm-dd',
+    autoclose: true
+  });
   $('select').addClass("form-control").select2({allowClear: true})

@@ -1,7 +1,7 @@
 class RepresentativesController < ApplicationController
   before_action :set_representative, only: [:show, :edit, :update, :destroy]
   before_action :new_representative, only: [:create]
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:create]
   
   # GET /representatives
   # GET /representatives.json
@@ -14,7 +14,7 @@ class RepresentativesController < ApplicationController
       # A user can only see customers belonging to his organizations
       @grid.scope do
         if current_user.representative
-          Representative.in(id: current_user.representative)
+          Representative.where(id: current_user.representative.id)
         else
           Representative.in(organization_ids: current_user.organizations.inject([]){|arr,org| arr << org.id})
         end
@@ -22,6 +22,13 @@ class RepresentativesController < ApplicationController
     end
     
     @assets = @grid.assets.page(params[:page])
+    
+    respond_to do |format|
+      format.html
+      format.json
+      format.csv{ send_data @grid.to_csv }
+    end
+    
   end
 
   # GET /representatives/1

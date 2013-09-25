@@ -1,11 +1,17 @@
-class UsersController < ApplicationController
+class Admin::UsersController < ApplicationController
   before_filter :authenticate_user!
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:create]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   
   def index
     @grid = UsersGrid.new(params[:users_grid])
     @assets = @grid.assets.page(params[:page])
+    
+    respond_to do |format|
+      format.html
+      format.json
+      format.csv{ send_data @grid.to_csv }
+    end
   end
   
   def edit
@@ -19,7 +25,7 @@ class UsersController < ApplicationController
     @user = User.new(users_params)
     respond_to do |format|
       if @user.save
-        format.html { redirect_to edit_user_path(@user), notice: 'User was successfully created.' }
+        format.html { redirect_to edit_admin_user_path(@user), notice: 'User was successfully created.' }
         format.json { render action: 'show', status: :created, location: @user }
       else
         format.html { render action: 'new' }
@@ -36,16 +42,16 @@ class UsersController < ApplicationController
       if params[:lock]
         @user.lock
         notice = 'User was successfully locked.'
-        format.html { redirect_to edit_user_path(@user), notice: notice }
+        format.html { redirect_to edit_admin_user_path(@user), notice: notice }
         format.json { head :no_content }
       elsif params[:unlock]
         @user.unlock
         notice = 'User was successfully unlocked.'
-        format.html { redirect_to edit_user_path(@user), notice: notice }
+        format.html { redirect_to edit_admin_user_path(@user), notice: notice }
         format.json { head :no_content }
       else
         if @user.update(users_params)
-          format.html { redirect_to edit_user_path(@user), notice: notice }
+          format.html { redirect_to edit_admin_user_path(@user), notice: notice }
           format.json { head :no_content }
         else
           format.html { render action: 'edit' }
@@ -58,7 +64,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url }
+      format.html { redirect_to admin_users_url }
       format.json { head :no_content }
     end
   end

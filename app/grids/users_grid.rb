@@ -11,8 +11,8 @@ class UsersGrid
   filter :created_at, :date, :range => true
   
   column :name
-  column :email, url: ->(model){ Rails.application.routes.url_helpers.edit_user_path(model) }
-  column :representative, url: ->(model){ Rails.application.routes.url_helpers.representative_path(model.representative) } do |user|
+  column :email, url: ->(user){ Rails.application.routes.url_helpers.edit_admin_user_path(user) }
+  column :representative, url: ->(user){ Rails.application.routes.url_helpers.representative_path(user.representative) } do |user|
     user.representative ? user.representative.name : ""    
   end
   column :sign_in_count

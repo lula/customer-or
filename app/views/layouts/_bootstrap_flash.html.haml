@@ -1,4 +1,20 @@
-- flash.each do |name, msg|
-  %div{ class: "alert alert-#{name == :notice ? "success" : "danger"}" }
-    %a.close{data: { dismiss: "alert" }} &#215;
-    = content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)
+- unless flash.empty?
+  - {notice: [], danger: [], warning: [], info: []}.merge(flash).reject{|n,m| m.empty? if m.try("empty?")}.each do |name, msg|
+    - if name == :notice
+      - kind = "success"
+    - elsif name == :alert
+      - kind = "danger"
+    - elsif name == :danger
+      - kind = "danger"
+      - title = t("views.alerts.danger.title")
+    - else
+      - kind = name
+
+    %div{ class: "alert alert-#{kind}" }
+      %strong= title
+      %a.close{data: { hide: ".alert-#{kind}" }} &#215;
+      - if msg.is_a?(String)
+        = content_tag :div, msg
+      - elsif msg.is_a?(Array)
+        - msg.each do |m|
+          = content_tag :div, m

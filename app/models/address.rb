@@ -28,5 +28,13 @@ class Address
     addr += ", #{::CountrySelect::COUNTRIES[self.country]}" if self.country && !self.country.empty?
     addr
   end
-  
+    
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << self.fields.keys
+      all.each do |obj|
+        csv << obj.attributes.values_at(*fields.keys)
+      end
+    end
+  end
 end

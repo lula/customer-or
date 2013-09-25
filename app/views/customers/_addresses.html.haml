@@ -1,10 +1,3 @@
 - editable ||= false
 #addresses-table
-  = render "layouts/grid", 
-    grid: @addresses_grid, 
-    assets: @addresses, 
-    path: @customer, 
-    editable: editable, 
-    pagination_param_name: "addresses_page", 
-    starred: :is_main?, 
-    remote: true
+  = render "layouts/grid", grid: @addresses_grid, assets: @addresses, columns: [:full_description], path: @customer, editable: editable, pagination_param_name: "addresses_page", starred: :is_main?, remote: true, export_url: export_addresses_customer_path(@customer, format: :csv)

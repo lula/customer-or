@@ -73,34 +73,41 @@ SimpleNavigation::Configuration.run do |navigation|
 
     primary.dom_class = "list-group"
         
-    if current_user && current_user.admin?
-      primary.item :users_menu, t("views.navigation.user.title", default: "Users"), users_url, class: "list-group-header" do |sub_nav|
-        sub_nav.item :src_users, t("views.navigation.customer.search", default: "Search"), users_url, class: "list-group-item"
-        sub_nav.item :new_user, t("views.navigation.customer.new", default: "New"), new_user_url, class: "list-group-item"
-      end
-      primary.item :organizations, t("views.navigation.organization.title", default: "Organizations"), organizations_url, class: "list-group-header", highlights_on: /\/organizations/ do |sub_nav|
-        sub_nav.item :organizations, t("views.navigation.organization.search", default: "Search"), organizations_url, class: "list-group-item"
-        sub_nav.item :new_organization, t("views.navigation.organization.new", default: "New"), new_organization_url, class: "list-group-item"
-      end
-    end
-    
     if user_signed_in?
-      primary.item :customers, t("views.navigation.customer.title", default: "Customers"), customers_url, class: "list-group-header", highlights_on: /\/customers/ do |sub_nav|
-        sub_nav.item :customers, t("views.navigation.customer.search", default: "Search"), customers_url, class: "list-group-item"
-        sub_nav.item :new_customer, t("views.navigation.customer.new", default: "New"), new_customer_url, class: "list-group-item"
+      primary.item :users_menu, t("views.navigation.user.title", default: "Users"), admin_users_url, class: "list-group-header", if: ->{can?(:read, User)}, highlights_on: /\/users/ do |sub_nav|
+        if current_user.admin?
+          sub_nav.item :src_users, t("views.navigation.user.search", default: "Search"), admin_users_url, class: "list-group-item"
+          sub_nav.item :new_user, t("views.navigation.user.new", default: "New"), new_admin_user_url, class: "list-group-item", if: ->{can?(:create, User)}
+        else 
+          sub_nav.item :show_user, current_user.name || current_user.email, edit_admin_user_url(current_user), class: "list-group-item", if: ->{can?(:edit, User)}
+        end
       end
-      
-      primary.item :representative_menu, t("views.navigation.representative.title", default: "Representatives"), representatives_url, class: "list-group-header" do |sub_nav|
-        sub_nav.item :search_rep, t("views.navigation.representative.search", default: "Search"), representatives_url, class: "list-group-item"
-        sub_nav.item :new_rep, t("views.navigation.representative.new", default: "New"), new_representative_url, class: "list-group-item"
+      primary.item :organizations, t("views.navigation.organization.title", default: "Organizations"), organizations_url, class: "list-group-header", if: ->{can?(:read, Organization)}, highlights_on: /\/organizations/ do |sub_nav|
+        sub_nav.item :src_organizations, t("views.navigation.organization.search", default: "Search"), organizations_url, class: "list-group-item"
+        sub_nav.item :new_organization, t("views.navigation.organization.new", default: "New"), new_organization_url, class: "list-group-item", if: ->{can?(:create, Organization)}
+      end
+    
+      primary.item :customers, t("views.navigation.customer.title", default: "Customers"), customers_url, class: "list-group-header", if: ->{can?(:read, Customer)}, highlights_on: /\/customers/ do |sub_nav|
+        sub_nav.item :src_customers, t("views.navigation.customer.search", default: "Search"), customers_url, class: "list-group-item"
+        sub_nav.item :new_customer, t("views.navigation.customer.new", default: "New"), new_customer_url, class: "list-group-item", if: ->{can?(:create, Customer)}
+        if current_user.admin?
+          sub_nav.item :import_customers, t("views.navigation.customer.import", default: "Import"), import_customers_url, class: "list-group-item", if: ->{can?(:create, User)}
+        end
+      end
+            
+      primary.item :representative_menu, t("views.navigation.representative.title", default: "Representatives"), representatives_url, class: "list-group-header", if: ->{can?(:read, Representative)}, highlights_on: /\/representatives/ do |sub_nav|
+        sub_nav.item :src_rep, t("views.navigation.representative.search", default: "Search"), representatives_url, class: "list-group-item"
+        sub_nav.item :new_rep, t("views.navigation.representative.new", default: "New"), new_representative_url, class: "list-group-item", if: ->{can?(:create, Representative)}
       end        
       
-      primary.item :visits, t("views.navigation.visit.title", default: "Visits"), visits_url, class: "list-group-header", highlights_on: /\/visits|\/visit_plans/ do |sub_nav|
-        sub_nav.item :visits, t("views.navigation.visit.search", default: "Search"), visits_url, class: "list-group-item"
-        sub_nav.item :new_visit, t("views.navigation.visit.new", default: "New"), new_visit_url, class: "list-group-item"
-        sub_nav.item :head_vispl,  t("views.navigation.visit_plan.title", default: "Visit Plan"), "#", class: "list-group-item"
-        sub_nav.item :visits, t("views.navigation.visit_plan.search", default: "Search"), visit_plans_url, class: "list-group-item"
-        sub_nav.item :new_visit_plan, "New", new_visit_plan_path, class: "list-group-item"
+      primary.item :visits, t("views.navigation.visit.title", default: "Visits"), visits_url, class: "list-group-header",  if: ->{can?(:read, Visit)}, highlights_on: /\/visits/ do |sub_nav|
+        sub_nav.item :srcvisits, t("views.navigation.visit.search", default: "Search"), visits_url, class: "list-group-item"
+        sub_nav.item :new_visit, t("views.navigation.visit.new", default: "New"), new_visit_url, class: "list-group-item", if: ->{can?(:create, Visit)}
+      end
+      
+      primary.item :visit_plans,  t("views.navigation.visit_plan.title", default: "Visit Plan"), visit_plans_url, class: "list-group-header", if: ->{can?(:read, Visit)}, highlights_on: /\/visit_plans/ do |sub_nav|
+        sub_nav.item :src_visit_plans, t("views.navigation.visit_plan.search", default: "Search"), visit_plans_url, class: "list-group-item"
+        sub_nav.item :new_visit_plan, "New", new_visit_plan_path, class: "list-group-item", if: ->{can?(:create, VisitPlan)}
       end
     end
   end
