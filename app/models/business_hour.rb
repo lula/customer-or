@@ -28,6 +28,8 @@ class BusinessHour
   field :sun_end_at, type: Time
   field :schedule, type: String
   
+  field :season_ids, type: Array
+  
   validate :validate_hours
   validate :validate_days
   
@@ -40,7 +42,7 @@ class BusinessHour
   validates_presence_of :sun_start_at, :sun_end_at, if: Proc.new { |b| b.sun == "1" }
   
   before_save :set_schedule
-    
+  
   embedded_in :customer, inverse_of: "business_hours"
     
   def occurs_on?(date) # date

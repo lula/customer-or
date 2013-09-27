@@ -5,12 +5,14 @@
       %ul
         - @business_hour.errors.messages[:bh].each do |msg|
           %li= msg
-          
   .row
     .col-md-2
       = f.input :valid_from, input_html: { class: "datepicker" }
     .col-md-3
       = f.input :valid_to, input_html: { class: "datepicker" }
+  .row
+    .col-md-5
+      = f.input :season_ids, collection: @seasons.map { |c| [c.description, c.id] }, input_html: { multiple: true }
   .row
     .col-md-12
       = render "form_day_fields", f: f, day: :mon

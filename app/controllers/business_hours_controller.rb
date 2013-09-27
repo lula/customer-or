@@ -5,10 +5,12 @@ class BusinessHoursController < ApplicationController
   
   def edit
     @business_hour = @customer.business_hours.find(params[:id])
+    set_seasons
   end
 
   def new
     @business_hour = @customer.business_hours.build
+    set_seasons
   end
 
   def show
@@ -30,6 +32,7 @@ class BusinessHoursController < ApplicationController
   
   def update
     @business_hour = @customer.business_hours.find(params[:id])
+
     respond_to do |format|
       if @business_hour.update(business_hours_params)
         format.html { redirect_to edit_customer_path(@customer), notice: 'Business Hour was successfully updated.' }
@@ -60,7 +63,8 @@ class BusinessHoursController < ApplicationController
         :thu, :thu_start_at, :thu_end_at,
         :fri, :fri_start_at, :fri_end_at,
         :sat, :sat_start_at, :sat_end_at,
-        :sun, :sun_start_at, :sun_end_at )
+        :sun, :sun_start_at, :sun_end_at,
+        season_ids: [] )
   end
   
   def set_customer
@@ -69,5 +73,12 @@ class BusinessHoursController < ApplicationController
   
   def new_business_hour
     @business_hour = BusinessHour.new(params[business_hours_params])
+  end
+  
+  def set_seasons
+    @seasons = Season.where(country: @business_hour.customer.address.country) 
+    if @seasons.length == 0
+      @seasons = Season.where(country: "")
+    end
   end
 end

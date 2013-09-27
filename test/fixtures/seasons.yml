@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  country: 
+  summer_start_on: 
+  summer_end_on: MyString
+  integer: MyString
+
+two:
+  country: 
+  summer_start_on: 
+  summer_end_on: MyString
+  integer: MyString
