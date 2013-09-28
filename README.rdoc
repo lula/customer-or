@@ -1,6 +1,6 @@
 == Customer on Rails
-CRM Salesforce Automation solution.
+CRM Salesforce Automation application.
 
-Features: 
-* manage users with roles and abilities
-* manage customers, representatives, visits, visit plans, ...
+Manage: 
+* users with roles and abilities
+* customers, representatives, visits, visit plans, ...
