@@ -13,9 +13,11 @@ jQuery ->
 			check_box.prop("checked", checked)
 
 			if checked
-				$(@).find("td:first-child .selection-icon").html("<i class='icon-check'/>")
+				$(@).closest("[selectable]").attr("selectable", "selected")
+				$(@).find("td:first-child .selection-icon").html("<i class='icon-ok'/>")
 			else
-				$(@).find("td:first-child .selection-icon").html("<i class='icon-check-empty'/>")
+				$(@).closest("[selectable]").attr("selectable", "")
+				$(@).find("td:first-child .selection-icon").html("") # <i class='icon-check-empty'/>
 
 		.on "click", "th a.select-all", (event) ->
 			table = $(@).parents("table")
@@ -25,9 +27,11 @@ jQuery ->
 				$(@).prop("checked", checked)
 
 				if checked
-					table.find("td:first-child .selection-icon").html("<i class='icon-check'/>")
+					$(@).closest("[selectable]").attr("selectable", "selected")
+					table.find("td:first-child .selection-icon").html("<i class='icon-ok'/>")
 				else
-					table.find("td:first-child .selection-icon").html("<i class='icon-check-empty'/>")
+					$(@).closest("[selectable]").attr("selectable", "")
+					table.find("td:first-child .selection-icon").html("") # <i class='icon-check-empty'/>
 			false
 		
 		.on "click", ".panel-collapse", (event) -> 

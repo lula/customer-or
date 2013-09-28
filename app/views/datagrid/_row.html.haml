@@ -9,7 +9,7 @@
         .hide
           = check_box_tag "selected[]", asset.id, false, class: "selection"
         .selection-icon{ align: "center"}
-          %i.icon-check-empty
+          / %i.icon-check-empty
     - if options[:starred]
       %td
         - if options[:starred] && asset.send(options[:starred])

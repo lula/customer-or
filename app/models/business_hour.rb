@@ -46,11 +46,15 @@ class BusinessHour
   embedded_in :customer, inverse_of: "business_hours"
     
   def occurs_on?(date) # date
-    schedule.occurs_on?(date)
+    return false unless schedule.occurs_on?(date)
+    seasons.each do |season|
+      return true if season.occurs_on?(date) 
+    end
+    false
   end
   
-  def occurs_at?(date) # time
-    schedule.occurs_at?(date)
+  def occurs_at?(time) # time
+    schedule.occurs_at?(time)
   end
   
   def schedule
@@ -96,6 +100,14 @@ class BusinessHour
   def sun?
     sun == true || sun == "1" || sun == 1
   end
+    
+  def seasons
+    list = Array.new
+    self.season_ids.each do |id|
+      list << Season.find(id) unless id.nil? || id.empty?
+    end if self.season_ids
+    list
+  end  
   
   private
   
@@ -125,5 +137,5 @@ class BusinessHour
     return unless days.empty?
     errors.add(:bh, "Add at least a day" )
   end
-
+  
 end

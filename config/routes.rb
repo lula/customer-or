@@ -12,10 +12,11 @@ CustomerOr::Application.routes.draw do
   resources :customers, concerns: :addressable do
     resources :business_hours
     resource :visit, only: [:new]
-    
+      
     collection do 
       get "import"
       post "import"
+      post "toolbar_actions"
     end
     
     member do 
@@ -32,6 +33,9 @@ CustomerOr::Application.routes.draw do
   
   resources :visit_plans do
     post "toolbar_actions", on: :collection
+    member do 
+      get "export"
+    end
   end
 
   resources :organizations

@@ -25,15 +25,15 @@
         = @customer.valid_to
 .row
   .col-md-6
-    = panel t("mongoid.models.organization", count: 2, default: "Organizations"), "organizations_panel" do
-      = render "organizations", editable: false
-  .col-md-6
     = panel t("mongoid.models.address", count: 2, default: "Addresses"), "addresses_panel", links: [[t("mongoid.actions.new", default: "New"), new_customer_address_path(@customer)]] do
       = render "addresses", editable: false
-.row
   .col-md-6      
     = panel t("mongoid.models.business_hour", count: 2, default: "Business Hours"), "business_hours_panel", links: [[t("mongoid.actions.new", default: "New"), new_customer_business_hour_path(@customer)]] do
       = render "business_hours", editable: false
+.row
+  .col-md-6
+    = panel t("mongoid.models.organization", count: 2, default: "Organizations"), "organizations_panel" do
+      = render "organizations", editable: false
 .row
   .col-md-12
     = panel t("mongoid.models.visit", count: 2, default: "Visits"), "visits_panel", links: [[t("mongoid.actions.new", default: "New"), new_customer_visit_path(@customer)]] do

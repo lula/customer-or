@@ -15,6 +15,7 @@ class BusinessHoursController < ApplicationController
 
   def show
     @business_hour = @customer.business_hours.find(params[:id])
+    @seasons = @business_hour.seasons.reject {|value| value == nil }
   end
   
   def create

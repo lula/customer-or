@@ -6,4 +6,4 @@
   = datagrid_form_for @grid, :method => :get, :url => admin_users_path, html: { class: "form-horizontal" }
 
 #users-search-results
-  = render "layouts/grid", editable: true, path: :admin, html: { class: "table table-condensed table-hover table-bordered" }
+  = render "layouts/grid", editable: true, path: :admin, html: { class: "table table-condensed table-hover table-bordered table-striped" }, export_url: admin_users_path(params: params, format: :csv)

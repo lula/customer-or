@@ -20,10 +20,11 @@ class CustomersController < ApplicationController
     end
 
     @assets = @grid.assets.page(params[:page])
-    
+
     respond_to do |format|
-      format.html { }
-      format.json { }
+      format.html
+      format.json 
+      format.js
       format.csv{ send_data @grid.to_csv }
     end
   end
@@ -90,14 +91,27 @@ class CustomersController < ApplicationController
   
   def import 
     if params[:customers] && params[:customers][:file]
-      
+      file = params[:customers][:file]
+      begin
+        CSV.foreach file.path, headers: true do |row|
+          hash = {}
+          row.to_hash.each_pair do |k,v|
+            hash.merge!({ k.downcase => v })
+          end
+          
+          Customer.create! hash
+        end
+      rescue Exception => e
+        flash[:danger] = "An error occurred while importing customers. Check your file and try again."
+      end
     end
   end
   
   def export_addresses
     respond_to do |format|
       grid = AddressesGrid.new{ @customer.addresses }
-      format.html { }
+      format.html
+      format.js
       format.csv { send_data grid.to_csv }
     end
   end
@@ -105,7 +119,8 @@ class CustomersController < ApplicationController
   def export_business_hours
     respond_to do |format|
       grid = BusinessHoursGrid.new{ @customer.business_hours }
-      format.html { }
+      format.html
+      format.js
       format.csv { send_data grid.to_csv }
     end
   end
@@ -113,9 +128,24 @@ class CustomersController < ApplicationController
   def export_organizations
     respond_to do |format|
       grid = OrganizationsGrid.new{ @customer.organizations }
-      format.html { }
+      format.html 
+      format.js
       format.csv { send_data grid.to_csv }
     end
+  end
+  
+  def toolbar_actions
+    if params[:delete_selected]
+      objects = Customer.in(id: params[:selected])
+      unless objects.empty?
+        objects.delete_all
+        notice = I18n.t("mongoid.messages.delete.ok", default: 'Objects deleted successfully', object_name: I18n.t("mongoid.models.customer", count: 2, default: "Customers"))
+      end
+      redirect_to customers_path, notice: notice
+    elsif params[:delete_all]
+      Customer.delete_all
+      redirect_to customers_path, notice: I18n.t("mongoid.messages.delete.ok", default: 'Objects deleted successfully', object_name: I18n.t("mongoid.models.customer", count: 2, default: "Customers"))
+    end 
   end
   
   private

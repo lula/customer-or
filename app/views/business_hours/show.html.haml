@@ -23,6 +23,11 @@
       %strong= model_class.human_attribute_name(:valid_to) + ':'
       = @business_hour.valid_to
 .row
+  .col-md-12
+    %p
+      %strong= model_class.human_attribute_name(:season_ids) + ':'
+      = @seasons.map!{ |s| s.description }.join(", ")
+.row
   .col-md-4
     %p
       %strong= model_class.human_attribute_name(:mon) + ':'

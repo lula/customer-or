@@ -1,3 +1,3 @@
-= datagrid_table VisitsGrid.new, @visits, html: { class: "table table-condensed table-hover table-bordered" }
+=# datagrid_table VisitsGrid.new, @visits, html: { class: "table table-condensed table-hover table-bordered" }
+= render "layouts/grid", grid: VisitsGrid.new, assets: @visits, remote: true, html: { class: "table table-condensed table-hover table-bordered" }, export_url: export_visit_plan_path(@visit_plan, format: :csv)
 
-= paginate @visits, pagination_class: "pagination-sm"

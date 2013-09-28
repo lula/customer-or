@@ -27,7 +27,7 @@ en:
           planned: "Planned"
     messages:
       delete:
-        ok: "%{object_name} deleted succesfully"
+        ok: "%{object_name} deleted successfully"
         nok: "Errors occurred when deleting %{object_name}"
     errors:
       visit:

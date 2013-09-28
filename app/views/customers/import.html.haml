@@ -2,5 +2,15 @@
   %h2 Import customers
 
 = simple_form_for :customers, url: import_customers_path, html: { multipart: true } do |f|
-  = f.file_field :file
-  = f.submit class: "btn btn-default btn-sm"
+  .row
+    .col-md-2
+      = f.file_field :file
+  .row
+    .col-md-3
+      .form-actions{style: "margin-top: 20px"}
+        = button_tag type: :submit, class: "btn btn-primary btn-sm" do
+          %i.icon-file-text
+          = t("views.customer.import", default: "Imports")
+        = link_to import_customers_path, :class => 'btn btn-danger btn-sm' do
+          %i.icon-remove
+          = t('.cancel', :default => t("helpers.links.cancel"))

@@ -1,5 +1,5 @@
 class VisitPlansController < ApplicationController
-  before_action :visit_plan, only: [:show]
+  before_action :visit_plan, only: [:show, :export]
   before_action :determine_customers, only: [:new]  
   load_and_authorize_resource except: [:create, :update]
   
@@ -10,6 +10,7 @@ class VisitPlansController < ApplicationController
     respond_to do |format|
       format.html
       format.json
+      format.js
       format.csv{ send_data @grid.to_csv }
     end
   end
@@ -75,6 +76,14 @@ class VisitPlansController < ApplicationController
       redirect_to visit_plans_path, notice: I18n.t("mongoid.messages.delete.ok", default: 'Objects deleted succesfully', object_name: I18n.t("mongoid.models.visit_plan", count: 2, default: "Visit Plans"))
     end 
   end
+    
+  def export
+    respond_to do |format|
+      grid = VisitsGrid.new{ @visit_plan.visits }
+      format.html { }
+      format.csv { send_data grid.to_csv }
+    end
+  end  
   
   private
   

@@ -2,15 +2,17 @@
   .row
     .col-md-12
       = panel t("views.panels.customer.details", default: "Details"), "details_panel" do
+        - if @customer.new_record?
+          .row
+            .col-md-12
+              %legend= t("views.legends.customer.data", default: "Customer")
         .row
           .col-md-5
-            %legend= t("views.legends.customer.data", default: "Customer")
             = f.input :name, autofocus: true
-            .row
-              .col-md-6
-                = f.input :valid_from, input_html: { class: "datepicker" }
-              .col-md-6
-                = f.input :valid_to, input_html: { class: "datepicker" }
+          .col-md-2.col-md-offset-1
+            = f.input :valid_from, input_html: { class: "datepicker" }
+          .col-md-2
+            = f.input :valid_to, input_html: { class: "datepicker" }
           .col-md-7
             - if @customer.new_record?
               #address_form

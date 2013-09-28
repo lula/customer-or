@@ -12,6 +12,7 @@ class VisitsController < ApplicationController
     respond_to do |format|
       format.html
       format.json
+      format.js
       format.csv{ send_data @grid.to_csv }
     end
   end

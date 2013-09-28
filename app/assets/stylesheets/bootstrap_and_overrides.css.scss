@@ -27,6 +27,7 @@ $navbar-default-bg: #f7f5fa;
 
 $list-group-header-bg: #f7f5fa;
 $order-link-color: $link-color;
+$row-selected-color: $list-group-header-bg;
 
 body {
 	padding-top: 30px;
@@ -277,4 +278,10 @@ label.checkbox input[type=checkbox] {
 .pagination {
 	margin-top: 0px;
 	margin-bottom: 0px;
+}
+
+tr[selectable=selected] {
+	td {
+		background-color: $row-selected-color !important;
+	}
 }

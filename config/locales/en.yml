@@ -23,7 +23,7 @@ en:
   datagrid:
     no_results: "No results"
   
-  views:
+  views:    
     pagination:
       first: "&laquo;"
       last: "&raquo;"
@@ -72,6 +72,9 @@ en:
     visit_plan:
       one: "Visit Plan"
       other: "Visit Plan"
+    
+    customer:
+      import: "Import"
       
     alerts:
       danger:
@@ -82,3 +85,4 @@ en:
         title: "Please notice:"
       success:
         title: ""
+    
