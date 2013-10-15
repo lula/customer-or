@@ -1,6 +1,16 @@
 CustomerOr::Application.routes.draw do
   devise_for :users
   
+  devise_scope :user do
+    post "api/v1/sessions", to: "api/v1/sessions#create"
+  end
+  
+  # namespace :api do
+  #   namespace :v1  do
+  #     resources :sessions, :only => [:create, :destroy]
+  #   end
+  # end
+  
   concern :addressable do 
     resources :addresses
   end
