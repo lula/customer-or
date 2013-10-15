@@ -7,6 +7,7 @@ class Address
   field :country, type: String
   field :description, type: String
   field :main, type: Boolean
+  field :telephone, type: String
   
   embedded_in :addressable, polymorphic: true
   

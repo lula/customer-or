@@ -18,6 +18,8 @@ class Customer
   
   validates_presence_of :name
   
+  default_scope order_by(:name.asc)
+  
   def addresses
     self.alt_addresses.push(self.address)
   end

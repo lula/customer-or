@@ -4,11 +4,19 @@
     = "#{t('.title', :default => model_class.model_name.human.titleize)} #{"(Main)" if @address.main}"
     = link_to polymorphic_path(@address.addressable), rel: "tooltip", title: t("views.labels.back", default: "Back") do
       %i.icon-reply
-
+.row
+  .col-md-6
+    %p
+      %strong= model_class.human_attribute_name(:description) + ':'
+      = @address.description
+  .col-md-6
+    %p
+      %strong= model_class.human_attribute_name(:telephone) + ':'
+      = @address.telephone
 .row 
   .col-md-6
     %p
-      %strong= model_class.human_attribute_name(:street) + ':'
+      %strong= model_class.human_attribute_name(:street) + " / " + model_class.human_attribute_name(:house_nr) + ':'
       = @address.street
       = @address.house_nr
   .col-md-6

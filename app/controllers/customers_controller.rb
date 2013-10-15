@@ -4,7 +4,7 @@ class CustomersController < ApplicationController
     
   load_and_authorize_resource except: [:new]
   
-  # GET /customers
+  #-- GET /customers
   # GET /customers.json
   def index
     @grid = CustomersGrid.new(params[:customers_grid])
@@ -29,26 +29,26 @@ class CustomersController < ApplicationController
     end
   end
 
-  # GET /customers/1
+  #-- GET /customers/1
   # GET /customers/1.json
   def show
     retrieve_relationships
   end
 
-  # GET /customers/new
+  #-- GET /customers/new
   def new
     @customer = Customer.new(representative: current_user.representative)
     @address = @customer.build_address
     select_options
   end
 
-  # GET /customers/1/edit
+  #-- GET /customers/1/edit
   def edit
     retrieve_relationships
     select_options
   end
 
-  # POST /customers
+  #-- POST /customers
   # POST /customers.json
   def create
     @customer = Customer.new(customer_params)
@@ -64,7 +64,7 @@ class CustomersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /customers/1
+  #-- PATCH/PUT /customers/1
   # PATCH/PUT /customers/1.json
   def update
     respond_to do |format|
@@ -79,7 +79,7 @@ class CustomersController < ApplicationController
     end
   end
 
-  # DELETE /customers/1
+  #-- DELETE /customers/1
   # DELETE /customers/1.json
   def destroy
     @customer.destroy
@@ -89,6 +89,9 @@ class CustomersController < ApplicationController
     end
   end
   
+  
+  # Imports customers from a CSV file.
+  #-- GET /customers/import
   def import 
     if params[:customers] && params[:customers][:file]
       file = params[:customers][:file]
@@ -107,6 +110,7 @@ class CustomersController < ApplicationController
     end
   end
   
+  # Exports customer addressess to a CSV file.
   def export_addresses
     respond_to do |format|
       grid = AddressesGrid.new{ @customer.addresses }
@@ -116,6 +120,7 @@ class CustomersController < ApplicationController
     end
   end
   
+  # Exports customer business hours to a CSV file.
   def export_business_hours
     respond_to do |format|
       grid = BusinessHoursGrid.new{ @customer.business_hours }
@@ -125,6 +130,7 @@ class CustomersController < ApplicationController
     end
   end
   
+  # Exports customer organizations to a CSV file.
   def export_organizations
     respond_to do |format|
       grid = OrganizationsGrid.new{ @customer.organizations }
@@ -134,6 +140,7 @@ class CustomersController < ApplicationController
     end
   end
   
+  # Toolbar actions for customer grid
   def toolbar_actions
     if params[:delete_selected]
       objects = Customer.in(id: params[:selected])
@@ -149,20 +156,24 @@ class CustomersController < ApplicationController
   end
   
   private
-    # Use callbacks to share common setup or constraints between actions.
+    # Retrieves the customer from the database
+    #-- Use callbacks to share common setup or constraints between actions.
     def set_customer
       @customer = Customer.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Params white list.
+    #-- Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
       params.require(:customer).permit(:name, :valid_from, :valid_to, :created_at, :representative_id, address: [ :_id, :street, :house_nr, :city, :country, :description, :main], organization_ids: [])
     end
     
+    # Create new customer
     def new_customer
       @customer = Customer.new(params[customer_params])
     end
     
+    # Retrieves customer relationships (addresses, business hours, etc)
     def retrieve_relationships
       @visits_grid = VisitsGrid.new(params[:visits_grid]) { @customer.visits }
       @addresses_grid = AddressesGrid.new(params[:addresses_grid]) do
@@ -184,6 +195,7 @@ class CustomersController < ApplicationController
       @organizations = @organizations_grid.assets.page(params[:organizations_page]).per(3)
     end
     
+    # Sets the select option collections for view
     def select_options
       if current_user.admin?
         @representatives = Representative.all
