@@ -8,6 +8,12 @@ class ApplicationController < ActionController::Base
   end
   
   before_filter :authenticate_user!
+
+  # after_filter :set_xhr_flash
+  # 
+  # def set_xhr_flash
+  #   # flash.discard if request.xhr?
+  # end
   
   protected
   

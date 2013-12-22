@@ -14,10 +14,10 @@ jQuery ->
 
 			if checked
 				$(@).closest("[selectable]").attr("selectable", "selected")
-				$(@).find("td:first-child .selection-icon").html("<i class='icon-ok'/>")
+				$(@).find("td:first-child .selection-icon").html("<i class='fa fa-check'/>")
 			else
 				$(@).closest("[selectable]").attr("selectable", "")
-				$(@).find("td:first-child .selection-icon").html("") # <i class='icon-check-empty'/>
+				$(@).find("td:first-child .selection-icon").html("") # <i class='fa fa-check-empty'/>
 
 		.on "click", "th a.select-all", (event) ->
 			table = $(@).parents("table")
@@ -28,17 +28,17 @@ jQuery ->
 
 				if checked
 					$(@).closest("[selectable]").attr("selectable", "selected")
-					table.find("td:first-child .selection-icon").html("<i class='icon-ok'/>")
+					table.find("td:first-child .selection-icon").html("<i class='fa fa-check'/>")
 				else
 					$(@).closest("[selectable]").attr("selectable", "")
-					table.find("td:first-child .selection-icon").html("") # <i class='icon-check-empty'/>
+					table.find("td:first-child .selection-icon").html("") # <i class='fa fa-check-empty'/>
 			false
 		
 		.on "click", ".panel-collapse", (event) -> 
-			if $(@).find("i").attr("class") == "icon-chevron-sign-up"
-				$(@).html("<i class='icon-chevron-sign-down'></i>")
+			if $(@).find("i").attr("class") == "fa fa-chevron-sign-up"
+				$(@).html("<i class='fa fa-chevron-sign-down'></i>")
 			else
-				$(@).html("<i class='icon-chevron-sign-up'></i>")
+				$(@).html("<i class='fa fa-chevron-sign-up'></i>")
 		
 		.on "click", "[data-hide]", (event) ->
 			$($(@).attr("data-hide")).hide()	

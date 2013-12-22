@@ -32,10 +32,10 @@
     .col-md-12
       .form-actions
         = button_tag type: :submit, :class => 'btn btn-primary btn-sm' do
-          %i.icon-save
+          = fa_icon "save"
           = t("mongoid.actions.representative.save")
         = link_to representative_path(@representative), :class => 'btn btn-danger btn-sm' do
-          %i.icon-remove
+          = fa_icon "remove"
           = t('.cancel', :default => t("helpers.links.cancel"))
 
 :javascript

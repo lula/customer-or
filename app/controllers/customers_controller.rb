@@ -23,7 +23,7 @@ class CustomersController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json 
+      format.json
       format.js
       format.csv{ send_data @grid.to_csv }
     end

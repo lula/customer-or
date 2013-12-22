@@ -12,8 +12,17 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui-1.10.3.custom.min
+//= require jquery.rest
 //= require bootstrap
 //= require bootstrap-datepicker/core
 //= require select2
+//= require fullcalendar
 //= require turbolinks
 //= require_tree .
+
+// $.ajaxSetup({
+//   beforeSend: function(xhr) {
+//     xhr.setRequestHeader("Accept", "text/javascript");
+//   }
+// });

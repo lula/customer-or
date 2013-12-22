@@ -48,10 +48,11 @@ en:
         title: "Visits"
         search: "Search"
         new: "New"
+        calendar: "Calendar"
       visit_plan:
         title: "Visit Plan"
         new: "New"  
-        
+    
     panels:
       customer:
         data: "Customer"

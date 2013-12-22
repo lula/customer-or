@@ -4,9 +4,9 @@
     =t '.title', :default => model_class.model_name.human.titleize
     =# link_to t('.back', :default => t("helpers.links.back")), customer_business_hours_path(@customer), :class => 'btn'
     = link_to edit_customer_business_hour_path(@customer, @business_hour) do
-      %i.icon-edit
+      = fa_icon "edit"
     = link_to customer_business_hour_path(@customer, @business_hour), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } do 
-      %i.icon-trash.danger
+      = fa_icon "trash.danger"
     
 .row
   .col-md-4

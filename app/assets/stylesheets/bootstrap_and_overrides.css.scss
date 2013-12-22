@@ -5,7 +5,8 @@
   Use Font Awesome icons (default)
   To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
 
-  =require twitter-bootstrap-static/fontawesome	
+  =#require twitter-bootstrap-static/fontawesome	
+  = require font-awesome
 */
 
 //@mixin striped-bg($bg-color: #ccc, $darken-amount: 5%, $stripe-color: darken($bg-color, $darken-amount), $size: 50px) {
@@ -62,7 +63,6 @@ body {
 	}
 
 	a {
-		
 		&.active {
 			color: $link-color;
 		}
@@ -73,8 +73,13 @@ body {
 	}
 }
 
-.list-group-item
-{
+.list-group-item {
+	
+	&.active {
+		background-color: $link-color;
+		border-color: $link-color;
+	}
+	
 	a {
 		display: block;
 	}
@@ -226,6 +231,7 @@ a:hover {
 	.panel-title {
 		a {
 			color: $link-color !important;
+			margin: 0px 8px 0px 4px
 		}
 	}		
 	

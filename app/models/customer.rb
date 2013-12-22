@@ -1,10 +1,12 @@
 class Customer
   include Mongoid::Document
-
+  include Mongoid::Timestamps
+  
   field :name, type: String
   field :valid_from, type: Date
   field :valid_to, type: Date
-  field :created_at, type: Date, default: Time.now
+  # field :created_at, type: Date, default: Time.now
+  # field :changed_at, type: Date, default: Time.now
   
   # Indexes
   index({ name: 1 }, { unique: true, name: "name_index" })
@@ -18,10 +20,18 @@ class Customer
   
   validates_presence_of :name
   
+  before_save :set_changed_at
+  
   default_scope order_by(:name.asc)
   
   def addresses
     self.alt_addresses.push(self.address)
+  end
+  
+  private
+  
+  def set_changed_at
+    self.updated_at = Time.now
   end
       
 end

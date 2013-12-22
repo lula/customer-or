@@ -9,22 +9,29 @@
         .hide
           = check_box_tag "selected[]", asset.id, false, class: "selection"
         .selection-icon{ align: "center"}
-          / %i.icon-check-empty
+          / = fa_icon "check-empty"
+    
     - if options[:starred]
       %td
         - if options[:starred] && asset.send(options[:starred])
-          %i.icon-star
+          = fa_icon "star"
         - else
-          %i.icon-star-empty
+          = fa_icon "star-empty"
+    
     - grid.columns(*options[:columns]).each do |column|
       %td{ class: datagrid_column_classes(grid, column) }
         = datagrid_format_value(grid, column, asset)
+    
+    - if options[:additional_row_btns]
+      %td.text-center
+        = render options[:additional_row_btns], asset: asset
+      
     - if options[:editable] && can?(:edit, asset)
       %td.text-center
         = link_to edit_path, title: t("mongoid.actions.edit", default: "Edit"), rel: "tooltip" do
-          %i.icon-edit{ style: "font-size: 1.2em" }
+          = fa_icon "edit", style: "font-size: 1.2em"
         = link_to path, :method => :delete, 
           title: t("mongoid.actions.delete", default: "Delete"), rel: "tooltip",
           remote: remote,
           :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } do
-          %i.icon-trash.danger{ style: "font-size: 1.2em" }
+          = fa_icon "trash.danger", style: "font-size: 1.2em"

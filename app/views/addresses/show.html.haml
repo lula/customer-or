@@ -3,7 +3,7 @@
   %h2
     = "#{t('.title', :default => model_class.model_name.human.titleize)} #{"(Main)" if @address.main}"
     = link_to polymorphic_path(@address.addressable), rel: "tooltip", title: t("views.labels.back", default: "Back") do
-      %i.icon-reply
+      = fa_icon "reply"
 .row
   .col-md-6
     %p

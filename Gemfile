@@ -52,9 +52,10 @@ gem 'haml-rails'
 gem "mongoid", github: 'mongoid/mongoid'#, git: 'git://github.com/mongoid/mongoid.git'
 
 # Twitter Boostrap
-gem 'twitter-bootstrap-rails', git: 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
-gem 'bootstrap-datepicker-rails'#, git: 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
-gem 'bootstrap-sass', git: "git://github.com/thomas-mcdonald/bootstrap-sass.git", branch: "3"
+# gem 'twitter-bootstrap-rails', git: 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem 'bootstrap-sass', '~> 3.0.2.0'
+gem "font-awesome-rails"
+gem 'bootstrap-datepicker-rails' #, git: 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
 
 # Simple_form
 gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git'
@@ -78,3 +79,6 @@ gem 'devise'
 
 # Cancan
 gem 'cancan'
+
+# Fullcalendar::Rails
+gem 'fullcalendar-rails'

@@ -3,9 +3,9 @@
   %h2
     =t '.title', :default => model_class.model_name.human.titleize  
     = link_to edit_customer_path(@customer), rel: "tooltip", title: t("mongoid.actions.customer.edit", default: t("helpers.links.edit")) do
-      %i.icon-edit
+      = fa_icon "edit"
     = link_to customer_path(@customer), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, rel: "tooltip", title: t("mongoid.actions.customer.delete", default: t("helpers.links.delete")) do
-      %i.icon-trash.danger
+      = fa_icon "trash.danger"
 
 = panel t("views.titles.details", default: "Details"), "details_panel" do 
   .row 

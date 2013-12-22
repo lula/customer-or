@@ -3,21 +3,22 @@
     - colspan = options[:editable] ? grid.columns(*options[:columns]).length + 2 : grid.columns(*options[:columns]).length
     - colspan += 1 if options[:selectable]
     - colspan += 1 if options[:starred]
+    - colspan += 1 if options[:additional_row_btns]
     %th.no-overflow{ colspan: colspan }
       - if options[:toolbar]
         = render options[:toolbar][:partial], grid: grid
       .pull-right
         - if options[:export_url]
           = link_to options[:export_url], :"data-no-turbolink" => true, rel: "tooltip", title: t("views.grids.export.csv", default: "Export to CSV") do 
-            %i.icon-table
+            = fa_icon "table"
         - else 
           = link_to url_for(format: :csv), :"data-no-turbolink" => true, rel: "tooltip", title: t("views.grids.export.csv", default: "Export to CSV") do 
-            %i.icon-table
+            = fa_icon "table"
 %tr
   - if options[:selectable]
     %th
       %a.select-all{href: "#"}
-        %i.icon-th
+        = fa_icon "th"
   - if options[:starred]
     %th
   - grid.columns(*options[:columns]).each do |column|
@@ -25,6 +26,7 @@
       = column.header
       = datagrid_order_for(grid, column) if column.order && options[:order]
   
-  -# Actions
+  - if options[:additional_row_btns]
+    %th
   - if options[:editable]
     %th{ style: "width: 60px" }

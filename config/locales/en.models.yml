@@ -26,6 +26,9 @@ en:
           proposed: "Proposed"
           planned: "Planned"
     messages:
+      representatives:
+        absence:
+          new: "Create absence"
       delete:
         ok: "%{object_name} deleted successfully"
         nok: "Errors occurred when deleting %{object_name}"

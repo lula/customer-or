@@ -1,0 +1,12 @@
+= simple_form_for :absence, html: { role: "form" } do |f|
+  .row
+    .col-md-12
+      = f.input :representative do
+        = f.collection_select :representative_id, @representatives, :id, :name, { include_blank: true }, { }
+  .row
+    .col-md-12
+      .form-actions
+        = link_to t("mongoid.actions.visit.save", default: t("helpers.links.save")), "#", remote: true, id: "absence_qs_save_btn"
+
+/ :javascript
+/   $("select").addClass("form-control").select2();

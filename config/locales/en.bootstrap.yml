@@ -9,6 +9,7 @@ en:
       cancel: "Cancel"
       confirm: "Are you sure?"
       destroy: "Delete"
+      delete: "Delete"
       new: "New"
       edit: "Edit"
     titles:

@@ -2272,8 +2272,8 @@ table th[class*="span"],
   background-color: #91d7ee;
 }
 
-[class^="icon-"],
-[class*=" icon-"] {
+[class^="fa fa-"],
+[class*=" fa fa-"] {
   display: inline-block;
   width: 14px;
   height: 14px;
@@ -2288,586 +2288,586 @@ table th[class*="span"],
 
 /* White icons with optional class, or on hover/focus/active states of certain elements */
 
-.icon-white,
-.nav-pills > .active > a > [class^="icon-"],
-.nav-pills > .active > a > [class*=" icon-"],
-.nav-list > .active > a > [class^="icon-"],
-.nav-list > .active > a > [class*=" icon-"],
-.navbar-inverse .nav > .active > a > [class^="icon-"],
-.navbar-inverse .nav > .active > a > [class*=" icon-"],
-.dropdown-menu > li > a:hover > [class^="icon-"],
-.dropdown-menu > li > a:focus > [class^="icon-"],
-.dropdown-menu > li > a:hover > [class*=" icon-"],
-.dropdown-menu > li > a:focus > [class*=" icon-"],
-.dropdown-menu > .active > a > [class^="icon-"],
-.dropdown-menu > .active > a > [class*=" icon-"],
-.dropdown-submenu:hover > a > [class^="icon-"],
-.dropdown-submenu:focus > a > [class^="icon-"],
-.dropdown-submenu:hover > a > [class*=" icon-"],
-.dropdown-submenu:focus > a > [class*=" icon-"] {
+.fa fa-white,
+.nav-pills > .active > a > [class^="fa fa-"],
+.nav-pills > .active > a > [class*=" fa fa-"],
+.nav-list > .active > a > [class^="fa fa-"],
+.nav-list > .active > a > [class*=" fa fa-"],
+.navbar-inverse .nav > .active > a > [class^="fa fa-"],
+.navbar-inverse .nav > .active > a > [class*=" fa fa-"],
+.dropdown-menu > li > a:hover > [class^="fa fa-"],
+.dropdown-menu > li > a:focus > [class^="fa fa-"],
+.dropdown-menu > li > a:hover > [class*=" fa fa-"],
+.dropdown-menu > li > a:focus > [class*=" fa fa-"],
+.dropdown-menu > .active > a > [class^="fa fa-"],
+.dropdown-menu > .active > a > [class*=" fa fa-"],
+.dropdown-submenu:hover > a > [class^="fa fa-"],
+.dropdown-submenu:focus > a > [class^="fa fa-"],
+.dropdown-submenu:hover > a > [class*=" fa fa-"],
+.dropdown-submenu:focus > a > [class*=" fa fa-"] {
   background-image: url("../img/glyphicons-halflings-white.png");
 }
 
-.icon-glass {
+.fa fa-glass {
   background-position: 0      0;
 }
 
-.icon-music {
+.fa fa-music {
   background-position: -24px 0;
 }
 
-.icon-search {
+.fa fa-search {
   background-position: -48px 0;
 }
 
-.icon-envelope {
+.fa fa-envelope {
   background-position: -72px 0;
 }
 
-.icon-heart {
+.fa fa-heart {
   background-position: -96px 0;
 }
 
-.icon-star {
+.fa fa-star {
   background-position: -120px 0;
 }
 
-.icon-star-empty {
+.fa fa-star-empty {
   background-position: -144px 0;
 }
 
-.icon-user {
+.fa fa-user {
   background-position: -168px 0;
 }
 
-.icon-film {
+.fa fa-film {
   background-position: -192px 0;
 }
 
-.icon-th-large {
+.fa fa-th-large {
   background-position: -216px 0;
 }
 
-.icon-th {
+.fa fa-th {
   background-position: -240px 0;
 }
 
-.icon-th-list {
+.fa fa-th-list {
   background-position: -264px 0;
 }
 
-.icon-ok {
+.fa fa-ok {
   background-position: -288px 0;
 }
 
-.icon-remove {
+.fa fa-remove {
   background-position: -312px 0;
 }
 
-.icon-zoom-in {
+.fa fa-zoom-in {
   background-position: -336px 0;
 }
 
-.icon-zoom-out {
+.fa fa-zoom-out {
   background-position: -360px 0;
 }
 
-.icon-off {
+.fa fa-off {
   background-position: -384px 0;
 }
 
-.icon-signal {
+.fa fa-signal {
   background-position: -408px 0;
 }
 
-.icon-cog {
+.fa fa-cog {
   background-position: -432px 0;
 }
 
-.icon-trash {
+.fa fa-trash {
   background-position: -456px 0;
 }
 
-.icon-home {
+.fa fa-home {
   background-position: 0 -24px;
 }
 
-.icon-file {
+.fa fa-file {
   background-position: -24px -24px;
 }
 
-.icon-time {
+.fa fa-time {
   background-position: -48px -24px;
 }
 
-.icon-road {
+.fa fa-road {
   background-position: -72px -24px;
 }
 
-.icon-download-alt {
+.fa fa-download-alt {
   background-position: -96px -24px;
 }
 
-.icon-download {
+.fa fa-download {
   background-position: -120px -24px;
 }
 
-.icon-upload {
+.fa fa-upload {
   background-position: -144px -24px;
 }
 
-.icon-inbox {
+.fa fa-inbox {
   background-position: -168px -24px;
 }
 
-.icon-play-circle {
+.fa fa-play-circle {
   background-position: -192px -24px;
 }
 
-.icon-repeat {
+.fa fa-repeat {
   background-position: -216px -24px;
 }
 
-.icon-refresh {
+.fa fa-refresh {
   background-position: -240px -24px;
 }
 
-.icon-list-alt {
+.fa fa-list-alt {
   background-position: -264px -24px;
 }
 
-.icon-lock {
+.fa fa-lock {
   background-position: -287px -24px;
 }
 
-.icon-flag {
+.fa fa-flag {
   background-position: -312px -24px;
 }
 
-.icon-headphones {
+.fa fa-headphones {
   background-position: -336px -24px;
 }
 
-.icon-volume-off {
+.fa fa-volume-off {
   background-position: -360px -24px;
 }
 
-.icon-volume-down {
+.fa fa-volume-down {
   background-position: -384px -24px;
 }
 
-.icon-volume-up {
+.fa fa-volume-up {
   background-position: -408px -24px;
 }
 
-.icon-qrcode {
+.fa fa-qrcode {
   background-position: -432px -24px;
 }
 
-.icon-barcode {
+.fa fa-barcode {
   background-position: -456px -24px;
 }
 
-.icon-tag {
+.fa fa-tag {
   background-position: 0 -48px;
 }
 
-.icon-tags {
+.fa fa-tags {
   background-position: -25px -48px;
 }
 
-.icon-book {
+.fa fa-book {
   background-position: -48px -48px;
 }
 
-.icon-bookmark {
+.fa fa-bookmark {
   background-position: -72px -48px;
 }
 
-.icon-print {
+.fa fa-print {
   background-position: -96px -48px;
 }
 
-.icon-camera {
+.fa fa-camera {
   background-position: -120px -48px;
 }
 
-.icon-font {
+.fa fa-font {
   background-position: -144px -48px;
 }
 
-.icon-bold {
+.fa fa-bold {
   background-position: -167px -48px;
 }
 
-.icon-italic {
+.fa fa-italic {
   background-position: -192px -48px;
 }
 
-.icon-text-height {
+.fa fa-text-height {
   background-position: -216px -48px;
 }
 
-.icon-text-width {
+.fa fa-text-width {
   background-position: -240px -48px;
 }
 
-.icon-align-left {
+.fa fa-align-left {
   background-position: -264px -48px;
 }
 
-.icon-align-center {
+.fa fa-align-center {
   background-position: -288px -48px;
 }
 
-.icon-align-right {
+.fa fa-align-right {
   background-position: -312px -48px;
 }
 
-.icon-align-justify {
+.fa fa-align-justify {
   background-position: -336px -48px;
 }
 
-.icon-list {
+.fa fa-list {
   background-position: -360px -48px;
 }
 
-.icon-indent-left {
+.fa fa-indent-left {
   background-position: -384px -48px;
 }
 
-.icon-indent-right {
+.fa fa-indent-right {
   background-position: -408px -48px;
 }
 
-.icon-facetime-video {
+.fa fa-facetime-video {
   background-position: -432px -48px;
 }
 
-.icon-picture {
+.fa fa-picture {
   background-position: -456px -48px;
 }
 
-.icon-pencil {
+.fa fa-pencil {
   background-position: 0 -72px;
 }
 
-.icon-map-marker {
+.fa fa-map-marker {
   background-position: -24px -72px;
 }
 
-.icon-adjust {
+.fa fa-adjust {
   background-position: -48px -72px;
 }
 
-.icon-tint {
+.fa fa-tint {
   background-position: -72px -72px;
 }
 
-.icon-edit {
+.fa fa-edit {
   background-position: -96px -72px;
 }
 
-.icon-share {
+.fa fa-share {
   background-position: -120px -72px;
 }
 
-.icon-check {
+.fa fa-check {
   background-position: -144px -72px;
 }
 
-.icon-move {
+.fa fa-move {
   background-position: -168px -72px;
 }
 
-.icon-step-backward {
+.fa fa-step-backward {
   background-position: -192px -72px;
 }
 
-.icon-fast-backward {
+.fa fa-fast-backward {
   background-position: -216px -72px;
 }
 
-.icon-backward {
+.fa fa-backward {
   background-position: -240px -72px;
 }
 
-.icon-play {
+.fa fa-play {
   background-position: -264px -72px;
 }
 
-.icon-pause {
+.fa fa-pause {
   background-position: -288px -72px;
 }
 
-.icon-stop {
+.fa fa-stop {
   background-position: -312px -72px;
 }
 
-.icon-forward {
+.fa fa-forward {
   background-position: -336px -72px;
 }
 
-.icon-fast-forward {
+.fa fa-fast-forward {
   background-position: -360px -72px;
 }
 
-.icon-step-forward {
+.fa fa-step-forward {
   background-position: -384px -72px;
 }
 
-.icon-eject {
+.fa fa-eject {
   background-position: -408px -72px;
 }
 
-.icon-chevron-left {
+.fa fa-chevron-left {
   background-position: -432px -72px;
 }
 
-.icon-chevron-right {
+.fa fa-chevron-right {
   background-position: -456px -72px;
 }
 
-.icon-plus-sign {
+.fa fa-plus-sign {
   background-position: 0 -96px;
 }
 
-.icon-minus-sign {
+.fa fa-minus-sign {
   background-position: -24px -96px;
 }
 
-.icon-remove-sign {
+.fa fa-remove-sign {
   background-position: -48px -96px;
 }
 
-.icon-ok-sign {
+.fa fa-ok-sign {
   background-position: -72px -96px;
 }
 
-.icon-question-sign {
+.fa fa-question-sign {
   background-position: -96px -96px;
 }
 
-.icon-info-sign {
+.fa fa-info-sign {
   background-position: -120px -96px;
 }
 
-.icon-screenshot {
+.fa fa-screenshot {
   background-position: -144px -96px;
 }
 
-.icon-remove-circle {
+.fa fa-remove-circle {
   background-position: -168px -96px;
 }
 
-.icon-ok-circle {
+.fa fa-ok-circle {
   background-position: -192px -96px;
 }
 
-.icon-ban-circle {
+.fa fa-ban-circle {
   background-position: -216px -96px;
 }
 
-.icon-arrow-left {
+.fa fa-arrow-left {
   background-position: -240px -96px;
 }
 
-.icon-arrow-right {
+.fa fa-arrow-right {
   background-position: -264px -96px;
 }
 
-.icon-arrow-up {
+.fa fa-arrow-up {
   background-position: -289px -96px;
 }
 
-.icon-arrow-down {
+.fa fa-arrow-down {
   background-position: -312px -96px;
 }
 
-.icon-share-alt {
+.fa fa-share-alt {
   background-position: -336px -96px;
 }
 
-.icon-resize-full {
+.fa fa-resize-full {
   background-position: -360px -96px;
 }
 
-.icon-resize-small {
+.fa fa-resize-small {
   background-position: -384px -96px;
 }
 
-.icon-plus {
+.fa fa-plus {
   background-position: -408px -96px;
 }
 
-.icon-minus {
+.fa fa-minus {
   background-position: -433px -96px;
 }
 
-.icon-asterisk {
+.fa fa-asterisk {
   background-position: -456px -96px;
 }
 
-.icon-exclamation-sign {
+.fa fa-exclamation-sign {
   background-position: 0 -120px;
 }
 
-.icon-gift {
+.fa fa-gift {
   background-position: -24px -120px;
 }
 
-.icon-leaf {
+.fa fa-leaf {
   background-position: -48px -120px;
 }
 
-.icon-fire {
+.fa fa-fire {
   background-position: -72px -120px;
 }
 
-.icon-eye-open {
+.fa fa-eye-open {
   background-position: -96px -120px;
 }
 
-.icon-eye-close {
+.fa fa-eye-close {
   background-position: -120px -120px;
 }
 
-.icon-warning-sign {
+.fa fa-warning-sign {
   background-position: -144px -120px;
 }
 
-.icon-plane {
+.fa fa-plane {
   background-position: -168px -120px;
 }
 
-.icon-calendar {
+.fa fa-calendar {
   background-position: -192px -120px;
 }
 
-.icon-random {
+.fa fa-random {
   width: 16px;
   background-position: -216px -120px;
 }
 
-.icon-comment {
+.fa fa-comment {
   background-position: -240px -120px;
 }
 
-.icon-magnet {
+.fa fa-magnet {
   background-position: -264px -120px;
 }
 
-.icon-chevron-up {
+.fa fa-chevron-up {
   background-position: -288px -120px;
 }
 
-.icon-chevron-down {
+.fa fa-chevron-down {
   background-position: -313px -119px;
 }
 
-.icon-retweet {
+.fa fa-retweet {
   background-position: -336px -120px;
 }
 
-.icon-shopping-cart {
+.fa fa-shopping-cart {
   background-position: -360px -120px;
 }
 
-.icon-folder-close {
+.fa fa-folder-close {
   width: 16px;
   background-position: -384px -120px;
 }
 
-.icon-folder-open {
+.fa fa-folder-open {
   width: 16px;
   background-position: -408px -120px;
 }
 
-.icon-resize-vertical {
+.fa fa-resize-vertical {
   background-position: -432px -119px;
 }
 
-.icon-resize-horizontal {
+.fa fa-resize-horizontal {
   background-position: -456px -118px;
 }
 
-.icon-hdd {
+.fa fa-hdd {
   background-position: 0 -144px;
 }
 
-.icon-bullhorn {
+.fa fa-bullhorn {
   background-position: -24px -144px;
 }
 
-.icon-bell {
+.fa fa-bell {
   background-position: -48px -144px;
 }
 
-.icon-certificate {
+.fa fa-certificate {
   background-position: -72px -144px;
 }
 
-.icon-thumbs-up {
+.fa fa-thumbs-up {
   background-position: -96px -144px;
 }
 
-.icon-thumbs-down {
+.fa fa-thumbs-down {
   background-position: -120px -144px;
 }
 
-.icon-hand-right {
+.fa fa-hand-right {
   background-position: -144px -144px;
 }
 
-.icon-hand-left {
+.fa fa-hand-left {
   background-position: -168px -144px;
 }
 
-.icon-hand-up {
+.fa fa-hand-up {
   background-position: -192px -144px;
 }
 
-.icon-hand-down {
+.fa fa-hand-down {
   background-position: -216px -144px;
 }
 
-.icon-circle-arrow-right {
+.fa fa-circle-arrow-right {
   background-position: -240px -144px;
 }
 
-.icon-circle-arrow-left {
+.fa fa-circle-arrow-left {
   background-position: -264px -144px;
 }
 
-.icon-circle-arrow-up {
+.fa fa-circle-arrow-up {
   background-position: -288px -144px;
 }
 
-.icon-circle-arrow-down {
+.fa fa-circle-arrow-down {
   background-position: -312px -144px;
 }
 
-.icon-globe {
+.fa fa-globe {
   background-position: -336px -144px;
 }
 
-.icon-wrench {
+.fa fa-wrench {
   background-position: -360px -144px;
 }
 
-.icon-tasks {
+.fa fa-tasks {
   background-position: -384px -144px;
 }
 
-.icon-filter {
+.fa fa-filter {
   background-position: -408px -144px;
 }
 
-.icon-briefcase {
+.fa fa-briefcase {
   background-position: -432px -144px;
 }
 
-.icon-fullscreen {
+.fa fa-fullscreen {
   background-position: -456px -144px;
 }
 
@@ -3296,8 +3296,8 @@ button.close {
           border-radius: 6px;
 }
 
-.btn-large [class^="icon-"],
-.btn-large [class*=" icon-"] {
+.btn-large [class^="fa fa-"],
+.btn-large [class*=" fa fa-"] {
   margin-top: 4px;
 }
 
@@ -3309,13 +3309,13 @@ button.close {
           border-radius: 3px;
 }
 
-.btn-small [class^="icon-"],
-.btn-small [class*=" icon-"] {
+.btn-small [class^="fa fa-"],
+.btn-small [class*=" fa fa-"] {
   margin-top: 0;
 }
 
-.btn-mini [class^="icon-"],
-.btn-mini [class*=" icon-"] {
+.btn-mini [class^="fa fa-"],
+.btn-mini [class*=" fa fa-"] {
   margin-top: -1px;
 }
 
@@ -4009,8 +4009,8 @@ input[type="submit"].btn.btn-mini {
   background-color: #2fa4e7;
 }
 
-.nav-list [class^="icon-"],
-.nav-list [class*=" icon-"] {
+.nav-list [class^="fa fa-"],
+.nav-list [class*=" fa fa-"] {
   margin-right: 2px;
 }
 
@@ -4680,7 +4680,7 @@ input[type="submit"].btn.btn-mini {
   background-color: #157ab5 \9;
 }
 
-.navbar .btn-navbar .icon-bar {
+.navbar .btn-navbar .fa fa-bar {
   display: block;
   width: 18px;
   height: 2px;
@@ -4693,7 +4693,7 @@ input[type="submit"].btn.btn-mini {
           box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
 }
 
-.btn-navbar .icon-bar + .icon-bar {
+.btn-navbar .fa fa-bar + .fa fa-bar {
   margin-top: 3px;
 }
 
@@ -6459,7 +6459,7 @@ div.subnav-fixed {
   background-color: #022241 \9;
 }
 
-i[class^="icon-"] {
+i[class^="fa fa-"] {
   opacity: 0.8;
 }
 

@@ -98,6 +98,7 @@ SimpleNavigation::Configuration.run do |navigation|
       primary.item :representative_menu, t("views.navigation.representative.title", default: "Representatives"), representatives_url, class: "list-group-header", if: ->{can?(:read, Representative)}, highlights_on: /\/representatives/ do |sub_nav|
         sub_nav.item :src_rep, t("views.navigation.representative.search", default: "Search"), representatives_url, class: "list-group-item"
         sub_nav.item :new_rep, t("views.navigation.representative.new", default: "New"), new_representative_url, class: "list-group-item", if: ->{can?(:create, Representative)}
+        sub_nav.item :absences, t("views.navigation.representative.absences", default: "Absences"), absences_url, class: "list-group-item"
       end        
       
       primary.item :visits, t("views.navigation.visit.title", default: "Visits"), visits_url, class: "list-group-header",  if: ->{can?(:read, Visit)}, highlights_on: /\/visits/ do |sub_nav|

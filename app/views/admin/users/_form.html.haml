@@ -24,7 +24,7 @@
             .col-md-2.no-left
               %label{ style: "display: block;" } &nbsp;
               = link_to representative_path(@user.representative), class: "form-link" do
-                %i.icon-circle-arrow-right
+                = fa_icon "circle-arrow-right"
           
         .col-md-5.col-md-offset-1
           #organization-select{ class: "#{'collapse out' unless @user.representative.nil?}" }
@@ -34,16 +34,16 @@
     .col-md-12
       .form-actions
         = button_tag type: :submit, class: "btn btn-sm btn-primary" do
-          %i.icon-save
+          = fa_icon "save"
           = t(:save)
         = link_to admin_user_path(@user), :method => :delete, class: "btn btn-danger btn-sm", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } do
-          %i.icon-trash
+          = fa_icon "trash"
           = t("mongoid.actions.delete", default: "Delete")
         = button_tag name: :lock, type: :submit, class: "btn btn-sm btn-warning", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm_lock", :default => 'Lock User?')) } do
-          %i.icon-lock
+          = fa_icon "lock"
           = t(:lock)
         = button_tag name: :unlock, type: :submit, class: "btn btn-sm btn-warning", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm_unlock", :default => 'Unlock User?')) } do
-          %i.icon-unlock
+          = fa_icon "unlock"
           = t(:unlock)
 
 :javascript

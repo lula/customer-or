@@ -5,18 +5,13 @@ CustomerOr::Application.routes.draw do
     post "api/v1/sessions", to: "api/v1/sessions#create"
   end
   
-  # namespace :api do
-  #   namespace :v1  do
-  #     resources :sessions, :only => [:create, :destroy]
-  #   end
-  # end
-  
   concern :addressable do 
     resources :addresses
   end
 
   resources :representatives, concerns: :addressable do
     resource :visit, only: [:new]
+    resource :absence, only: [:new]
   end
   
   resources :customers, concerns: :addressable do
@@ -47,11 +42,14 @@ CustomerOr::Application.routes.draw do
       get "export"
     end
   end
+  
+  resources :absences
 
   resources :organizations
   namespace :admin do 
     resources :users
   end
+  
   root to: "home#index"
   
   # The priority is based upon order of creation: first created -> highest priority.

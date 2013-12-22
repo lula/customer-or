@@ -3,16 +3,16 @@
     - {notice: [], danger: [], warning: [], info: [], alert: []}.merge(flash).reject{|n,m| m.empty?}.each do |name, msg|
       - if name == :notice
         - kind = "success"
-        - icon_class = "icon-ok-sign"
+        - icon_class = "fa fa-ok-sign"
       - elsif [:alert, :danger].include? name
         - kind = "danger"
-        - icon_class = "icon-warning-sign"
+        - icon_class = "fa fa-warning-sign"
       - elsif name == :warning
         - kind = "warning"
-        - icon_class = "icon-warning-sign"
+        - icon_class = "fa fa-warning-sign"
       - else
         - kind = "info"
-        - icon_class = "icon-info-sign"
+        - icon_class = "fa fa-info-sign"
 
       %a{ href: "#", style: "display: inline-block; padding-right: 0;", data: { show: ".alert-#{kind}" }}
         %i{ class: "#{icon_class} #{kind}" }
@@ -20,7 +20,7 @@
   / - else
   /   - unless 
   /     - kind = "danger"
-  /     - icon_class = "icon-warning-sign"
+  /     - icon_class = "fa fa-warning-sign"
   /     %a{ href: "#", style: "display: inline-block; padding-right: 0;", data: { show: ".alert-#{kind}" }}
   /       %i{ class: "#{icon_class} #{kind}" }
   /       %span{ class: "#{kind}" }= @messages.size
