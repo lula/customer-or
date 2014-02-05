@@ -6,8 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-# User.create(email: "admin@admin.it", password: "admin", password_confirmation: "admin", roles: [:admin])
-# User.create(email: "lula@lula.it", password: "lula", password_confirmation: "lula", roles: [:user])
+
+
+User.create(email: "admin@cor.it", password: "admin", password_confirmation: "admin", roles: [:admin]) unless User.where(email: "admin@cor.it").length > 0
+User.create(email: "lula@cor.it", password: "lula", password_confirmation: "lula", roles: [:user]) unless User.where(email: "lula@cor.it").length > 0
 
 Season.create(country: "", description: "Spring", start_on: Time.new(2013,3,21), end_on: Time.new(2013, 6, 20))
 Season.create(country: "", description: "Summer", start_on: Time.new(2013, 6, 21), end_on: Time.new(2013, 9, 20))

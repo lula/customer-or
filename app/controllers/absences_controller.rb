@@ -6,8 +6,8 @@ class AbsencesController < ApplicationController
     month = (params[:month] || Time.zone.now.month).to_i
     year = (params[:year] || Time.zone.now.year).to_i
 
-    start_at = Date.new(year, month ,1)
-    end_at = Date.new(year, month, 30)
+    start_at = Date.civil(year, month ,1)
+    end_at = Date.civil(year, month, -1)
     @absences = Absence.all#between(starts_at, ends_at)
 
     select_options

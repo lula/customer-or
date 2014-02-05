@@ -7,6 +7,7 @@
     .col-md-12
       .form-actions
         = link_to t("mongoid.actions.visit.save", default: t("helpers.links.save")), "#", remote: true, id: "absence_qs_save_btn"
+        = link_to t("mongoid.actions.visit.cancel", default: t("helpers.links.cancel")), "#", remote: true, id: "absence_qs_cancel_btn"
 
-/ :javascript
-/   $("select").addClass("form-control").select2();
+:javascript 
+  $(".popover-content select").addClass("form-control").select2();
