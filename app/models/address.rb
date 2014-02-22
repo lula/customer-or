@@ -4,7 +4,7 @@ class Address
   field :street, type: String
   field :house_nr, type: String
   field :city, type: String
-  field :country, type: String
+  field :country, type: Country
   field :description, type: String
   field :main, type: Boolean
   field :telephone, type: String
@@ -26,7 +26,7 @@ class Address
     addr += "#{self.description}, " if self.description && !self.description.empty?
     addr += "#{self.street}#{" " + self.house_nr if self.house_nr && !self.house_nr.empty?}, " if self.street && !self.street.empty?
     addr += "#{self.city}"
-    addr += ", #{::CountrySelect::COUNTRIES[self.country]}" if self.country && !self.country.empty?
+    addr += ", #{self.country.name}" if self.country
     addr
   end
     

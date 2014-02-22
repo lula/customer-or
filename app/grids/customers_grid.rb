@@ -13,7 +13,7 @@ class CustomersGrid
     where(:"addresses.city" => /#{value}/i)
   end
 
-  filter :address_country, :enum, select: ::CountrySelect::COUNTRIES.collect { |k,v| [v, k] } do |value|
+  filter :address_country, :enum, select: Country.all.collect { |k,v| [k, v] } do |value|
     where(:"addresses.country" => value)
   end
   
@@ -46,6 +46,6 @@ class CustomersGrid
   end
   
   column :address_country, header: I18n.t(:country, scope: [:mongoid, :attributes, :address], default: "Country") do 
-      ::CountrySelect::COUNTRIES[self.address.country] if self.address
+      self.address.country.name if self.address
   end
 end

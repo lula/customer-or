@@ -15,9 +15,11 @@
 //= require jquery-ui-1.10.3.custom.min
 //= require jquery.rest
 //= require bootstrap
-//= require bootstrap-datepicker/core
+//= require moment
+//= require bootstrap-datetimepicker
 //= require select2
-//= require fullcalendar
+//= require fullcalendar/fullcalendar.min
+//= require fullcalendar/gcal
 //= require turbolinks
 //= require_tree .
 

@@ -13,7 +13,7 @@
         = f.input :description
         = f.input :status, collection: Visit::STATUSES, input_html: { }
       .col-md-5
-        = f.input :vdate, input_html: { class: "datepicker" }
+        = f.input :vdate, as: :datetime_picker
         = f.input :comment, as: :text
     .row
       .col-md-5
@@ -36,9 +36,9 @@
       = t('.cancel', :default => t("helpers.links.cancel"))
 
 :javascript
-  $('.datepicker').datepicker({
-    format: 'yyyy-mm-dd',
-    autoclose: true
+  $('.datepicker').datetimepicker({
+    format: 'YYYY-MM-DD',
+    pickTime: false
   });
   
   $("select").addClass("form-control").select2();

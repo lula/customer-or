@@ -8,14 +8,14 @@
       .col-md-4
         = f.input :all_day, as: :boolean
     .row
-      .col-md-2
-        = f.input :starts_at,  input_html: { class: "datepicker" }
-      .col-md-2
-        = f.input :ends_at, input_html: { class: "datepicker" }
+      .col-md-3
+        = f.input :starts_at, as: :datetime_picker #, input_html: { class: "datepicker" }
+      .col-md-3
+        = f.input :ends_at, as: :datetime_picker # input_html: { class: "datepicker" }
     .row
       .col-md-4
         = f.input :reason
-    
+  
   .row
     .col-md-12
       .form-actions
@@ -30,8 +30,10 @@
           = t('.delete', :default => t("helpers.links.delete"))
         
 :javascript
-  $('.datepicker').datepicker({
-    format: 'yyyy-mm-dd',
-    autoclose: true
+  $('.datepicker').datetimepicker({
+    format: "YYYY-MM-DD hh:mm",
+    minuteStepping: 30,
+    useSeconds: false
   });
+    
   $("select").addClass("form-control").select2({allowClear: true})

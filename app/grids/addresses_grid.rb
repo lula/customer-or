@@ -13,6 +13,8 @@ class AddressesGrid
   column :street
   column :house_nr
   column :city
-  column :country
+  column :country do
+    country.name
+  end
   
 end

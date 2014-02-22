@@ -13,7 +13,7 @@ class RepresentativesGrid
     where(:"address.city" => /#{value}/i)
   end
 
-  filter :address_country, :enum, select: ::CountrySelect::COUNTRIES.collect { |k,v| [v, k] } do |value|
+  filter :address_country, :enum, select: Country.all.collect { |k,v| [k, v] } do |value|
     where(:"address.country" => value)
   end
 
@@ -28,6 +28,6 @@ class RepresentativesGrid
   
   column :address_country, order: "address.country", 
     header: I18n.t(:country, scope: [:mongoid, :attributes, :address], default: "Country") do 
-      ::CountrySelect::COUNTRIES[self.address.country]
+      self.address.country.name
   end
 end

@@ -58,7 +58,8 @@ gem "mongoid", github: 'mongoid/mongoid'#, git: 'git://github.com/mongoid/mongoi
 # gem 'twitter-bootstrap-rails', git: 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'bootstrap-sass', '~> 3.0.2.0'
 gem "font-awesome-rails"
-gem 'bootstrap-datepicker-rails' #, git: 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
+gem 'momentjs-rails', '~> 2.5.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 2.1.30'
 
 # Simple_form
 gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git'
@@ -84,4 +85,4 @@ gem 'devise'
 gem 'cancan'
 
 # Fullcalendar::Rails
-gem 'fullcalendar-rails'
+# gem 'fullcalendar-rails'

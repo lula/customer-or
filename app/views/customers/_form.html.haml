@@ -10,9 +10,9 @@
           .col-md-5
             = f.input :name, autofocus: true
           .col-md-2.col-md-offset-1
-            = f.input :valid_from, input_html: { class: "datepicker" }
+            = f.input :valid_from, as: :datetime_picker
           .col-md-2
-            = f.input :valid_to, input_html: { class: "datepicker" }
+            = f.input :valid_to, as: :datetime_picker
           .col-md-7
             - if @customer.new_record?
               #address_form
@@ -65,8 +65,8 @@
           
 
 :javascript
-  $('.datepicker').datepicker({
-    format: 'yyyy-mm-dd',
-    autoclose: true
+  $('.datepicker').datetimepicker({
+    format: 'YYYY-MM-DD',
+    pickTime: false
   });
   $("select").addClass("form-control").select2({allowClear: true})

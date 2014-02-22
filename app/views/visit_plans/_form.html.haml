@@ -13,9 +13,9 @@
     .col-md-12
       .row
         .col-md-2
-          = f.input :start_date, input_html: { class: "datepicker", value: Time.now }
+          = f.input :start_date, as: :datetime_picker, input_html: { value: Time.now }
         .col-md-2
-          = f.input :end_date, input_html: { class: "datepicker", value: Time.now + 7.days }
+          = f.input :end_date, as: :datetime_picker, input_html: { value: Time.now + 7.days }
         .col-md-6.col-md-offset-1
           = f.input :customer_ids, collection: @customers, input_html: { multiple: true }
       .row
@@ -30,8 +30,8 @@
           = t("mongoid.actions.visit_plan.save")
 
 :javascript
-  $('.datepicker').datepicker({
-    format: 'yyyy-mm-dd',
-    autoclose: true
+  $('.datepicker').datetimepicker({
+    format: 'YYYY-MM-DD',
+    pickTime: false
   });
   $("select").addClass("form-control").select2({allowClear: true})

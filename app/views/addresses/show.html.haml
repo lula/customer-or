@@ -25,4 +25,4 @@
       = @address.city
     %p
       %strong= model_class.human_attribute_name(:country) + ':'
-      = ::CountrySelect::COUNTRIES[@address.country]
+      = @address.country.name

@@ -38,7 +38,6 @@ class AbsencesController < ApplicationController
   # POST /customers.json
   def create
     @absence = Absence.new(absence_params)
-    # @absence.all_day = false
 
     respond_to do |format|
       if @absence.save

@@ -53,8 +53,9 @@ class RepresentativesController < ApplicationController
   # POST /representatives
   # POST /representatives.json
   def create
-    @representative = Representative.new(representative_params)
 
+    @representative = Representative.new(representative_params)
+    
     respond_to do |format|
       if @representative.save
         format.html { redirect_to @representative, notice: 'Representative was successfully created.' }

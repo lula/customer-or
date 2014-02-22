@@ -14,7 +14,7 @@
     = @organization.name
   %p
     %strong= model_class.human_attribute_name(:country) + ':'
-    = ::CountrySelect::COUNTRIES[@organization.country]
+    = @organization.country.name
 
 = panel t("mongoid.models.customer", count: 2, default: "Customers"), "customers_panel" do
   = datagrid_table CustomersGrid.new, @customers, html: { class: "table table-condensed table-hover" }

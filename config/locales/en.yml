@@ -23,6 +23,10 @@ en:
   datagrid:
     no_results: "No results"
   
+  time:
+    formats:
+      default: "%Y-%m-%d %H:%M"
+  
   views:    
     pagination:
       first: "&laquo;"
