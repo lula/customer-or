@@ -192,6 +192,7 @@ DEPENDENCIES
   bootstrap3-datetimepicker-rails (~> 2.1.30)
   cancan
   coffee-rails (~> 4.0.0)
+  countries
   country_select
   datagrid
   debugger

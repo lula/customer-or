@@ -1,6 +1,6 @@
 class Organization
   include Mongoid::Document
-
+    
   field :name, type: String
   field :country, type: Country
   field :created_at, type: Date, default: Time.now

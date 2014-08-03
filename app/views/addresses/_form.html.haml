@@ -14,8 +14,10 @@
       = f.input :city
   .row
     .col-md-5
-      = f.input :country, iso_codes: true
-  
+      - if @address && @address.country
+        = f.input :country, iso_codes: true, priority: [@address.country.alpha2]
+      - else
+        = f.input :country, iso_codes: true
   .row
     .col-md-12
       .form-actions

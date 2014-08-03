@@ -26,7 +26,7 @@ class Address
     addr += "#{self.description}, " if self.description && !self.description.empty?
     addr += "#{self.street}#{" " + self.house_nr if self.house_nr && !self.house_nr.empty?}, " if self.street && !self.street.empty?
     addr += "#{self.city}"
-    addr += ", #{self.country.name}" if self.country
+    addr += ", #{self.country}" if self.country
     addr
   end
     

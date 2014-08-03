@@ -63,8 +63,9 @@ gem 'bootstrap3-datetimepicker-rails', '~> 2.1.30'
 
 # Simple_form
 gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git'
-gem 'country_select'
 gem 'select2-rails'
+gem 'countries'
+gem 'country_select'
 
 # Kaminari
 gem 'kaminari'

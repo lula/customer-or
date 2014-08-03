@@ -1,10 +1,15 @@
 = simple_form_for @organization, :html => { role: "form" } do |f|
+  Country 
+  = @organization.country
   = panel t("views.titles.details", default: "Details"), "details_panel" do
     .row
       .col-md-3
         = f.input :name, autofocus: true
       .col-md-3.col-md-offset-1
-        = f.input :country, iso_codes: true
+        - if @organization.country
+          = f.input :country, iso_codes: true, priority: [@organization.country.alpha2]
+        - else
+          = f.input :country, iso_codes: true
 
   .form-actions
     = button_tag type: :submit, :class => 'btn btn-primary btn-sm' do

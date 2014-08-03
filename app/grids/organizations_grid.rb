@@ -15,7 +15,7 @@ class OrganizationsGrid
   
   column :name,  url: ->(model) { Rails.application.routes.url_helpers.organization_path(model) }
   column :country do 
-    self.country.name
+    self.country
   end
   
 end
