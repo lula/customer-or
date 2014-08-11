@@ -1,11 +1,11 @@
 .row
   .col-md-2
     = f.input day, as: :boolean, inline_label: t("mongoid.attributes.business_hour.#{day}"), label: false
-  .col-md-2
-    = f.label t("views.labels.time_range", default: "Start / End at"), class: "col-md-12"
+  / .col-md-2
+  /   = f.label t("views.labels.time_range", default: "Start / End at"), class: "col-md-12"
   .col-md-2
     = f.input :"#{day.to_s}_start_at", as: :time_picker, label: false
-  .col-md-2
+  .col-md-2.col-md-offset-1
     = f.input :"#{day.to_s}_end_at", as: :time_picker, label: false
   .col-md-3
     .form-group.has-error

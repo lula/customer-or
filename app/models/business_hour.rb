@@ -113,13 +113,13 @@ class BusinessHour
   
   def days
     days = []
-    days << { wday: 0, start_at: sun_start_at, end_at: sun_end_at } if sun == "1"
-    days << { wday: 1, start_at: mon_start_at, end_at: mon_end_at } if mon == "1"
-    days << { wday: 2, start_at: tue_start_at, end_at: tue_end_at } if tue == "1"
-    days << { wday: 3, start_at: wed_start_at, end_at: wed_end_at } if wed == "1"
-    days << { wday: 4, start_at: thu_start_at, end_at: thu_end_at } if thu == "1"
-    days << { wday: 5, start_at: fri_start_at, end_at: fri_end_at } if fri == "1"
-    days << { wday: 6, start_at: sat_start_at, end_at: sat_end_at } if sat == "1"
+    days << { wday: 0, start_at: sun_start_at, end_at: sun_end_at } if sun == "1" || sun == true
+    days << { wday: 1, start_at: mon_start_at, end_at: mon_end_at } if mon == "1" || mon == true
+    days << { wday: 2, start_at: tue_start_at, end_at: tue_end_at } if tue == "1" || tue == true
+    days << { wday: 3, start_at: wed_start_at, end_at: wed_end_at } if wed == "1" || wed == true
+    days << { wday: 4, start_at: thu_start_at, end_at: thu_end_at } if thu == "1" || thu == true
+    days << { wday: 5, start_at: fri_start_at, end_at: fri_end_at } if fri == "1" || fri == true
+    days << { wday: 6, start_at: sat_start_at, end_at: sat_end_at } if sat == "1" || sat == true
     days
   end
   

@@ -11,6 +11,10 @@ class BusinessHoursController < ApplicationController
   def new
     @business_hour = @customer.business_hours.build
     set_seasons
+    @business_hour.season_ids = []
+    @seasons.each do |season|
+      @business_hour.season_ids.push(season[1])
+    end
   end
 
   def show
@@ -64,7 +68,7 @@ class BusinessHoursController < ApplicationController
         :thu, :thu_start_at, :thu_end_at,
         :fri, :fri_start_at, :fri_end_at,
         :sat, :sat_start_at, :sat_end_at,
-        :sun, :sun_start_at, :sun_end_at,
+        :sun, :sun_start_at, :sun_end_at,        
         season_ids: [] )
   end
   
@@ -77,9 +81,11 @@ class BusinessHoursController < ApplicationController
   end
   
   def set_seasons
-    @seasons = Season.where(country: @business_hour.customer.address.country) 
-    if @seasons.length == 0
-      @seasons = Season.where(country: "")
+    seasons = Season.where(country: @business_hour.customer.address.country) 
+    if seasons.length == 0
+      seasons = Season.where(country: "")
     end
+    
+    @seasons = seasons.map { |c| [c.description, c.id] }  
   end
 end

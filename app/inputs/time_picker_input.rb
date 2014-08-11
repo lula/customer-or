@@ -1,6 +1,6 @@
 class TimePickerInput < SimpleForm::Inputs::Base
   def input
-    @builder.select(attribute_name, hour_options, { :selected => selected_value }, { :class => "input-medium" })
+    @builder.select(attribute_name, hour_options, { :selected => selected_value }, { })
   end
 
   private
