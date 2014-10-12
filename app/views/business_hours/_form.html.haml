@@ -1,10 +1,4 @@
 = simple_form_for [@customer, @business_hour], :html => { role: "form" }, defaults: { wrapper: :form_horizontal } do |f|
-  - if @business_hour.errors.messages[:bh]
-    .alert.alert-error
-      %strong Can't save business hours:
-      %ul
-        - @business_hour.errors.messages[:bh].each do |msg|
-          %li= msg
   .row
     .col-md-2
       = f.input :valid_from, as: :datetime_picker

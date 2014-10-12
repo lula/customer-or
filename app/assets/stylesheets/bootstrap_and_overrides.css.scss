@@ -1,41 +1,52 @@
-/*
-  =#require twitter-bootstrap-static/bootstrap
-	=#require bootstrap-themes/bootstrap-cerulean
+$brand-primary: #428bca !default;
 
-  Use Font Awesome icons (default)
-  To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
+$navbar-height: 35px !default;
+$navbar-default-bg: $brand-primary !default;
+$navbar-default-color: #fff !default;
+$navbar-default-link-color: $navbar-default-color !default;
+$navbar-default-link-active-color: $navbar-default-color !default;
+$navbar-default-link-hover-color: $navbar-default-color !default;
+$navbar-default-toggle-hover-bg: #efefef !default;
+$navbar-default-toggle-icon-bar-bg: #fff !default;
+$navbar-default-toggle-border-color: #fff !default;
 
-  =#require twitter-bootstrap-static/fontawesome	
-  = require font-awesome
-*/
+$navbar-second-level-bg: lighten($navbar-default-bg, 8%) !default;
+$navbar-second-level-border: darken($navbar-second-level-bg, 6.5%) !default;
+$navbar-second-level-link-active-bg: darken($navbar-second-level-bg, 6.5%) !default;
 
-//@mixin striped-bg($bg-color: #ccc, $darken-amount: 5%, $stripe-color: darken($bg-color, $darken-amount), $size: 50px) {
-//	background-color: $bg-color;
-//	background-image: -webkit-linear-gradient(-45deg, $stripe-color 25%, transparent 25%, transparent 50%, $stripe-color 50%, $stripe-color 75%, transparent 75%, transparent);
-//	background-image: -moz-linear-gradient(-45deg, $stripe-color 25%, transparent 25%, transparent 50%, $stripe-color 50%, $stripe-color 75%, transparent 75%, transparent);
-//	background-image: -ms-linear-gradient(-45deg, $stripe-color 25%, transparent 25%, transparent 50%, $stripe-color 50%, $stripe-color 75%, transparent 75%, transparent);
-//	background-image: -o-linear-gradient(-45deg, $stripe-color 25%, transparent 25%, transparent 50%, $stripe-color 50%, $stripe-color 75%, transparent 75%, transparent);
-//	background-image: linear-gradient($stripe-color 25%, transparent 25%, transparent 50%, $stripe-color 50%, $stripe-color 75%, transparent 75%, transparent);
-//	background-size: $size $size;
-//	width:100%;
-//	height:100%;
-//}
+$panel-default-heading-bg: $navbar-default-bg !default;
+$panel-default-text: #fff !default;
+$panel-default-border: lighten($panel-default-heading-bg, 20%) !default;
+$panel-default-link-text: #fff !default;
 
-$navbar-height: 40px;
-$navbar-default-bg: #f7f5fa;
 
+@import "font-awesome";
+@import "bootstrap-sprockets";
 @import "bootstrap";
 
 $list-group-header-bg: #f7f5fa;
 $order-link-color: $link-color;
 $row-selected-color: $list-group-header-bg;
 
+// FontAwesome overrides
+.fa {
+ color: $brand-primary; 
+}
+
+button, .panel-title {
+  .fa {
+    color: #fff;
+  }
+}
+
+//  Bootstrap overrides
+
 body {
-	padding-top: 30px;
+
 }
 
 .container {
-	padding-top: 20px;
+  margin-top: ($navbar-height * 2) + 2;
 }
 
 .field_with_errors {
@@ -48,6 +59,10 @@ body {
 	text-overflow: ellipsis;
 //	width: 100%;
 //	display: block;
+}
+
+.navbar-brand {
+  font-weight: bold;
 }
 
 .list-group-header, .list-group-header.active, .list-group-header.active:hover {
@@ -90,6 +105,7 @@ body {
 }
 
 .page-header {
+  margin-top: 20px;
 	button {
 		display: inline;
 		border: none;
@@ -177,6 +193,11 @@ input {
 	padding: 0px 0px 30px 0px;
 }
 
+.alert {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 td {
 	&.selected {
 		background-color: #3daae9 !important;
@@ -230,7 +251,7 @@ a:hover {
 .panel {
 	.panel-title {
 		a {
-			color: $link-color !important;
+			color: $panel-default-link-text !important;
 			margin: 0px 8px 0px 4px
 		}
 	}		
@@ -270,8 +291,6 @@ abbr {
 	padding-right: $padding-base-horizontal;
 }
 
-
-
 label.checkbox input[type=checkbox] {
 	display: inline-block;
 	padding-right: 10px;
@@ -290,4 +309,18 @@ tr[selectable=selected] {
 	td {
 		background-color: $row-selected-color !important;
 	}
+}
+
+.navbar a {
+  height: $navbar-height;
+}
+
+#second-level-menu {
+  top: $navbar-height+1px;
+  background-color: $navbar-second-level-bg;
+  border-color: $navbar-second-level-bg;
+  
+  .active {
+    background-color: $navbar-second-level-link-active-bg;
+  };
 }

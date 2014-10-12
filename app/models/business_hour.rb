@@ -124,18 +124,25 @@ class BusinessHour
   end
   
   def validate_hours
+    errors_found = false
     [:mon, :tue, :wed, :thu, :fri, :sat, :sun].each do |day|
-      if send(day) == "1" && !send("#{day.to_s}_end_at").blank? && !send("#{day.to_s}_start_at").blank?
+      if send(day) && !send("#{day.to_s}_end_at").blank? && !send("#{day.to_s}_start_at").blank?
         if send("#{day.to_s}_end_at") < send("#{day.to_s}_start_at")
           errors.add(:"#{day.to_s}_end_at", "must be greater than start time")
+          errors.add(day, "")
+          errors_found = true
         end
       end
-    end
+    end    
+    errors.add(:general, "") if errors_found
   end
     
   def validate_days
     return unless days.empty?
-    errors.add(:bh, "Add at least a day" )
+    [:mon, :tue, :wed, :thu, :fri, :sat, :sun].each do |day|
+      errors.add(day, "")
+    end
+    errors.add(:global_message, "Add at least a day")    
   end
   
 end

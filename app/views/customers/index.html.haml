@@ -2,8 +2,9 @@
 .page-header
   %h2=t '.title', :default => model_class.model_name.human.pluralize.titleize
 
-#customers-search-form 
+= panel t("views.titles.search_filters", default: "Filters"), "customers-search-form" do
   = render "search_form", grid: @grid, url: customers_path
+  
 #customers-search-results
   = render "grid"
 
@@ -14,3 +15,5 @@
   });
   
   $("select").select2({allowClear: true})
+  
+  $(".panel-collapse").trigger("click")

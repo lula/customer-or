@@ -35,10 +35,10 @@ jQuery ->
 			false
 		
 		.on "click", ".panel-collapse", (event) -> 
-			if $(@).find("i").attr("class") == "fa fa-chevron-sign-up"
-				$(@).html("<i class='fa fa-chevron-sign-down'></i>")
+			if $(@).find("i").attr("class") == "fa fa-chevron-up"
+				$(@).html("<i class='fa fa-chevron-down'></i>")
 			else
-				$(@).html("<i class='fa fa-chevron-sign-up'></i>")
+				$(@).html("<i class='fa fa-chevron-up'></i>")
 		
 		.on "click", "[data-hide]", (event) ->
 			$($(@).attr("data-hide")).hide()	

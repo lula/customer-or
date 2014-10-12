@@ -13,7 +13,7 @@ module ApplicationHelper
         
         toggle_btn = content_tag :div, class: "pull-right" do
           content_tag :a, class: "panel-collapse", href: "#", data: { toggle: "collapse", target: "##{id}" } do
-            content_tag :i, "", class: "fa fa-chevron-sign-up"
+            content_tag :i, "", class: "fa fa-chevron-up"
           end
         end
         

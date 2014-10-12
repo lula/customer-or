@@ -1,6 +1,8 @@
 class BusinessHoursController < ApplicationController
   before_action :set_customer
   before_action :new_business_hour, only: [:create]
+  after_action :update_flash, only: [:create, :update]
+  
   load_and_authorize_resource
   
   def edit
@@ -43,6 +45,7 @@ class BusinessHoursController < ApplicationController
         format.html { redirect_to edit_customer_path(@customer), notice: 'Business Hour was successfully updated.' }
         format.json { render action: 'show', status: :created, location: @customer }
       else
+        set_seasons
         format.html { render action: 'edit' }
         format.json { render json: @business_hour.errors, status: :unprocessable_entity }
       end
@@ -87,5 +90,9 @@ class BusinessHoursController < ApplicationController
     end
     
     @seasons = seasons.map { |c| [c.description, c.id] }  
+  end
+  
+  def update_flash
+    check_errors @business_hour
   end
 end

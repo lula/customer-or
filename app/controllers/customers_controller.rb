@@ -1,7 +1,8 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy, :export_addresses]
   before_action :new_customer, only: [:create]
-    
+  after_action :update_flash, only:[:create, :update]
+
   load_and_authorize_resource except: [:new]
   
   #-- GET /customers
@@ -207,5 +208,9 @@ class CustomersController < ApplicationController
         @representatives = Representative.in(organization_ids: current_user.organizations.inject([]){|arr,obj| arr << obj.id})
         @organizations = Organization.in(id: current_user.organizations.inject([]){|arr,obj| arr << obj.id})
       end
+    end
+    
+    def update_flash
+      check_errors @customer
     end
 end

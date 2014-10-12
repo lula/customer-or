@@ -2,8 +2,12 @@
 .page-header
   %h2
     = "#{t('.title', :default => model_class.model_name.human.titleize)} #{"(Main)" if @address.main}"
-    = link_to polymorphic_path(@address.addressable), rel: "tooltip", title: t("views.labels.back", default: "Back") do
-      = fa_icon "reply"
+    .pull-right
+      = link_to polymorphic_path(@address.addressable), rel: "tooltip", title: t("views.labels.back", default: "Back") do
+        = fa_icon "arrow-circle-o-left"
+      = link_to edit_customer_path(@customer), rel: "tooltip", title: t("mongoid.actions.customer.edit", default: t("helpers.links.edit")) do
+        = fa_icon "edit"
+
 .row
   .col-md-6
     %p

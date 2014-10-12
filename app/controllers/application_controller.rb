@@ -25,4 +25,12 @@ class ApplicationController < ActionController::Base
     @current_ability || @current_ability = Ability.new(current_auth_resource)
   end
   
+  def check_errors(object)
+    messages = object.errors.messages[:global_message]
+    
+    messages.each do |text|
+      flash[:danger] << text
+    end if messages
+  end
+  
 end

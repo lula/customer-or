@@ -55,8 +55,7 @@ gem 'haml-rails'
 gem "mongoid", github: 'mongoid/mongoid'#, git: 'git://github.com/mongoid/mongoid.git'
 
 # Twitter Boostrap
-# gem 'twitter-bootstrap-rails', git: 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
-gem 'bootstrap-sass', '~> 3.0.2.0'
+gem 'bootstrap-sass', '~> 3.2.0'
 gem "font-awesome-rails"
 gem 'momentjs-rails', '~> 2.5.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 2.1.30'
