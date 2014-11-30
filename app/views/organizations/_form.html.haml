@@ -1,6 +1,4 @@
 = simple_form_for @organization, :html => { role: "form" } do |f|
-  Country 
-  = @organization.country
   = panel t("views.titles.details", default: "Details"), "details_panel" do
     .row
       .col-md-3
@@ -15,7 +13,7 @@
     = button_tag type: :submit, :class => 'btn btn-primary btn-sm' do
       = fa_icon "save"
       = t("mongoid.actions.organization.save", default: t("helpers.links.save"))
-    = link_to organizations_path, :class => 'btn btn-danger btn-sm' do
+    = link_to @organization, :class => 'btn btn-danger btn-sm' do
       = fa_icon "remove"
       = t('.cancel', :default => t("helpers.links.cancel"))
 

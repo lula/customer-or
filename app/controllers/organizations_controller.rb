@@ -3,6 +3,8 @@ class OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
   before_action :new_organization, only: [:create]
   load_and_authorize_resource except: [:create]
+
+  layout "third_level_menu", except: [:index]
   
   # GET /organizations
   # GET /organizations.json

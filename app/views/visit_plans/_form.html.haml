@@ -13,9 +13,9 @@
     .col-md-12
       .row
         .col-md-2
-          = f.input :start_date, as: :datetime_picker, input_html: { value: Time.now }
+          = f.input :start_date, as: :datetime_picker, input_html: { value: Time.now.strftime("%Y-%m-%d")  }
         .col-md-2
-          = f.input :end_date, as: :datetime_picker, input_html: { value: Time.now + 7.days }
+          = f.input :end_date, as: :datetime_picker, input_html: { value: (Time.now + 7.days).strftime("%Y-%m-%d") }
         .col-md-6.col-md-offset-1
           = f.input :customer_ids, collection: @customers, input_html: { multiple: true }
       .row

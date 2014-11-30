@@ -2,6 +2,8 @@ class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy, :export_addresses]
   before_action :new_customer, only: [:create]
   after_action :update_flash, only:[:create, :update]
+  
+  layout "third_level_menu", except: [:index, :import]
 
   load_and_authorize_resource except: [:new]
   
@@ -55,9 +57,11 @@ class CustomersController < ApplicationController
     @customer = Customer.new(customer_params)
     respond_to do |format|
       if @customer.save
+        retrieve_relationships
         format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
         format.json { render action: 'show', status: :created, location: @customer }
       else
+        retrieve_relationships
         select_options
         format.html { render action: 'new' }
         format.json { render json: @customer.errors, status: :unprocessable_entity }
@@ -68,13 +72,16 @@ class CustomersController < ApplicationController
   #-- PATCH/PUT /customers/1
   # PATCH/PUT /customers/1.json
   def update
+    debugger
     respond_to do |format|
       if @customer.update(customer_params)
         format.html { redirect_to @customer, notice: 'Customer was successfully updated.' }
         format.json { head :no_content }
       else
+        retrieve_relationships
         select_options
-        format.html { render action: 'edit' }
+        check_errors(@customer)
+        format.html { render action: 'edit', layout: "third_level_menu" }
         format.json { render json: @customer.errors, status: :unprocessable_entity }
       end
     end

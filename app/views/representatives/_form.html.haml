@@ -1,5 +1,5 @@
 = simple_form_for @representative, html: { role: "form" } do |f|
-  = panel t("views.titles.details", default: "Details"), "details_panel" do
+  = panel t("views.titles.details", default: "Details"), "details_panel", anchor: "representative_details" do
     .row
       .col-md-5
         %legend= t("views.legends.representative.data", default: "Representative")
@@ -25,7 +25,7 @@
                 -else
                   = a.input :country, iso_codes: true
   
-  = panel t("mongoid.models.organization", count: 2, default: "Organizations"), "organizations_panel" do
+  = panel t("mongoid.models.organization", count: 2, default: "Organizations"), "organizations_panel", anchor: "representative_organizations" do
     .row
       .col-md-4
         = f.input :organization_ids, collection: Organization.all, input_html: { multiple: true }

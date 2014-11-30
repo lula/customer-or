@@ -1,5 +1,5 @@
 = simple_form_for [:admin, @user], :html => { role: "form" } do |f|
-  = panel t("views.panels.user.details", default: "Details"), "details_panel" do
+  = panel t("views.panels.user.details", default: "Details"), "details_panel", anchor: "user_details" do
     .row
       .col-md-5
         = f.input :name
@@ -14,7 +14,7 @@
         = f.input :last_sign_in_ip, disabled: true
   
   - unless @user.admin?
-    = panel t("views.panels.customer.organizational_data", default: "Organizational Data"), "orgdata_panel" do      
+    = panel t("views.panels.user.organizational_data", default: "Organizational Data"), "orgdata_panel", anchor: "user_organizational_data" do      
       .row
         .col-md-4.no-left
           #representative-select{ class: "#{'collapse out' unless @user.organizations.empty?}" }

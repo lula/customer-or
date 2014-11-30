@@ -2,8 +2,11 @@
 .page-header
   %h2=t '.title', :default => model_class.model_name.human.pluralize.titleize
 
-#users-search-form 
+= panel t("views.titles.search_filters", default: "Filters"), "users-search-form" do
   = datagrid_form_for @grid, :method => :get, :url => admin_users_path, html: { class: "form-horizontal" }
 
 #users-search-results
   = render "layouts/grid", editable: true, path: :admin, html: { class: "table table-condensed table-hover table-bordered table-striped" }, export_url: admin_users_path(params: params, format: :csv)
+
+:javascript
+  $(".panel-collapse").trigger("click")

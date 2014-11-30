@@ -2,6 +2,8 @@ class Admin::UsersController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource except: [:create]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+
+  layout "third_level_menu", except: [:index]
   
   def index
     @grid = UsersGrid.new(params[:users_grid])

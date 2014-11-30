@@ -1,1 +1,2 @@
 SimpleNavigation.register_renderer :bootstrap_accordion => BootstrapAccordionRenderer
+SimpleNavigation.register_renderer :bootstrap_list => BootstrapListRenderer

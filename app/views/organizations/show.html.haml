@@ -2,13 +2,15 @@
 .page-header
   %h2
     =t '.title', :default => model_class.model_name.human.titleize
-    = link_to edit_organization_path(@organization) do 
-      = fa_icon "edit"
-    = link_to organization_path(@organization), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } do
-      = fa_icon "trash.danger"
+    - if can?(:edit, Organization)
+      .pull-right
+        = link_to edit_organization_path(@organization) do 
+          = fa_icon "edit"
+        = link_to organization_path(@organization), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } do
+          = fa_icon "trash-o"
     
     
-= panel t("views.titles.details", default: "Details"), "details_panel" do
+= panel t("views.titles.details", default: "Details"), "details_panel", anchor: "organization_details" do
   %p
     %strong= model_class.human_attribute_name(:name) + ':'
     = @organization.name
@@ -16,10 +18,10 @@
     %strong= model_class.human_attribute_name(:country) + ':'
     = @organization.country.name
 
-= panel t("mongoid.models.customer", count: 2, default: "Customers"), "customers_panel" do
+= panel t("mongoid.models.customer", count: 2, default: "Customers"), "customers_panel", anchor: "organization_customer" do
   = datagrid_table CustomersGrid.new, @customers, html: { class: "table table-condensed table-hover" }
   = paginate @customers, pagination_class: "pagination-sm", param_name: "customers_page"
 
-= panel t("mongoid.models.representative", count: 2, default: "Representatives"), "representatives_panel" do
+= panel t("mongoid.models.representative", count: 2, default: "Representatives"), "representatives_panel", anchor: "organization_representatives" do
   = datagrid_table RepresentativesGrid.new, @representatives, html: { class: "table table-condensed table-hover" }
   = paginate @representatives, pagination_class: "pagination-sm", param_name: "representatives_page"

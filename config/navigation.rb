@@ -74,49 +74,115 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.dom_class = "nav navbar-nav"
         
     if user_signed_in?
+      
+      # Users
       primary.item :users_menu, t("views.navigation.user.title", default: "Users"), admin_users_url, if: ->{can?(:read, User)}, highlights_on: /\/users/ do |sub_nav|
         sub_nav.dom_class = "nav navbar-nav"
         if current_user.admin?
           sub_nav.item :src_users, t("views.navigation.user.search", default: "Search"), admin_users_url
-          sub_nav.item :new_user, t("views.navigation.user.new", default: "New"), new_admin_user_url, if: ->{can?(:create, User)}
+          sub_nav.item :new_user, t("views.navigation.user.new", default: "New"), new_admin_user_url, if: ->{can?(:create, User)} do |third_nav|
+            third_nav.item :user_details, t("views.navigation.user.details", default: "Details"), "#user_details", has_anchor: true
+          end
+          
+          if @user
+            sub_nav.item :selected_user, @user.email, edit_admin_user_url(@user) do |third_nav|
+              third_nav.item :user_details, t("views.navigation.user.details", default: "Details"), "#user_details", has_anchor: true
+              third_nav.item :user_organizational_data, t("views.navigation.user.organizational_data", default: "Organizational Data"), "#user_organizational_data", has_anchor: true
+            end
+          end
+          
         else 
-          sub_nav.item :show_user, current_user.name || current_user.email, edit_admin_user_url(current_user),  if: ->{can?(:edit, User)}
+          sub_nav.item :show_user, current_user.email, edit_admin_user_url(current_user),  if: ->{can?(:edit, User)} do |third_nav|
+            third_nav.item :user_details, t("views.navigation.user.details", default: "Details"), "#user_details", has_anchor: true
+            third_nav.item :user_organizational_data, t("views.navigation.user.organizational_data", default: "Organizational Data"), "#user_organizational_data", has_anchor: true
+          end
         end
       end
       
+      # Organizations
       primary.item :organizations, t("views.navigation.organization.title", default: "Organizations"), organizations_url,  if: ->{can?(:read, Organization)}, highlights_on: /\/organizations/ do |sub_nav|
         sub_nav.dom_class = "nav navbar-nav"
         sub_nav.item :src_organizations, t("views.navigation.organization.search", default: "Search"), organizations_url
-        sub_nav.item :new_organization, t("views.navigation.organization.new", default: "New"), new_organization_url, if: ->{can?(:create, Organization)}
+
+        sub_nav.item :new_organization, t("views.navigation.organization.new", default: "New"), new_organization_url, if: ->{can?(:create, Organization)} do |third_nav|
+          third_nav.item :organization_details, t("views.navigation.organization.details", default: "Details"), "#organization_details", has_anchor: true          
+        end
+                  
+        if @organization && !@organization.new_record?
+          edit_mode = request.url == edit_organization_url(@organization)
+          url = edit_mode ? edit_organization_url(@organization) : organization_url(@organization)
+        
+          sub_nav.item :current_organization, @organization.name, url do |third_nav|
+            third_nav.item :organization_details, t("views.navigation.organization.details", default: "Details"), "#organization_details", has_anchor: true
+            third_nav.item :organization_customers, t("views.navigation.organization.customers", default: "Customers"), "#organization_customers", if: ->{!edit_mode}, has_anchor: true
+            third_nav.item :organization_representatives, t("views.navigation.organization.representatives", default: "Representatives"), "#organization_representatives", if: ->{!edit_mode}, has_anchor: true
+          end
+        end
       end
-    
+
+      # Customers    
       primary.item :customers, t("views.navigation.customer.title", default: "Customers"), customers_url, if: ->{can?(:read, Customer)}, highlights_on: /\/customers/ do |sub_nav|
         sub_nav.dom_class = "nav navbar-nav"
         sub_nav.item :src_customers, t("views.navigation.customer.search", default: "Search"), customers_url
-        sub_nav.item :new_customer, t("views.navigation.customer.new", default: "New"), new_customer_url, if: ->{can?(:create, Customer)}
+
+        sub_nav.item :new_customer, t("views.navigation.customer.new", default: "New"), new_customer_url, if: ->{can?(:create, Customer)}  do |third_nav|
+          third_nav.item :customer_details, t("views.navigation.customer.details", default: "Details"), "#customer_details", has_anchor: true
+          third_nav.item :customer_representative, t("mongoid.models.representative", default: "Representative"), "#customer_representative", has_anchor: true
+          third_nav.item :customer_organizations, t("mongoid.models.organization", count: 2, default: "Organizations"), "#customer_organizations", has_anchor: true
+        end
         
         if current_user.admin?
           sub_nav.item :import_customers, t("views.navigation.customer.import", default: "Import"), import_customers_url, if: ->{can?(:create, User)}
         end
         
-        if @customer && !@customer.new_record?
-          sub_nav.item :current_customer, @customer.name, customer_url(@customer), highlights_on:  /\/customers/
+        customer = @customer || @addressable
+        if customer && !customer.new_record?
+          edit_mode = request.url == edit_customer_url(customer)
+          url = edit_mode ? edit_customer_url(customer) : customer_url(customer)
+          
+          sub_nav.item :current_customer, customer.name, url do |third_nav|
+            third_nav.item :customer_details, t("views.navigation.customer.details", default: "Details"), "#customer_details", has_anchor: true
+            third_nav.item :customer_addresses, t("mongoid.models.address", count: 2, default: "Addresses"), "#customer_addresses", if: ->{!edit_mode}, has_anchor: true
+            third_nav.item :customer_business_hours, t("mongoid.models.business_hour", count: 2, default: "Business Hours"), "#customer_business_hours", has_anchor: true
+            third_nav.item :customer_representative, t("mongoid.models.representative", default: "Representative"), "#customer_representative", if: ->{edit_mode}, has_anchor: true
+            third_nav.item :customer_organizations, t("mongoid.models.organization", count: 2, default: "Organizations"), "#customer_organizations", has_anchor: true
+            third_nav.item :customer_visits, t("mongoid.models.visit", count: 2, default: "Visits"), "#customer_visits", if: ->{!edit_mode}, has_anchor: true
+          end
         end
       end
 
+      # Representatives
       primary.item :representative_menu, t("views.navigation.representative.title", default: "Representatives"), representatives_url,  if: ->{can?(:read, Representative)}, highlights_on: /\/representatives/ do |sub_nav|
         sub_nav.dom_class = "nav navbar-nav"
         sub_nav.item :src_rep, t("views.navigation.representative.search", default: "Search"), representatives_url
-        sub_nav.item :new_rep, t("views.navigation.representative.new", default: "New"), new_representative_url,  if: ->{can?(:create, Representative)}
+        sub_nav.item :new_rep, t("views.navigation.representative.new", default: "New"), new_representative_url,  if: ->{can?(:create, Representative)} do |third_nav|
+          third_nav.item :representative_details, t("views.navigation.representative.details", default: "Details"), "#representative_details", has_anchor: true
+          third_nav.item :representative_organizations, t("views.navigation.representative.organizations", default: "Organizations"), "#representative_organizations", has_anchor: true
+        end
+        
         sub_nav.item :absences, t("views.navigation.representative.absences", default: "Absences"), absences_url
+        
+        if @representative && !@representative.new_record?
+          edit_mode = request.url == edit_representative_url(@representative)
+          url = edit_mode ? edit_representative_url(@representative) : representative_url(@representative)
+
+          sub_nav.item :current_representative, @representative.name, url do |third_nav|
+            third_nav.item :representative_details, t("views.navigation.representative.details", default: "Details"), "#representative_details", has_anchor: true
+            third_nav.item :representative_organizations, t("views.navigation.representative.organizations", default: "Organizations"), "#representative_organizations", has_anchor: true
+            third_nav.item :representative_customers, t("views.navigation.representative.customers", default: "Customers"), "#representative_customers", if: ->{!edit_mode}, has_anchor: true
+            third_nav.item :representative_visits, t("views.navigation.representative.visits", default: "Visits"), "#representative_visits", if: ->{!edit_mode}, has_anchor: true
+          end
+        end        
       end
 
+      # Visits
       primary.item :visits, t("views.navigation.visit.title", default: "Visits"), visits_url,   if: ->{can?(:read, Visit)}, highlights_on: /\/visits/ do |sub_nav|
         sub_nav.dom_class = "nav navbar-nav"
         sub_nav.item :srcvisits, t("views.navigation.visit.search", default: "Search"), visits_url
         sub_nav.item :new_visit, t("views.navigation.visit.new", default: "New"), new_visit_url,  if: ->{can?(:create, Visit)}
       end
 
+      # Visit Plans
       primary.item :visit_plans,  t("views.navigation.visit_plan.title", default: "Visit Plan"), visit_plans_url,  if: ->{can?(:read, Visit)}, highlights_on: /\/visit_plans/ do |sub_nav|
         sub_nav.dom_class = "nav navbar-nav"
         sub_nav.item :src_visit_plans, t("views.navigation.visit_plan.search", default: "Search"), visit_plans_url

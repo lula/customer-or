@@ -1,6 +1,9 @@
 class RepresentativesController < ApplicationController
   before_action :set_representative, only: [:show, :edit, :update, :destroy]
   before_action :new_representative, only: [:create]
+
+  layout "third_level_menu", except: [:index]
+  
   load_and_authorize_resource except: [:create]
   
   # GET /representatives
@@ -36,7 +39,13 @@ class RepresentativesController < ApplicationController
   # GET /representatives/1.json
   def show
     @visits = @representative.visits.page(params[:visits_page])
-    @customers = @representative.customers.page(params[:customers_page])
+    @customers = @representative.customers.page(params[:customers_page])    
+
+    @organizations_grid = OrganizationsGrid.new(params[:organizations_grid]) do |scope|
+      @representative.organizations
+    end
+    
+    @organizations = @organizations_grid.assets.page(params[:organizations_page]).per(3)
   end
 
   # GET /representatives/new

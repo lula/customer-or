@@ -1,7 +1,7 @@
 = simple_form_for @customer, html: { role: "form" } do |f|
   .row
     .col-md-12
-      = panel t("views.panels.customer.details", default: "Details"), "details_panel" do
+      = panel t("views.panels.customer.details", default: "Details"), "details_panel", anchor: "customer_details" do
         - if @customer.new_record?
           .row
             .col-md-12
@@ -35,20 +35,20 @@
   - unless @customer.new_record?
     .row
       .col-md-6
-        = panel t("mongoid.models.address", count: 2, default: "Addresses"), "addresses_panel", links: [[t("mongoid.actions.new", default: "New"), new_customer_address_path(@customer)]] do
+        = panel t("mongoid.models.address", count: 2, default: "Addresses"), "addresses_panel", links: [[t("mongoid.actions.new", default: "New"), new_customer_address_path(@customer)]], anchor: "customer_address" do
           = render "addresses", editable: true
       .col-md-6
-        = panel t("mongoid.models.business_hour", count: 2, default: "Business Hours"), "business_hours_panel", links: [[t("mongoid.actions.new", default: "New"), new_customer_business_hour_path(@customer)]] do
+        = panel t("mongoid.models.business_hour", count: 2, default: "Business Hours"), "business_hours_panel", links: [[t("mongoid.actions.new", default: "New"), new_customer_business_hour_path(@customer)]], anchor: "customer_business_hours" do
           = render "business_hours", editable: true
   .row
     .col-md-6
-      = panel t("mongoid.models.representative", count: 1, default: "Representative"), "representative_panel" do
+      = panel t("mongoid.models.representative", count: 1, default: "Representative"), "representative_panel", anchor: "customer_representative" do
         .row
           .col-md-8
             = f.input :representative_id do
               = f.collection_select :representative_id, @representatives, :id, :name, { include_blank: true }, { }
     .col-md-6
-      = panel t("mongoid.models.organization", count: 2, default: "Organizations"), "organizations_panel" do
+      = panel t("mongoid.models.organization", count: 2, default: "Organizations"), "organizations_panel", anchor: "customer_organizations" do
         .row
           .col-md-8
             = f.input :organization_ids, collection: @organizations, input_html: { multiple: true }
@@ -60,8 +60,7 @@
           = fa_icon "save"
           = t("mongoid.actions.customer.save")
         = link_to customer_path(@customer), :class => 'btn btn-danger btn-sm' do
-          = fa_icon "remove"
-          = t('.cancel', :default => t("helpers.links.cancel"))
+          = fa_icon "remove", text: "Cancel"
           
 
 :javascript
@@ -69,4 +68,5 @@
     format: 'YYYY-MM-DD',
     pickTime: false
   });
+  
   $("select").addClass("form-control").select2({allowClear: true})

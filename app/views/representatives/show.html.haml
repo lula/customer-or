@@ -3,12 +3,13 @@
   %h2
     =t '.title', :default => model_class.model_name.human.titleize
     - if can?(:edit, Representative)
-      = link_to edit_representative_path(@representative) do
-        = fa_icon "edit"
-      = link_to representative_path(@representative), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } do
-        = fa_icon "trash.danger"
+      .pull-right
+        = link_to edit_representative_path(@representative) do
+          = fa_icon "edit"
+        = link_to representative_path(@representative), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } do
+          = fa_icon "trash-o"
 
-= panel t("views.titles.details", default: "Details"), "details_panel" do 
+= panel t("views.titles.details", default: "Details"), "details_panel", anchor: "representative_details" do 
   %p
     %strong= model_class.human_attribute_name(:name) + ':'
     = @representative.name
@@ -16,8 +17,12 @@
     %strong= model_class.human_attribute_name(:address) + ':'
     = @representative.address.full_description
 
-= panel t("mongoid.models.customer", count: 2, default: "Customers"), "customers_panel" do
+
+= panel t("mongoid.models.organization", count: 2, default: "Organizations"), "organizations_panel", class: "anchor", anchor: "representative_organizations" do
+  = render "organizations", editable: false
+
+= panel t("mongoid.models.customer", count: 2, default: "Customers"), "customers_panel", anchor: "representative_customers" do
   = render "customers", editable: false
 
-= panel t("mongoid.models.customer", count: 2, default: "Visits"), "visits_panel", links: [[t("mongoid.actions.new", default: "New"), new_representative_visit_path(@representative)]] do
+= panel t("mongoid.models.customer", count: 2, default: "Visits"), "visits_panel", links: [[t("mongoid.actions.new", default: "New"), new_representative_visit_path(@representative)]], anchor: "representative_visits" do
   = render "visits", editable: false

@@ -17,7 +17,13 @@ module ApplicationHelper
           end
         end
         
-        "#{title} #{'| ' if options[:links]}".concat(links.join("|").concat(toggle_btn)).html_safe
+        anchor_id = options[:anchor] || "#{id}_anchor"
+        
+        bookmark = content_tag :a, id: anchor_id, class: "anchor" do
+          "#{title} #{' |' if options[:links]}"
+        end
+        
+        bookmark.concat(links.join("|").concat(toggle_btn).html_safe).html_safe
       end
     end
     

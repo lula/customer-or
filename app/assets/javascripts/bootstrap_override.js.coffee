@@ -58,4 +58,7 @@ jQuery ->
 			else
 				$("#representative-select").hide()
 				
-		
+		.on "click", ".anchor-link", (event) ->
+      $(@).parent("li").addClass("active")
+      $(@).parent("li").siblings().removeClass("active")
+      

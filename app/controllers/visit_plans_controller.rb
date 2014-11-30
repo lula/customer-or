@@ -41,7 +41,7 @@ class VisitPlansController < ApplicationController
       (@visit_plan.start_date..@visit_plan.end_date).each do |date|
         customer.business_hours.each do |bh|
           
-          if customer.representative.absences.in(starts_at: [date])
+          if customer.representative.absences.in(starts_at: [date]).size() > 0
             @visit_plan.errors.add(:base, t("mongoid.errors.visit_plan.customer.representative_absent", customer: ActionController::Base.helpers.link_to(customer.name, customer_path(customer), class: "alert-link"), default: "Representative #{customer.representative.name} is  absent on date #{date}"))
             next
           end

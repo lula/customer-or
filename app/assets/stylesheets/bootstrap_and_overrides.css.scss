@@ -33,7 +33,7 @@ $row-selected-color: $list-group-header-bg;
  color: $brand-primary; 
 }
 
-button, .panel-title {
+button, .panel-title, .btn-danger {
   .fa {
     color: #fff;
   }
@@ -89,7 +89,6 @@ body {
 }
 
 .list-group-item {
-	
 	&.active {
 		background-color: $link-color;
 		border-color: $link-color;
@@ -262,6 +261,7 @@ a:hover {
 	}
 }
 
+
 legend {
 	margin-top: 10px;
 }
@@ -315,6 +315,12 @@ tr[selectable=selected] {
   height: $navbar-height;
 }
 
+.navbar-nav li {
+  &.active {
+    font-weight: bold;
+  }
+}
+
 #second-level-menu {
   top: $navbar-height+1px;
   background-color: $navbar-second-level-bg;
@@ -322,5 +328,52 @@ tr[selectable=selected] {
   
   .active {
     background-color: $navbar-second-level-link-active-bg;
+    font-weight: bold;
   };
+}
+
+.anchor {
+  padding-top: ($navbar-height * 2) + 25;
+}
+
+.nav-pills.nav-stacked li {
+  @extend no-overflow;
+  
+	border: none;
+	background-color: $body-bg;
+  border-left: 5px solid $link-color;
+  margin: 7px 0 0px 0;
+
+  &:first-of-type {
+    margin-top: 20px;
+  }
+
+  &:hover {
+    border-left: 5px solid $link-hover-color;
+  }
+
+  a {
+    padding: 4px 0 4px 10px;
+    
+    &:hover {
+      background-color: $body-bg;
+  		color: $link-hover-color;
+    }
+  }
+  
+	&.active {
+  	font-weight: bold;
+    color: $link-hover-color;
+    border-left: 5px solid $link-hover-color;
+    
+    a {
+      background-color: #fff;
+      color: $link-hover-color;
+      		
+  		&:hover {
+        background-color: $body-bg;
+  			color: $link-hover-color;
+  		}
+  	}    
+	}
 }

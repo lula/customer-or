@@ -1,9 +1,12 @@
 - model_class = Organization
 .page-header
   %h2=t '.title', :default => model_class.model_name.human.pluralize.titleize
-  
-#organizations-search-form 
+
+= panel t("views.titles.search_filters", default: "Filters"), "organizations-search-form" do  
   = datagrid_form_for @grid, :method => :get, :url => organizations_path, html: { class: "form-horizontal" }
 
 #organizations-search-result
   = render "layouts/grid", html: { class: "table table-condensed table-hover table-bordered table-striped" }, export_url: organizations_path(params: params, format: :csv)
+  
+:javascript
+  $(".panel-collapse").trigger("click")
