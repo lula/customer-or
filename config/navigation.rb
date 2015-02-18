@@ -85,7 +85,8 @@ SimpleNavigation::Configuration.run do |navigation|
           end
           
           if @user
-            sub_nav.item :selected_user, @user.email, edit_admin_user_url(@user) do |third_nav|
+            title = (@user.name && !@user.name.empty?) ? @user.name : @user.email
+            sub_nav.item :selected_user, title, edit_admin_user_url(@user) do |third_nav|
               third_nav.item :user_details, t("views.navigation.user.details", default: "Details"), "#user_details", has_anchor: true
               third_nav.item :user_organizational_data, t("views.navigation.user.organizational_data", default: "Organizational Data"), "#user_organizational_data", has_anchor: true
             end

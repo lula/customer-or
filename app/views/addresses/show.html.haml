@@ -10,26 +10,25 @@
           = fa_icon "edit"
         = link_to customer_address_path(@addressable, @address), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } do
           = fa_icon "trash-o"
-
-.row
-  .col-md-6
-    %p
-      %strong= model_class.human_attribute_name(:description) + ':'
-      = @address.description
-  .col-md-6
-    %p
-      %strong= model_class.human_attribute_name(:telephone) + ':'
-      = @address.telephone
-.row 
-  .col-md-6
-    %p
-      %strong= model_class.human_attribute_name(:street) + " / " + model_class.human_attribute_name(:house_nr) + ':'
-      = @address.street
-      = @address.house_nr
-  .col-md-6
-    %p
-      %strong= model_class.human_attribute_name(:city) + ':'
-      = @address.city
-    %p
-      %strong= model_class.human_attribute_name(:country) + ':'
-      = @address.country.name
+          
+= panel t("views.titles.details", default: "Details"), "details_panel", anchor: "address_details" do 
+  .row
+    .col-md-6
+      .row.model-attr-nv
+        .col-md-3.model-attr-name= model_class.human_attribute_name(:description)
+        .col-md-9.model-attr-value= @address.description
+      .row.model-attr-nv
+        .col-md-3.model-attr-name= model_class.human_attribute_name(:telephone)
+        .col-md-9.model-attr-value= @address.telephone
+    .col-md-6
+      .row.model-attr-nv
+        .col-md-3.model-attr-name= model_class.human_attribute_name(:street) + " / " + model_class.human_attribute_name(:house_nr)
+        .col-md-9.model-attr-value
+          = @address.street
+          = @address.house_nr
+      .row.model-attr-nv
+        .col-md-3.model-attr-name= model_class.human_attribute_name(:city)
+        .col-md-9.model-attr-value= @address.city
+      .row.model-attr-nv
+        .col-md-3.model-attr-name= model_class.human_attribute_name(:country)
+        .col-md-9.model-attr-value= @address.country.name

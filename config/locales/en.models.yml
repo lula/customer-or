@@ -7,7 +7,12 @@ en:
       visit:
         one: "Visit"
         other: "Visits"
+      customer:
+        one: "Customer"
+        other: "Customers"
     attributes:
+      address: 
+        description: "Descriptionss"
       business_hour:
         mon: "Monday"
         tue: "Tuesday"
@@ -36,9 +41,13 @@ en:
         city: "City"
         street_house_nr: "Street / Nr"
       visit:
+        description: "Description"
+        vdate: "Visit Date"
+        status: "Status"
         statuses:
           proposed: "Proposed"
           planned: "Planned"
+        comment: "Note"
     messages:
       representatives:
         absence:

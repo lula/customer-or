@@ -12,22 +12,23 @@
 = panel t("views.titles.details", default: "Details"), "details_panel" do 
   .row
     .col-md-6
-      %p
-        %strong= model_class.human_attribute_name(:descripton) + ':'
-        = @visit.description
-      %p
-        %strong= t(:customer) + ':'
-        = link_to @visit.customer.name, customer_path(@visit.customer)
-      %p
-        %strong= t(:representative) + ':'
-        = link_to @visit.representative.name, representative_path(@visit.representative)
+      .row.model-attr-nv
+        .col-md-3.model-attr-name= model_class.human_attribute_name(:description)
+        .col-md-9.model-attr-value= @visit.description
+      .row.model-attr-nv
+        .col-md-3.model-attr-name= t("mongoid.models.customer.one", default: "Customera")
+        .col-md-9.model-attr-value= link_to @visit.customer.name, customer_path(@visit.customer)
+      .row.model-attr-nv
+        .col-md-3.model-attr-name= t(:representative)
+        .col-md-9.model-attr-value= link_to @visit.representative.name, representative_path(@visit.representative)
+
     .col-md-6
-      %p
-        %strong= model_class.human_attribute_name(:vdate) + ':'
-        = @visit.vdate
-      %p
-        %strong= model_class.human_attribute_name(:status) + ':'
-        = @visit.status_text
-      %p
-        %strong= model_class.human_attribute_name(:comment) + ':'
-        = @visit.comment
+      .row.model-attr-nv
+        .col-md-3.model-attr-name= model_class.human_attribute_name(:vdate)
+        .col-md-9.model-attr-value= @visit.vdate
+      .row.model-attr-nv
+        .col-md-3.model-attr-name= model_class.human_attribute_name(:status)
+        .col-md-9.model-attr-value= @visit.status_text
+      .row.model-attr-nv
+        .col-md-3.model-attr-name= model_class.human_attribute_name(:comment)
+        .col-md-9.model-attr-value= @visit.comment

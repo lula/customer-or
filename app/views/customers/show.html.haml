@@ -12,19 +12,19 @@
 = panel t("views.titles.details", default: "Details"), "details_panel", anchor: "customer_details" do 
   .row 
     .col-md-6
-      %p
-        %strong= model_class.human_attribute_name(:name) + ':'
-        = @customer.name
-      %p
-        %strong= t("mongoid.models.representative", default: "Representative") + ':'
-        = @customer.representative.name if @customer.representative
+      .row.model-attr-nv
+        .col-md-3.model-attr-name= model_class.human_attribute_name(:name)
+        .col-md-9.model-attr-value= @customer.name
+      .row.model-attr-nv
+        .col-md-3.model-attr-name= t("mongoid.models.representative", default: "Representative")
+        .col-md-9.model-attr-value= @customer.representative.name if @customer.representative
     .col-md-6
-      %p
-        %strong= model_class.human_attribute_name(:valid_from) + ':'
-        = @customer.valid_from
-      %p
-        %strong= model_class.human_attribute_name(:valid_to) + ':'
-        = @customer.valid_to
+      .row.model-attr-nv
+        .col-md-3.model-attr-name= model_class.human_attribute_name(:valid_from)
+        .col-md-9.model-attr-value= @customer.valid_from
+      .row.model-attr-nv
+        .col-md-3.model-attr-name= model_class.human_attribute_name(:valid_to)
+        .col-md-9.model-attr-value= @customer.valid_to
 .row
   .col-md-6
     = panel t("mongoid.models.address", count: 2, default: "Addresses"), "addresses_panel", links: [[t("mongoid.actions.new", default: "New"), new_customer_address_path(@customer)]], anchor: "customer_addresses" do
